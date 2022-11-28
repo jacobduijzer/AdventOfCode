@@ -1,12 +1,12 @@
-[![.NET](https://github.com/jacobduijzer/AdventOfCode2021/actions/workflows/dotnet.yml/badge.svg)](https://github.com/jacobduijzer/AdventOfCode2021/actions/workflows/dotnet.yml)
-
-# Advent Of Code 2021
-
 ## Polybar script
 
 I have created a simple [`jq`](https://stedolan.github.io/jq/) [script](./polybar/adventofcode_polybar.sh) to show my position on a local leaderboard on my [polybar](https://github.com/polybar/polybar):
 
 ![image](./polybar/screenshot.jpg)
+
+# Advent Of Code 2022
+
+# Advent Of Code 2021
 
 ## Solutions
 
