@@ -1,0 +1,34 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <OutputType>Exe</OutputType>
+        <TargetFramework>net6.0</TargetFramework>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <Compile Include="Common\DataAccess.fs" />
+        <Compile Include="Puzzles\Day00.fs" />
+        <Compile Include="Puzzles\Day01.fs" />
+        <Compile Include="Puzzles\Day02.fs" />
+        <Compile Include="Puzzles\Day07.fs" />
+        <Compile Include="Puzzles\Day04.fs" />
+        <Compile Include="Puzzles\Day03.fs" />
+        <Compile Include="Program.fs" />
+        <Content Include="Input\Day01.txt">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+        <Content Include="Input\Day02.txt">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+        <Content Include="Input\Day07.txt">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+        <Content Include="Input\Day04.txt">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+        <Content Include="Input\Day03.txt">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+    </ItemGroup>
+
+</Project>

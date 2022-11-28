@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <OutputType>Exe</OutputType>
+        <TargetFramework>net6.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\AdventOfCode.Core\AdventOfCode.Core.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Microsoft.Maui.Graphics" Version="6.0.101-preview.10.640" />
+      <PackageReference Include="Microsoft.Maui.Graphics.Skia" Version="6.0.101-preview.10.640" />
+      <PackageReference Include="Spectre.Console" Version="0.43.0" />
+    </ItemGroup>
+
+</Project>
