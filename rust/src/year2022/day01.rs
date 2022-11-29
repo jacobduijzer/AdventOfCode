@@ -1,9 +1,11 @@
 use crate::common;
 
-pub fn solve_part1(folder: &str, day: u8) -> u32 {
+pub fn solve_part1(input: &str) -> u32 {
+    unimplemented!("TODO");
 }
 
-pub fn solve_part2(folder: &str, day: u8) -> u32 {
+pub fn solve_part2(input: &str) -> u32 {
+    unimplemented!("TODO");
 }
 
 #[cfg(test)]
@@ -12,12 +14,14 @@ mod tests {
 
     #[test]
     fn test_part_one() {
-        assert_eq!(solve_part1("year2021/testinput/", 1), 7);
+        let input = common::input::read_file(2022, 1, "testinput");
+        assert_eq!(solve_part1(&input));
     }
 
     #[test]
     fn test_part_two() {
-        assert_eq!(solve_part2("year2021/testinput/", 1), 5);
+        let input = common::input::read_file(2022, 1, "testinput");
+        assert_eq!(solve_part2(&input), 5);
     }
 
 }

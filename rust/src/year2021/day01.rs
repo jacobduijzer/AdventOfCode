@@ -28,13 +28,13 @@ mod tests {
     
     #[test]
     fn test_part_one() {
-        let input = common::input::read_file("year2021/testinput/", 1);
+        let input = common::input::read_file(2021,1, "testinput");
         assert_eq!(solve_part1(&input), 7);
     }
 
     #[test]
     fn test_part_two() {
-        let input = common::input::read_file("year2021/testinput/", 1);
+        let input = common::input::read_file(2021, 1, "testinput");
         assert_eq!(solve_part2(&input), 5);
     }
 

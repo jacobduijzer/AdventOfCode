@@ -36,13 +36,13 @@ mod tests {
 
     #[test]
     fn test_part_one() {
-        let input = common::input::read_file("year2021/testinput/", 2);
+        let input = common::input::read_file(2021, 2, "testinput");
         assert_eq!(solve_part1(&input), 150);
     }
 
     #[test]
     fn test_part_two() {
-        let input = common::input::read_file("year2021/testinput/", 2);
+        let input = common::input::read_file(2021, 2, "testinput");
         assert_eq!(solve_part2(&input), 900);
     }
 }
