@@ -1,7 +1,6 @@
 use crate::common;
 
-pub fn solve_part1(folder: &str, day: u8) -> u32 {
-    let input = common::input::read_file(folder, day);
+pub fn solve_part1(input: &str) -> u32 {
     let count: u32 = input
         .lines()
         .map(|n| n.parse().unwrap())
@@ -12,8 +11,7 @@ pub fn solve_part1(folder: &str, day: u8) -> u32 {
     count
 }
 
-pub fn solve_part2(folder: &str, day: u8) -> u32 {
-    let input = common::input::read_file(folder, day);
+pub fn solve_part2(input: &str) -> u32 {
     let count: u32 = input
         .lines()
         .map(|n| n.parse().unwrap())
@@ -30,12 +28,14 @@ mod tests {
     
     #[test]
     fn test_part_one() {
-        assert_eq!(solve_part1("year2021/testinput/", 1), 7);
+        let input = common::input::read_file("year2021/testinput/", 1);
+        assert_eq!(solve_part1(&input), 7);
     }
 
     #[test]
     fn test_part_two() {
-        assert_eq!(solve_part2("year2021/testinput/", 1), 5);
+        let input = common::input::read_file("year2021/testinput/", 1);
+        assert_eq!(solve_part2(&input), 5);
     }
 
 }

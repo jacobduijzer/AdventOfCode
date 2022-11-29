@@ -6,12 +6,15 @@ pub fn solve(
     day: u8,
     part: u8) {
 
+    let input = common::input::read_file(&format!("year{}/input/", year.to_string()), day);
+
     match (year, day, part) {
-        (2021, 1, 1) => println!("Part 1: {}", year2021::day01::solve_part1("year2021/input/", 1)),
-        (2021, 1, 2) => println!("Part 2: {}", year2021::day01::solve_part2("year2021/input/", 1)),
+        (2021, 1, 1) => println!("Part 1: {}", year2021::day01::solve_part1(&input)),
+        (2021, 1, 2) => println!("Part 2: {}", year2021::day01::solve_part2(&input)),
+        (2021, 2, 1) => println!("Part 1: {}", year2021::day02::solve_part1(&input)),
+        (2021, 2, 2) => println!("Part 2: {}", year2021::day02::solve_part2(&input)),
         _ => println!("No match for year: {}, day: {}, part: {}", year, day, part)
     };
-
 }
 
 pub fn solve_raw(
