@@ -6,6 +6,12 @@ I have created a simple [`jq`](https://stedolan.github.io/jq/) [script](./polyba
 
 # Advent Of Code 2022
 
+## Solutions
+
+| Day | Solutions                                                                                                                                                                                                                  | 
+|-----|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| 1   | [Rust](https://github.com/jacobduijzer/AdventOfCode/blob/main/rust/src/year2022/day01.rs) |
+
 # Advent Of Code 2021
 
 ## Solutions
