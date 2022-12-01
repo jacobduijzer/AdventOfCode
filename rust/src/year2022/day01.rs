@@ -1,14 +1,39 @@
-use crate::common;
-use std::collections::BTreeSet;
-use std::ops::Sub;
+use itertools::Itertools;
+use std::cmp::Reverse;
 
-pub fn solve_part1(input: &str) -> i32 {
+type Input = Vec<u32>;
+
+fn get_elves(input: &str) -> Input {
+    input
+        .split("\n\n")
+        .map(|elf| elf.lines().filter_map(|cal|  cal.parse::<u32>().ok()).sum())
+        .collect()
+}
+
+pub fn solve_part1(input: &str) -> u32 {
+    get_elves(input)
+        .iter()
+        .max()
+        .copied()
+        .unwrap()
+}
+
+pub fn solve_part2(input: &str) -> u32 {
+    get_elves(input)
+        .iter()
+        .sorted_by_key(|x| Reverse(*x))
+        .take(3)
+        .sum()
+}
+
+pub fn solve_part1_first(input: &str) -> i32 {
     let mut strongest_elve = 0;
     let mut current = 0;
+
     for line in input.lines() {
        if line.is_empty() {
            if current > strongest_elve {
-               strongest_elve = curr;
+               strongest_elve = current;
            }
            current = 0;
        } else {
@@ -18,7 +43,7 @@ pub fn solve_part1(input: &str) -> i32 {
     strongest_elve
 }
 
-pub fn solve_part2(input: &str) -> u32 {
+pub fn solve_part2_first(input: &str) -> u32 {
     let mut elves: Vec<u32> = Vec::new();
     let mut current: u32 = 0;
     for line in input.lines() {
@@ -51,6 +76,18 @@ mod tests {
     fn test_part_two() {
         let input = common::input::read_file(2022, 1, "testinput");
         assert_eq!(solve_part2(&input), 45000);
+    }
+
+    #[test]
+    fn test_part_one_first() {
+        let input = common::input::read_file(2022, 1, "testinput");
+        assert_eq!(solve_part1_first(&input), 24000);
+    }
+
+    #[test]
+    fn test_part_two_first() {
+        let input = common::input::read_file(2022, 1, "testinput");
+        assert_eq!(solve_part2_first(&input), 45000);
     }
 
 }
