@@ -1,6 +1,6 @@
 ## Polybar script
 
-I have created a simple [`jq`](https://stedolan.github.io/jq/) [script](./polybar/adventofcode_polybar.sh) to show my position on a local leaderboard on my [polybar](https://github.com/polybar/polybar):
+I have created a simple [`jq`](https://stedolan.github.io/jq/) [script](./polybar/adventofcode_polybar.sh) to show my position on a private leaderboard on my [polybar](https://github.com/polybar/polybar):
 
 ![image](./polybar/screenshot.jpg)
 
