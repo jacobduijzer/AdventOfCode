@@ -14,7 +14,8 @@ struct Rearrangement {
 
 fn parse_ship(input: &str) -> Vec<Vec<char>> {
     let num_stacks = input.lines().last().unwrap().split_whitespace().collect::<Vec<_>>().len();
-    let mut stacks: Vec<_> = (0 .. num_stacks).map(|_| Vec::<char>::new()).collect();
+    //let mut stacks: Vec<_> = (0 .. num_stacks).map(|_| Vec::<char>::new()).collect();
+    let mut stacks = vec![vec![]; num_stacks];
     input
         .lines()
         .rev()
@@ -63,10 +64,12 @@ pub fn solve_part1(input: &str) -> String {
     arrangements
         .iter()
         .for_each(|arr| {
-            //println!("({}/{}) move {} from {} to {}", counter, arrangements.len(), arr.number_of_items, arr.start_position, arr.target_position);
+            println!("({}/{}) move {} from {} to {}", counter, arrangements.len(), arr.number_of_items, arr.start_position, arr.target_position);
             let new_len = ship[arr.start_position - 1].len() - arr.number_of_items;
-            moved_crates.extend(ship[arr.start_position - 1].drain(new_len..));
-            moved_crates.reverse();
+            moved_crates = ship[arr.start_position - 1]
+                .drain(new_len..)
+                .rev()
+                .collect();
             ship[arr.target_position - 1].append(&mut moved_crates);
             counter += 1;
         });
@@ -87,9 +90,9 @@ pub fn solve_part2(input: &str) -> String {
     arrangements
         .iter()
         .for_each(|arr| {
-            //println!("({}/{}) move {} from {} to {}", counter, arrangements.len(), arr.number_of_items, arr.start_position, arr.target_position);
+            println!("({}/{}) move {} from {} to {}", counter, arrangements.len(), arr.number_of_items, arr.start_position, arr.target_position);
             let new_len = ship[arr.start_position - 1].len() - arr.number_of_items;
-            moved_crates.extend(ship[arr.start_position - 1].drain(new_len..));
+            moved_crates = ship[arr.start_position - 1].drain(new_len..).collect();
             ship[arr.target_position - 1].append(&mut moved_crates);
             counter += 1;
         });
