@@ -63,7 +63,7 @@ pub fn solve_part1(input: &str) -> String {
     arrangements
         .iter()
         .for_each(|arr| {
-            println!("({}/{}) move {} from {} to {}", counter, arrangements.len(), arr.number_of_items, arr.start_position, arr.target_position);
+            //println!("({}/{}) move {} from {} to {}", counter, arrangements.len(), arr.number_of_items, arr.start_position, arr.target_position);
             let new_len = ship[arr.start_position - 1].len() - arr.number_of_items;
             moved_crates.extend(ship[arr.start_position - 1].drain(new_len..));
             moved_crates.reverse();

@@ -12,8 +12,9 @@ pub fn solve(
     day: u8,
     part: u8) {
 
-    //let input = common::input::read_file(year, day, "input");
-    let input = common::input::read_file_by_name(year, "05_large.txt", "input");
+    let input = common::input::read_file(year, day, "input");
+    // TODO: add an optional param for extra files
+    //let input = common::input::read_file_by_name(year, "05_large.txt", "input");
 
     let sw = Stopwatch::start_new();
     match (year, day, part) {
