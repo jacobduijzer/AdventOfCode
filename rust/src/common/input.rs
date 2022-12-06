@@ -13,3 +13,16 @@ pub fn read_file(year: u16, day: u8, folder: &str) -> String {
     let f = fs::read_to_string(filepath);
     f.expect("could not open input file")
 }
+
+pub fn read_file_by_name(year: u16, name: &str, folder: &str) -> String {
+    let cwd = env::current_dir().unwrap();
+
+    let filepath = cwd
+        .join("src")
+        .join(format!("year{}", year))
+        .join(format!("{}", folder))
+        .join(format!("{}", name));
+    //println!("path: {}", filepath.to_str().unwrap());
+    let f = fs::read_to_string(filepath);
+    f.expect("could not open input file")
+}

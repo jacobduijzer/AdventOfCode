@@ -7,7 +7,7 @@ struct Ship {
 
 }
 struct Rearrangement {
-    number_of_items: u8,
+    number_of_items: usize,
     start_position: usize,
     target_position: usize
 }
@@ -39,7 +39,7 @@ fn parse_rearrangement(input: &str) -> Vec<Rearrangement> {
         .map(|line| {
             let test: Vec<&str> = line.split_whitespace().collect();
             return Rearrangement {
-                number_of_items: u8::from_str(test[1]).unwrap(),
+                number_of_items: usize::from_str(test[1]).unwrap(),
                 start_position: usize::from_str(test[3]).unwrap(),
                 target_position: usize::from_str(test[5]).unwrap()
             };
@@ -54,16 +54,21 @@ fn parse(input: &str) -> (Vec<Vec<char>>, Vec<Rearrangement>) {
 }
 
 pub fn solve_part1(input: &str) -> String {
+    let mut slice: &[_] = &['a', 'b', 'c', 'd'];
+    println!("Starting");
     let (mut ship, arrangements) = parse(input);
+    println!("Data parsed");
+    let mut counter: u32 = 0;
+    let mut moved_crates = vec![];
     arrangements
         .iter()
         .for_each(|arr| {
-            for _ in 0 .. arr.number_of_items {
-                let value = ship[arr.start_position - 1].pop();
-                if value.is_some() {
-                    ship[arr.target_position - 1].push(value.unwrap());
-                }
-            }
+            println!("({}/{}) move {} from {} to {}", counter, arrangements.len(), arr.number_of_items, arr.start_position, arr.target_position);
+            let new_len = ship[arr.start_position - 1].len() - arr.number_of_items;
+            moved_crates.extend(ship[arr.start_position - 1].drain(new_len..));
+            moved_crates.reverse();
+            ship[arr.target_position - 1].append(&mut moved_crates);
+            counter += 1;
         });
     let result = ship
         .iter()
@@ -74,20 +79,19 @@ pub fn solve_part1(input: &str) -> String {
 }
 
 pub fn solve_part2(input: &str) -> String {
+    println!("Starting");
     let (mut ship, arrangements) = parse(input);
+    println!("Data parsed");
+    let mut counter: u32 = 0;
+    let mut moved_crates = vec![];
     arrangements
         .iter()
         .for_each(|arr| {
-            let mut temp_values: Vec<char> = Vec::new();
-            for _ in 0 .. arr.number_of_items {
-                let value = ship[arr.start_position - 1].pop();
-                if value.is_some() {
-                    temp_values.push(value.unwrap());
-                }
-            }
-            for _ in 0 .. arr.number_of_items {
-                ship[arr.target_position - 1].push(temp_values.pop().unwrap());
-            }
+            //println!("({}/{}) move {} from {} to {}", counter, arrangements.len(), arr.number_of_items, arr.start_position, arr.target_position);
+            let new_len = ship[arr.start_position - 1].len() - arr.number_of_items;
+            moved_crates.extend(ship[arr.start_position - 1].drain(new_len..));
+            ship[arr.target_position - 1].append(&mut moved_crates);
+            counter += 1;
         });
     let result = ship
         .iter()
