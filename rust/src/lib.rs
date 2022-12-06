@@ -7,14 +7,9 @@ pub const ANSI_ITALIC: &str = "\x1b[3m";
 pub const ANSI_BOLD: &str = "\x1b[1m";
 pub const ANSI_RESET: &str = "\x1b[0m";
 
-pub fn solve(
-    year: u16,
-    day: u8,
-    part: u8) {
+pub fn solve(year: u16, day: u8, part: u8, file: &str) {
 
-    //let input = common::input::read_file(year, day, "input");
-    // TODO: add an optional param for extra files
-    let input = common::input::read_file_by_name(year, "05_large.txt", "input");
+    let input = common::input::read_file_by_name(year, file, "input");
 
     let sw = Stopwatch::start_new();
     match (year, day, part) {
@@ -29,6 +24,8 @@ pub fn solve(
         (2022, 1, 2) => println!("Part 2: {}", year2022::day01::solve_part2_second(&input)),
         (2022, 2, 1) => println!("Part 1: {}", year2022::day02::solve_part1(&input)),
         (2022, 2, 2) => println!("Part 2: {}", year2022::day02::solve_part2(&input)),
+        (2022, 3, 1) => println!("Part 1: {}", year2022::day03::solve_part1(&input)),
+        (2022, 3, 2) => println!("Part 2: {}", year2022::day03::solve_part2(&input)),
         (2022, 5, 1) => println!("Part 1: {}", year2022::day05::solve_part1(&input)),
         (2022, 5, 2) => println!("Part 2: {}", year2022::day05::solve_part2(&input)),
         (2022, 6, 1) => println!("Part 1: {}", year2022::day06::solve_part1(&input)),
@@ -43,12 +40,9 @@ pub fn solve(
     );
 }
 
-pub fn solve_raw(
-    year: &str,
-    day: &str,
-    part: &str) {
+pub fn solve_raw(year: &str, day: &str, part: &str, file: &str) {
     let year = year.parse::<u16>().unwrap();
     let day = day.parse::<u8>().unwrap();
     let part = part.parse::<u8>().unwrap();
-    solve(year, day, part);
+    solve(year, day, part, file);
 }
