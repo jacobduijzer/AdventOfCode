@@ -12,6 +12,10 @@ I have created a simple [`jq`](https://stedolan.github.io/jq/) [script](./polyba
 |-----|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | 1   | [Rust](https://github.com/jacobduijzer/AdventOfCode/blob/main/rust/src/year2022/day01.rs) - [Bash](https://github.com/jacobduijzer/AdventOfCode/tree/main/bash/2022/day01) |
 | 2   | [Rust](https://github.com/jacobduijzer/AdventOfCode/blob/main/rust/src/year2022/day02.rs) |
+| 3   | Rust - solved on a different device, need to copy code |
+| 4   | Rust - solved on a different device, need to copy code |
+| 5   | Rust - solved on a different device, need to copy code |
+| 6   | [Rust](https://github.com/jacobduijzer/AdventOfCode/blob/main/rust/src/year2022/day06.rs) |
 
 # Advent Of Code 2021
 

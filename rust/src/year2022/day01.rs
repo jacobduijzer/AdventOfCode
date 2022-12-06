@@ -1,6 +1,8 @@
 use crate::common;
 use itertools::Itertools;
 use std::cmp::Reverse;
+use std::collections::BinaryHeap;
+use std::str::FromStr;
 
 type Input = Vec<u32>;
 
@@ -61,6 +63,26 @@ pub fn solve_part2_first(input: &str) -> u32 {
     }
     elves.sort_by(|a, b| b.cmp(a));
     elves[0] + elves[1] + elves[2]
+}
+
+pub fn solve_part2_second(input: &str) -> u32 {
+    let mut elves = BinaryHeap::new();
+    //let mut elves: Vec<u32> = Vec::new();
+    let mut current: u32 = 0;
+    for line in input.lines() {
+        if line.is_empty() {
+            elves.push(current);
+            current = 0;
+        } else {
+            let value = line.parse::<u32>().unwrap();
+            current += value;
+        }
+    }
+    if current != 0 {
+        elves.push(current);
+    }
+
+    elves.pop().unwrap() + elves.pop().unwrap() + elves.pop().unwrap()
 }
 
 #[cfg(test)]
