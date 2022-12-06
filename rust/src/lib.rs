@@ -22,8 +22,9 @@ pub fn solve(
         (2022, 2, 1) => println!("Part 1: {}", year2022::day02::solve_part1(&input)),
         (2022, 2, 2) => println!("Part 2: {}", year2022::day02::solve_part2(&input)),
         (2022, 5, 1) => println!("Part 1: {}", year2022::day05::solve_part1(&input)),
+        (2022, 5, 2) => println!("Part 2: {}", year2022::day05::solve_part2(&input)),
         (2022, 6, 1) => println!("Part 1: {}", year2022::day06::solve_part1(&input)),
-        (2022, 6, 2) => println!("Part 1: {}", year2022::day06::solve_part2(&input)),
+        (2022, 6, 2) => println!("Part 2: {}", year2022::day06::solve_part2(&input)),
 
         _ => println!("No match for year: {}, day: {}, part: {}", year, day, part)
     };

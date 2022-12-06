@@ -21,11 +21,10 @@ fn parse_ship(input: &str) -> Vec<Vec<char>> {
         .into_iter()
         .skip(1)
         .for_each(|line| {
-            for n in 0 .. 3 {
+            for n in 0 .. num_stacks {
                 let index = n * 4 + 1;
                 if index < line.len() && line.chars().nth(index).unwrap() != ' ' {
                     stacks[n].push(line.chars().nth(index).unwrap());
-                    println!("Stack: {}, Val: {}", n, line.chars().nth(index).unwrap());
                 }
             }
         });
@@ -47,7 +46,6 @@ fn parse_rearrangement(input: &str) -> Vec<Rearrangement> {
     }).collect()
 }
 
-// crate arrangement & movements
 fn parse(input: &str) -> (Vec<Vec<char>>, Vec<Rearrangement>) {
     let data: Vec<&str> = input.split("\n\n").collect();
     let ship = parse_ship(&data[0]);
@@ -67,19 +65,36 @@ pub fn solve_part1(input: &str) -> String {
                 }
             }
         });
-    //let mut result: String = new();
-    //result.push(*ship[0].last().unwrap());
-    //result.to_string()
-    //resulunimplemented!("").to_string()
     let result = ship
         .iter()
         .map(|line| line.last().unwrap())
         .collect::<String>();
-    ///result.to_string()
-    //println!("Result {}", result);
 
     result
-    //ship[0].last().unwrap().to_string() + ship[1].last().unwrap()._string() + ship[2].last().unwrap().to_string()
+}
+
+pub fn solve_part2(input: &str) -> String {
+    let (mut ship, arrangements) = parse(input);
+    arrangements
+        .iter()
+        .for_each(|arr| {
+            let mut temp_values: Vec<char> = Vec::new();
+            for _ in 0 .. arr.number_of_items {
+                let value = ship[arr.start_position - 1].pop();
+                if value.is_some() {
+                    temp_values.push(value.unwrap());
+                }
+            }
+            for _ in 0 .. arr.number_of_items {
+                ship[arr.target_position - 1].push(temp_values.pop().unwrap());
+            }
+        });
+    let result = ship
+        .iter()
+        .map(|line| line.last().unwrap())
+        .collect::<String>();
+
+    result
 }
 
 #[cfg(test)]
@@ -88,13 +103,13 @@ mod tests {
 
     #[test]
     fn test_part_one() {
-        let input = common::input::read_file(2022, 5, "input");
+        let input = common::input::read_file(2022, 5, "testinput");
         assert_eq!(solve_part1(&input), "CMZ");
     }
 
-    //#[test]
-    //fn test_part_two() {
-    //    let input = common::input::read_file(2022, 5, "testinput");
-    //    assert_eq!(solve_part2(&input), 12);
-    //}
+    #[test]
+    fn test_part_two() {
+        let input = common::input::read_file(2022, 5, "testinput");
+        assert_eq!(solve_part2(&input), "MCD");
+    }
 }
