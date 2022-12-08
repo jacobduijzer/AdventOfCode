@@ -104,6 +104,25 @@ pub fn solve_part2(input: &str) -> String {
     result
 }
 
+pub fn faster(input: &str) {
+
+    unimplemented!()
+    //  If it's on the SRC, increase offset
+//  If it's on the DST, descrease offset
+//    If the offset becomes negative, move to SRC: [src, offset + count]
+    //let stepFast (stacks: (int * int) array) move =
+    //let updatePos (curStack, curOffset) =
+    //    if curStack = move.Src then (curStack, curOffset + move.Count)
+    //elif curStack = move.Dst then
+    //let newOffset = curOffset - move.Count
+    //if newOffset >= 0 then (curStack, newOffset)
+    //else (move.Src, newOffset + move.Count)
+    //else (curStack, curOffset)
+    //for i = 0 to (Array.length stacks) - 1 do
+    //Array.set stacks i (updatePos stacks[i])
+    //stacks
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
