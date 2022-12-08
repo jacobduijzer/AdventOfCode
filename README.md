@@ -1,3 +1,5 @@
+[![Rust](https://github.com/jacobduijzer/AdventOfCode/actions/workflows/rust.yml/badge.svg)](https://github.com/jacobduijzer/AdventOfCode/actions/workflows/rust.yml)
+
 ## Polybar script
 
 I have created a simple [`jq`](https://stedolan.github.io/jq/) [script](./polybar/adventofcode_polybar.sh) to show my position on a private leaderboard on my [polybar](https://github.com/polybar/polybar):
