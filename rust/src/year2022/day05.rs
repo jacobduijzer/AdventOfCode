@@ -104,8 +104,16 @@ pub fn solve_part2(input: &str) -> String {
     result
 }
 
-pub fn faster(input: &str) {
+fn step_fast(ship: Vec<Vec<char>>, rearrangement: Rearrangement) -> usize {
+    for i in 0 .. ship.len() {
 
+    }
+
+    unimplemented!()
+}
+
+pub fn faster(input: &str) {
+    let (mut ship, arrangements) = parse(input);
     unimplemented!()
     //  If it's on the SRC, increase offset
 //  If it's on the DST, descrease offset
