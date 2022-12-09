@@ -1,4 +1,3 @@
-use crate::common;
 use std::str::FromStr;
 
 fn parse_listing(input: &str) -> Vec<i32> {
@@ -46,13 +45,13 @@ mod tests {
 
     #[test]
     fn test_part_one() {
-        let input = common::input::read_file(2022, 7, "testinput");
+        let input = crate::common::input::read_file(2022, 7, "testinput");
         assert_eq!(solve_part1(&input), 95437);
     }
 
     #[test]
     fn test_part_two() {
-        let input = common::input::read_file(2022, 7, "testinput");
+        let input = crate::common::input::read_file(2022, 7, "testinput");
         assert_eq!(solve_part2(&input), 24933642);
     }
 }

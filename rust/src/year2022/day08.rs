@@ -1,5 +1,3 @@
-use crate::common;
-use  std::ops::Range;
 use std::collections::HashSet;
 
 fn visible_trees(
@@ -28,7 +26,6 @@ fn scenic_score(grid: &[&[u8]], x: usize, y: usize) -> usize {
     let width = grid[0].len();
     let height = grid.len();
     let max_tree_height = grid[y][x];
-    let mut blocked = false;
 
     let range = (0..x).rev().collect::<Vec<usize>>();
     let left = horizontal(max_tree_height, &grid, range, y);
@@ -127,13 +124,13 @@ mod tests {
 
     #[test]
     fn test_part_one() {
-        let input = common::input::read_file(2022, 8, "testinput");
+        let input = crate::common::input::read_file(2022, 8, "testinput");
         assert_eq!(solve_part1(&input), 21);
     }
 
     #[test]
     fn test_part_two() {
-        let input = common::input::read_file(2022, 8, "testinput");
+        let input = crate::common::input::read_file(2022, 8, "testinput");
         assert_eq!(solve_part2(&input), 8);
     }
 }

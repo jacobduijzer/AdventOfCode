@@ -1,8 +1,6 @@
-use crate::common;
 use itertools::Itertools;
 use std::cmp::Reverse;
 use std::collections::BinaryHeap;
-use std::str::FromStr;
 
 type Input = Vec<u32>;
 
@@ -91,25 +89,25 @@ mod tests {
 
     #[test]
     fn test_part_one() {
-        let input = common::input::read_file(2022, 1, "testinput");
+        let input = crate::common::input::read_file(2022, 1, "testinput");
         assert_eq!(solve_part1(&input), 24000);
     }
 
     #[test]
     fn test_part_two() {
-        let input = common::input::read_file(2022, 1, "testinput");
+        let input = crate::common::input::read_file(2022, 1, "testinput");
         assert_eq!(solve_part2(&input), 45000);
     }
 
     #[test]
     fn test_part_one_first() {
-        let input = common::input::read_file(2022, 1, "testinput");
+        let input = crate::common::input::read_file(2022, 1, "testinput");
         assert_eq!(solve_part1_first(&input), 24000);
     }
 
     #[test]
     fn test_part_two_first() {
-        let input = common::input::read_file(2022, 1, "testinput");
+        let input = crate::common::input::read_file(2022, 1, "testinput");
         assert_eq!(solve_part2_first(&input), 45000);
     }
 

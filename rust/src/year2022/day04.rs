@@ -1,4 +1,3 @@
-use crate::common;
 use std::str::FromStr;
 
 struct SectionAssignment {
@@ -62,13 +61,13 @@ mod tests {
 
     #[test]
     fn test_part_one() {
-        let input = common::input::read_file(2022, 4, "testinput");
+        let input = crate::common::input::read_file(2022, 4, "testinput");
         assert_eq!(solve_part1(&input), 2);
     }
 
     #[test]
     fn test_part_two() {
-        let input = common::input::read_file(2022, 4, "testinput");
+        let input = crate::common::input::read_file(2022, 4, "testinput");
         assert_eq!(solve_part2(&input), 4);
     }
 }

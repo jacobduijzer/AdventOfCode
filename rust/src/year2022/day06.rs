@@ -1,4 +1,3 @@
-use crate::common;
 use std::collections::HashSet;
 
 fn solve(input: &str, length: usize) -> usize {
@@ -27,7 +26,7 @@ mod tests {
 
     #[test]
     fn test_part_one() {
-        let input = common::input::read_file(2022, 6, "testinput");
+        let input = crate::common::input::read_file(2022, 6, "testinput");
         assert_eq!(solve_part1(&input), 7);
     }
 

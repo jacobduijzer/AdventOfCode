@@ -1,5 +1,3 @@
-use crate::common;
-
 pub fn solve_part1(input: &str) -> u32 {
     input
         .lines()
@@ -48,13 +46,13 @@ mod tests {
 
     #[test]
     fn test_part_one() {
-        let input = common::input::read_file(2022, 2, "testinput");
+        let input = crate::common::input::read_file(2022, 2, "testinput");
         assert_eq!(solve_part1(&input), 15);
     }
 
     #[test]
     fn test_part_two() {
-        let input = common::input::read_file(2022, 2, "testinput");
+        let input = crate::common::input::read_file(2022, 2, "testinput");
         assert_eq!(solve_part2(&input), 12);
     }
 }

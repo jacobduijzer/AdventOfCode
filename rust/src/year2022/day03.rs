@@ -1,7 +1,3 @@
-use crate::common;
-use std::collections::HashSet;
-use itertools::Itertools;
-
 fn get_shared_item_from_pair(a: &str, b: &str) -> Option<char> {
     for character in a.chars() {
         if b.contains(character) {
@@ -57,7 +53,7 @@ mod tests {
 
     #[test]
     fn test_part_one() {
-        let input = common::input::read_file(2022, 3, "testinput");
+        let input = crate::common::input::read_file(2022, 3, "testinput");
         assert_eq!(solve_part1(&input), 157);
     }
 

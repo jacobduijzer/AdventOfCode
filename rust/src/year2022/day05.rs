@@ -1,11 +1,5 @@
-use crate::common;
 use std::str::FromStr;
-use regex::Regex;
 
-struct Ship {
-    number_of_stacks: u8,
-
-}
 struct Rearrangement {
     number_of_items: usize,
     start_position: usize,
@@ -55,7 +49,6 @@ fn parse(input: &str) -> (Vec<Vec<char>>, Vec<Rearrangement>) {
 }
 
 pub fn solve_part1(input: &str) -> String {
-    let mut slice: &[_] = &['a', 'b', 'c', 'd'];
     println!("Starting");
     let (mut ship, arrangements) = parse(input);
     println!("Data parsed");
@@ -104,32 +97,24 @@ pub fn solve_part2(input: &str) -> String {
     result
 }
 
-fn step_fast(ship: Vec<Vec<char>>, rearrangement: Rearrangement) -> usize {
-    for i in 0 .. ship.len() {
-
-    }
-
-    unimplemented!()
-}
-
-pub fn faster(input: &str) {
-    let (mut ship, arrangements) = parse(input);
-    unimplemented!()
-    //  If it's on the SRC, increase offset
-//  If it's on the DST, descrease offset
-//    If the offset becomes negative, move to SRC: [src, offset + count]
-    //let stepFast (stacks: (int * int) array) move =
-    //let updatePos (curStack, curOffset) =
-    //    if curStack = move.Src then (curStack, curOffset + move.Count)
-    //elif curStack = move.Dst then
-    //let newOffset = curOffset - move.Count
-    //if newOffset >= 0 then (curStack, newOffset)
-    //else (move.Src, newOffset + move.Count)
-    //else (curStack, curOffset)
-    //for i = 0 to (Array.length stacks) - 1 do
-    //Array.set stacks i (updatePos stacks[i])
-    //stacks
-}
+//pub fn faster(input: &str) {
+//    let (mut ship, arrangements) = parse(input);
+//    unimplemented!()
+//    //  If it's on the SRC, increase offset
+////  If it's on the DST, descrease offset
+////    If the offset becomes negative, move to SRC: [src, offset + count]
+//    //let stepFast (stacks: (int * int) array) move =
+//    //let updatePos (curStack, curOffset) =
+//    //    if curStack = move.Src then (curStack, curOffset + move.Count)
+//    //elif curStack = move.Dst then
+//    //let newOffset = curOffset - move.Count
+//    //if newOffset >= 0 then (curStack, newOffset)
+//    //else (move.Src, newOffset + move.Count)
+//    //else (curStack, curOffset)
+//    //for i = 0 to (Array.length stacks) - 1 do
+//    //Array.set stacks i (updatePos stacks[i])
+//    //stacks
+//}
 
 #[cfg(test)]
 mod tests {
@@ -137,13 +122,13 @@ mod tests {
 
     #[test]
     fn test_part_one() {
-        let input = common::input::read_file(2022, 5, "testinput");
+        let input = crate::common::input::read_file(2022, 5, "testinput");
         assert_eq!(solve_part1(&input), "CMZ");
     }
 
     #[test]
     fn test_part_two() {
-        let input = common::input::read_file(2022, 5, "testinput");
+        let input = crate::common::input::read_file(2022, 5, "testinput");
         assert_eq!(solve_part2(&input), "MCD");
     }
 }
