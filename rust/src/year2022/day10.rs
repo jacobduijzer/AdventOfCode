@@ -1,7 +1,7 @@
 use std::{collections::HashMap, ops::Rem};
 
 #[derive(PartialEq)]
-struct Instruction {
+pub struct Instruction {
     cycles: i8,
     steps: i64
 }
@@ -56,6 +56,35 @@ fn part_one(instructions: Vec<Instruction>) -> i64 {
     signal_strengths.iter().sum::<i64>()
 }
 
+pub fn part_two(instructions: Vec<Instruction>) -> String {
+    let mut crt: Vec<Vec<String>> = vec![vec![]; 6];
+    let mut pixel: i64 = 0;
+    let mut registry: i64 = 1;
+    let mut cycle = 0;
+    let mut row;
+
+    for signal in instructions {
+        for _ in 0..signal.cycles {
+            row = cycle / 40;
+            cycle += 1;
+            if (registry - pixel).abs() <= 1 {
+                crt[row].push("#".to_owned());
+            } else {
+                crt[row].push(".".to_owned());
+            }
+            pixel += 1;
+            pixel %= 40;
+        }
+        registry += signal.steps;
+    };
+
+    for row in crt {
+        println!("{}", row.join(""));
+    }
+
+    "".to_owned()
+}
+
 pub fn solve_part1(input: &str) -> i64 {
     let (took, parse_result) = took::took(|| parse_data(input));
     println!("Time spent parsing: {}", took);
@@ -67,8 +96,13 @@ pub fn solve_part1(input: &str) -> i64 {
     result
 }
 
-pub fn solve_part2(input: &str) -> i64 {
-    0
+pub fn solve_part2(input: &str) -> String  {
+    let (took, parse_result) = took::took(|| parse_data(input));
+    println!("Time spent parsing: {}", took);
+    part_two(parse_result)
+    //let took = took::took(|| part_two(parse_result));
+    //println!("Result part one: {result}");
+    //println!("Time spent: {}", took);
 }
 
 #[cfg(test)]
@@ -86,8 +120,14 @@ addx -5";
     }
 
     #[test]
-    fn test_part_two() {
+    fn test_part_one() {
         let input = crate::common::input::read_file(2022, 10, "testinput");
         assert_eq!(solve_part1(&input), 13140);
+    }
+
+    #[test]
+    fn test_part_two() {
+        let input = crate::common::input::read_file(2022, 10, "testinput");
+        solve_part2(&input);
     }
 }

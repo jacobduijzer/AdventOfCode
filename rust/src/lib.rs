@@ -1,4 +1,3 @@
-use stopwatch::{Stopwatch};
 mod common;
 mod year2021;
 mod year2022;
@@ -11,7 +10,6 @@ pub fn solve(year: u16, day: u8, part: u8, file: &str) {
 
     let input = common::input::read_file_by_name(year, file, "input");
 
-    let sw = Stopwatch::start_new();
     match (year, day, part) {
         // 2021
         (2021, 1, 1) => println!("Part 1: {}", year2021::day01::solve_part1(&input)),
@@ -46,10 +44,10 @@ pub fn solve(year: u16, day: u8, part: u8, file: &str) {
         _ => println!("No match for year: {}, day: {}, part: {}", year, day, part)
     };
 
-    println!(
-        "{}Total:{} {}{:.2}ms{}",
-        ANSI_BOLD, ANSI_RESET, ANSI_ITALIC, sw.elapsed_ms(), ANSI_RESET
-    );
+    //println!(
+    //    "{}Total:{} {}{:.2}ms{}",
+    //    ANSI_BOLD, ANSI_RESET, ANSI_ITALIC, sw.elapsed_ms(), ANSI_RESET
+    //);
 }
 
 pub fn solve_raw(year: &str, day: &str, part: &str, file: &str) {
