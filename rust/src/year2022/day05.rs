@@ -49,15 +49,14 @@ fn parse(input: &str) -> (Vec<Vec<char>>, Vec<Rearrangement>) {
 }
 
 pub fn solve_part1(input: &str) -> String {
-    println!("Starting");
-    let (mut ship, arrangements) = parse(input);
-    println!("Data parsed");
+    let (took, (mut ship, arrangements)) = took::took(|| parse(input));
+    println!("Time spent parsing: {}", took);
     let mut counter: u32 = 0;
     let mut moved_crates = vec![];
     arrangements
         .iter()
         .for_each(|arr| {
-            println!("({}/{}) move {} from {} to {}", counter, arrangements.len(), arr.number_of_items, arr.start_position, arr.target_position);
+            //println!("({}/{}) move {} from {} to {}", counter, arrangements.len(), arr.number_of_items, arr.start_position, arr.target_position);
             let new_len = ship[arr.start_position - 1].len() - arr.number_of_items;
             moved_crates = ship[arr.start_position - 1]
                 .drain(new_len..)
@@ -75,15 +74,14 @@ pub fn solve_part1(input: &str) -> String {
 }
 
 pub fn solve_part2(input: &str) -> String {
-    println!("Starting");
-    let (mut ship, arrangements) = parse(input);
-    println!("Data parsed");
+    let (took, (mut ship, arrangements)) = took::took(|| parse(input));
+    println!("Time spent parsing: {}", took);
     let mut counter: u32 = 0;
     let mut moved_crates = vec![];
     arrangements
         .iter()
         .for_each(|arr| {
-            println!("({}/{}) move {} from {} to {}", counter, arrangements.len(), arr.number_of_items, arr.start_position, arr.target_position);
+            //println!("({}/{}) move {} from {} to {}", counter, arrangements.len(), arr.number_of_items, arr.start_position, arr.target_position);
             let new_len = ship[arr.start_position - 1].len() - arr.number_of_items;
             moved_crates = ship[arr.start_position - 1].drain(new_len..).collect();
             ship[arr.target_position - 1].append(&mut moved_crates);
