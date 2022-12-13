@@ -47,7 +47,6 @@ fn part_one(instructions: Vec<Instruction>) -> i64 {
             }
         }
         if cycle > 220 {
-            // println!("Above 220");
             break;
         }
         registry += instruction.steps;
@@ -57,6 +56,7 @@ fn part_one(instructions: Vec<Instruction>) -> i64 {
 }
 
 pub fn part_two(instructions: Vec<Instruction>) -> String {
+    let mut result: String = String::new();
     let mut crt: Vec<Vec<String>> = vec![vec![]; 6];
     let mut pixel: i64 = 0;
     let mut registry: i64 = 1;
@@ -79,10 +79,11 @@ pub fn part_two(instructions: Vec<Instruction>) -> String {
     };
 
     for row in crt {
-        println!("{}", row.join(""));
+        result.push_str(row.join("").as_str());
+        result.push_str("\n");
     }
 
-    "".to_owned()
+    result
 }
 
 pub fn solve_part1(input: &str) -> i64 {
@@ -99,10 +100,11 @@ pub fn solve_part1(input: &str) -> i64 {
 pub fn solve_part2(input: &str) -> String  {
     let (took, parse_result) = took::took(|| parse_data(input));
     println!("Time spent parsing: {}", took);
-    part_two(parse_result)
-    //let took = took::took(|| part_two(parse_result));
-    //println!("Result part one: {result}");
-    //println!("Time spent: {}", took);
+    let (took, result) = took::took(|| part_two(parse_result));
+    //println!("Result part two:");
+    //println!("{result}");
+    println!("Time spent: {}", took);
+    result
 }
 
 #[cfg(test)]
@@ -125,9 +127,17 @@ addx -5";
         assert_eq!(solve_part1(&input), 13140);
     }
 
+    const TEST_DATA_2: &str = "##..##..##..##..##..##..##..##..##..##..
+###...###...###...###...###...###...###.
+####....####....####....####....####....
+#####.....#####.....#####.....#####.....
+######......######......######......####
+#######.......#######.......#######.....
+";
+
     #[test]
     fn test_part_two() {
         let input = crate::common::input::read_file(2022, 10, "testinput");
-        solve_part2(&input);
+        assert_eq!(solve_part2(&input), TEST_DATA_2);
     }
 }

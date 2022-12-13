@@ -37,7 +37,7 @@ pub fn solve(year: u16, day: u8, part: u8, file: &str) {
         (2022, 9, 1) => println!("Part 1: {}", year2022::day09::solve_part1(&input)),
         (2022, 9, 2) => println!("Part 2: {}", year2022::day09::solve_part2(&input)),
         (2022, 10, 1) => println!("Part 1: {}", year2022::day10::solve_part1(&input)),
-        (2022, 10, 2) => println!("Part 2: {}", year2022::day10::solve_part2(&input)),
+        (2022, 10, 2) => println!("Part 2:\n\n{}", year2022::day10::solve_part2(&input)),
         (2022, 13, 1) => println!("Part 1: {}", year2022::day13::solve_part1(&input)),
         (2022, 13, 2) => println!("Part 2: {}", year2022::day13::solve_part2(&input)),
 
