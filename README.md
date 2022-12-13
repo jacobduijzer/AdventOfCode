@@ -21,6 +21,7 @@ I have created a simple [`jq`](https://stedolan.github.io/jq/) [script](./polyba
 | 7   | [Rust](https://github.com/jacobduijzer/AdventOfCode/blob/main/rust/src/year2022/day07.rs) |
 | 8   | [Rust](https://github.com/jacobduijzer/AdventOfCode/blob/main/rust/src/year2022/day08.rs) |
 | 9   | [Rust](https://github.com/jacobduijzer/AdventOfCode/blob/main/rust/src/year2022/day09.rs) |
+| 10  | [Rust](https://github.com/jacobduijzer/AdventOfCode/blob/main/rust/src/year2022/day10.rs) |
 | 13  | [Rust](https://github.com/jacobduijzer/AdventOfCode/blob/main/rust/src/year2022/day13.rs) |
 
 # Advent Of Code 2021
