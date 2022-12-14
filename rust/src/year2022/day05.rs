@@ -1,4 +1,6 @@
 use std::str::FromStr;
+use std::collections::HashMap;
+use itertools::Itertools;
 
 struct Rearrangement {
     number_of_items: usize,
@@ -8,7 +10,6 @@ struct Rearrangement {
 
 fn parse_ship(input: &str) -> Vec<Vec<char>> {
     let num_stacks = input.lines().last().unwrap().split_whitespace().collect::<Vec<_>>().len();
-    //let mut stacks: Vec<_> = (0 .. num_stacks).map(|_| Vec::<char>::new()).collect();
     let mut stacks = vec![vec![]; num_stacks];
     input
         .lines()

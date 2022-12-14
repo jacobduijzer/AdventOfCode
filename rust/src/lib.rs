@@ -1,3 +1,4 @@
+use stopwatch::{Stopwatch};
 mod common;
 mod year2021;
 mod year2022;
@@ -8,8 +9,8 @@ pub const ANSI_RESET: &str = "\x1b[0m";
 
 pub fn solve(year: u16, day: u8, part: u8, file: &str) {
 
+    let sw = Stopwatch::start_new();
     let input = common::input::read_file_by_name(year, file, "input");
-
     match (year, day, part) {
         // 2021
         (2021, 1, 1) => println!("Part 1: {}", year2021::day01::solve_part1(&input)),
@@ -38,16 +39,19 @@ pub fn solve(year: u16, day: u8, part: u8, file: &str) {
         (2022, 9, 2) => println!("Part 2: {}", year2022::day09::solve_part2(&input)),
         (2022, 10, 1) => println!("Part 1: {}", year2022::day10::solve_part1(&input)),
         (2022, 10, 2) => println!("Part 2:\n\n{}", year2022::day10::solve_part2(&input)),
+        (2022, 12, 1) => println!("Part 1: {}", year2022::day12::solve_part1(&input)),
         (2022, 13, 1) => println!("Part 1: {}", year2022::day13::solve_part1(&input)),
         (2022, 13, 2) => println!("Part 2: {}", year2022::day13::solve_part2(&input)),
+        (2022, 14, 1) => println!("Part 1: {}", year2022::day14::solve_part1(&input)),
+        (2022, 14, 2) => println!("Part 2: {}", year2022::day14::solve_part2(&input)),
 
         _ => println!("No match for year: {}, day: {}, part: {}", year, day, part)
     };
 
-    //println!(
-    //    "{}Total:{} {}{:.2}ms{}",
-    //    ANSI_BOLD, ANSI_RESET, ANSI_ITALIC, sw.elapsed_ms(), ANSI_RESET
-    //);
+    println!(
+        "{}Total:{} {}{:.2}ms{}",
+        ANSI_BOLD, ANSI_RESET, ANSI_ITALIC, sw.elapsed_ms(), ANSI_RESET
+    );
 }
 
 pub fn solve_raw(year: &str, day: &str, part: &str, file: &str) {
