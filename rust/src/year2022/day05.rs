@@ -1,6 +1,4 @@
 use std::str::FromStr;
-use std::collections::HashMap;
-use itertools::Itertools;
 
 struct Rearrangement {
     number_of_items: usize,

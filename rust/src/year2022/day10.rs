@@ -1,4 +1,4 @@
-use std::{collections::HashMap, ops::Rem};
+use std::collections::HashMap;
 
 #[derive(PartialEq)]
 pub struct Instruction {
