@@ -55,24 +55,6 @@ pub fn solve_part1(input: &str, y: isize) -> usize {
     result
 }
 
-//fn part2_1(sensors: Vec<Sensor>) -> isize {
-//    for &(x,y,d) in sensors {
-//        for (dir_x, dir_y) in [(-1,-1), (-1,1), (1,-1), (1,1)] {
-//            for dist in 0..d {
-//                let bx = x + dir_x * dist;
-//                let by = y + dir_y * (d + 1 - dist);1
-//                if bx < 0 || by < 0 || bx > 4000000 || by > 4000000 {
-//                    break;
-//                }
-//                if beacons.iter().all(|&(x,y,d)| (bx - x).abs() + (by - y).abs() >= d) {
-//                    return bx * 4000000 + by;
-//                }
-//            }
-//        }
-//    }
-//    unreachable!()
-//}
-
 struct Action {
     stop_position: (isize, isize),
     action: (isize, isize)
