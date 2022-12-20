@@ -1,3 +1,5 @@
+extern crate core;
+
 use stopwatch::{Stopwatch};
 mod common;
 mod year2021;
@@ -48,6 +50,10 @@ pub fn solve(year: u16, day: u8, part: u8, file: &str) {
         (2022, 15, 2) => println!("Part 2: {}", year2022::day15::solve_part2(&input, 4000000)),
         (2022, 17, 1) => println!("Part 1: {}", year2022::day17::solve_part1(&input, 2022)),
         (2022, 17, 2) => println!("Part 2: {}", year2022::day17::solve_part1(&input, 1000000000000)),
+        (2022, 18, 1) => println!("Part 1: {}", year2022::day18::solve_part1(&input)),
+        (2022, 18, 2) => println!("Part 2: {}", year2022::day18::solve_part2(&input)),
+        (2022, 20, 1) => println!("Part 1: {}", year2022::day20::solve_part1(&input)),
+        (2022, 20, 2) => println!("Part 2: {}", year2022::day20::solve_part2(&input)),
         _ => println!("No match for year: {}, day: {}, part: {}", year, day, part)
     };
 
