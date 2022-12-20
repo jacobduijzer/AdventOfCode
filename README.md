@@ -22,9 +22,12 @@ I have created a simple [`jq`](https://stedolan.github.io/jq/) [script](./polyba
 | 8   | [Rust](https://github.com/jacobduijzer/AdventOfCode/blob/main/rust/src/year2022/day08.rs) |
 | 9   | [Rust](https://github.com/jacobduijzer/AdventOfCode/blob/main/rust/src/year2022/day09.rs) |
 | 10  | [Rust](https://github.com/jacobduijzer/AdventOfCode/blob/main/rust/src/year2022/day10.rs) |
+| 11  | |
+| 12 - part 1 | [Rust](https://github.com/jacobduijzer/AdventOfCode/blob/main/rust/src/year2022/day13.rs) |
 | 13  | [Rust](https://github.com/jacobduijzer/AdventOfCode/blob/main/rust/src/year2022/day13.rs) |
 | 14  | [Rust](https://github.com/jacobduijzer/AdventOfCode/blob/main/rust/src/year2022/day14.rs) |
 | 15  | [Rust](https://github.com/jacobduijzer/AdventOfCode/blob/main/rust/src/year2022/day15.rs) |
+| 16  | |
 | 17  | [Rust](https://github.com/jacobduijzer/AdventOfCode/blob/main/rust/src/year2022/day17.rs) |
 | 18  | [Rust](https://github.com/jacobduijzer/AdventOfCode/blob/main/rust/src/year2022/day18.rs) |
 
