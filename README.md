@@ -6,6 +6,14 @@ I have created a simple [`jq`](https://stedolan.github.io/jq/) [script](./polyba
 
 ![image](./polybar/screenshot.jpg)
 
+# Advent of Code 2023
+
+## Solutions
+
+| Day | Solutions                                                                                                                                                                                                                  | 
+|-----|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| 1   | [Rust](https://github.com/jacobduijzer/AdventOfCode/blob/main/rust/src/year2023/day01.rs) |
+
 # Advent Of Code 2022
 
 ## Solutions
