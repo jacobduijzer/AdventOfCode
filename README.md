@@ -1,11 +1,4 @@
 [![Rust](https://github.com/jacobduijzer/AdventOfCode/actions/workflows/rust.yml/badge.svg)](https://github.com/jacobduijzer/AdventOfCode/actions/workflows/rust.yml)
-
-## Polybar script
-
-I have created a simple [`jq`](https://stedolan.github.io/jq/) [script](./polybar/adventofcode_polybar.sh) to show my position on a private leaderboard on my [polybar](https://github.com/polybar/polybar):
-
-![image](./polybar/screenshot.jpg)
-
 # Advent of Code 2023
 
 ## Solutions
@@ -69,4 +62,11 @@ I have created a simple [`jq`](https://stedolan.github.io/jq/) [script](./polyba
 | 21  | [C#](https://github.com/jacobduijzer/AdventOfCode/blob/main/csharp/AdventOfCode.Core/Puzzles/Day21/Solution.cs)                                                                                                        |
 | 22  | [C#](https://github.com/jacobduijzer/AdventOfCode/blob/main/csharp/AdventOfCode.Core/Puzzles/Day22/Solution.cs)                                                                                                        |
 | 23  | [C#](https://github.com/jacobduijzer/AdventOfCode/blob/main/csharp/AdventOfCode.Core/Puzzles/Day23/Solution.cs)                                                                                                        |
+
+## Polybar script
+
+I have created a simple [`jq`](https://stedolan.github.io/jq/) [script](./polybar/adventofcode_polybar.sh) to show my position on a private leaderboard on my [polybar](https://github.com/polybar/polybar):
+
+![image](./polybar/screenshot.jpg)
+
 
