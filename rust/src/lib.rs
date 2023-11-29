@@ -4,6 +4,7 @@ use stopwatch::{Stopwatch};
 mod common;
 mod year2021;
 mod year2022;
+mod year2023;
 
 pub const ANSI_ITALIC: &str = "\x1b[3m";
 pub const ANSI_BOLD: &str = "\x1b[1m";
@@ -54,6 +55,9 @@ pub fn solve(year: u16, day: u8, part: u8, file: &str) {
         (2022, 18, 2) => println!("Part 2: {}", year2022::day18::solve_part2(&input)),
         (2022, 20, 1) => println!("Part 1: {}", year2022::day20::solve_part1(&input)),
         (2022, 20, 2) => println!("Part 2: {}", year2022::day20::solve_part2(&input)),
+
+        // 2023
+        (2023, 1, 1) => println!("Part 1: {}", year2023::day01::solve_part1(&input)),
         _ => println!("No match for year: {}, day: {}, part: {}", year, day, part)
     };
 
