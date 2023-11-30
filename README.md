@@ -12,7 +12,6 @@ I have created a bash script to extract my position on a leaderboard, I use it t
 
 ```bash
 ./adventofcode.sh -c ~/.aoc_cookie.txt -i 123456 -n "Jacob Duijzer" -l "Team Rockstars IT"
-```
 
 Parameters:
 
@@ -20,6 +19,8 @@ Parameters:
 -i id: the id of the leaderboard.
 -n "name": the name of the player you want to show the score for.
 -l "label": the name of the leaderboard.
+
+```
 
 # Advent of Code 2023
 
