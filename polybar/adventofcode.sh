@@ -29,13 +29,13 @@ done
 cookie=$(head -n 1 $cookie_file)
 
 # Get leaderboard json
-curl -s https://adventofcode.com/$year/leaderboard/private/view/$board_id.json -X GET -H "Cookie: session=$cookie" > /tmp/aoc.json
+curl -s https://adventofcode.com/$year/leaderboard/private/view/$board_id.json -X GET -H "Cookie: session=$cookie" > /tmp/aoc-$board_id.json
 
 # Getting total number of players, players position and score.
 # Output will look like this: 5, 1, 100 (total, position, score)
-score=$(jq '( .members | length ), ( [.members[] | { position: .key, score: .local_score, name: .name }]|sort_by(.score)|reverse|sort_by(.last_star_ts)|to_entries|.[] | select(.value.name=="Jacob Duijzer")|"\(.key+1),\(.value.score)")' /tmp/aoc.json | paste -sd, - | sed 's/\"//g')
+score=$(jq '( .members | length ), ( [.members[] | { position: .key, score: .local_score, name: .name }]|sort_by(.score)|reverse|sort_by(.last_star_ts)|to_entries|.[] | select(.value.name=="Jacob Duijzer")|"\(.key+1),\(.value.score)")' /tmp/aoc-$board_id.json | paste -sd, - | sed 's/\"//g')
 
 # Parse results
 results=(${score//,/ })
  
-echo "$leader_board_name: position: ${results[1]}/${results[0]}, score: ${results[2]}"
+echo -n "$leader_board_name: position: ${results[1]}/${results[0]}, score: ${results[2]}"
