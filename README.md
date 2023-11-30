@@ -5,9 +5,21 @@
 I have created a bash script to extract my position on a leaderboard, I use it to show it on my desktop (previously Polybar, now Waybar):
 
 ![image](./assets/polybar.jpg)
-![image](./assets/waybar.jpg)
 
+![image](./assets/waybar.png)
 
+### Usage of the leaderboard script
+
+```bash
+./adventofcode.sh -c ~/.aoc_cookie.txt -i 123456 -n "Jacob Duijzer" -l "Team Rockstars IT"
+```
+
+Parameters:
+
+-c cookie_file: the location of a text file with the contents of the AoC cookie.
+-i id: the id of the leaderboard.
+-n "name": the name of the player you want to show the score for.
+-l "label": the name of the leaderboard.
 
 # Advent of Code 2023
 
