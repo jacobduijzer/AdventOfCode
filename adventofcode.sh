@@ -1,3 +1,4 @@
+#!/usr/bin/env bash
 # Script to get your position from a Advent Of Code leaderboard
 
 year=2023
