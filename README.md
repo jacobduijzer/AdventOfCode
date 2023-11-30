@@ -2,9 +2,10 @@
 
 ## Leaderboard script
 
-I have created a simple [`jq`](https://stedolan.github.io/jq/) [script](./adventofcode.sh) to show my position on a private leaderboard on my [polybar](https://github.com/polybar/polybar):
+I have created a bash script to extract my position on a leaderboard, I use it to show it on my desktop (previously Polybar, now Waybar):
 
-![image](./assets/screenshot.jpg)
+![image](./assets/polybar.jpg)
+![image](./assets/waybar.jpg)
 
 
 
