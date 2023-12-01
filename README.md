@@ -28,7 +28,7 @@ Parameters:
 
 | Day | Solutions                                                                                                                                                                                                                  | 
 |-----|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| 1   | [Rust](https://github.com/jacobduijzer/AdventOfCode/blob/main/rust/src/year2023/day01.rs) |
+| 1   | [Rust](https://github.com/jacobduijzer/AdventOfCode/blob/main/rust/src/year2023/day01.rs) - [Part 1 - Bash](https://github.com/jacobduijzer/AdventOfCode/tree/main/bash/2023/day01/solve_part1.sh) |
 | 2   | [Rust](https://github.com/jacobduijzer/AdventOfCode/blob/main/rust/src/year2023/day02.rs) |
 
 # Advent Of Code 2022
