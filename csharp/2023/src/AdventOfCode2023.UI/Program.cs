@@ -3,8 +3,8 @@ using Spectre.Console;
 
 // SETTINGS
 const int NumberOfRows = 10;
-const int CharacterDelay = 5;
-const int LineDelay = 5;
+const int CharacterDelay = 50;
+const int LineDelay = 50;
 
 var day01 = new Day01();
 
