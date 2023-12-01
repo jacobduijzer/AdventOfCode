@@ -28,7 +28,7 @@ Parameters:
 
 | Day | Solutions                                                                                                                                                                                                                  | 
 |-----|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| 1   | [Rust](https://github.com/jacobduijzer/AdventOfCode/blob/main/rust/src/year2023/day01.rs) - [Bash - Part 1](https://github.com/jacobduijzer/AdventOfCode/tree/main/bash/2023/day01/solve_part1.sh) - [C# - Part 1, with visualization]([https://github.com/jacobduijzer/AdventOfCode/tree/main/bash/2023/day01/solve_part1.sh](https://github.com/jacobduijzer/AdventOfCode/blob/main/csharp/2023/src/AdventOfCode2023.Core/Day01.cs))|
+| 1   | [Rust](https://github.com/jacobduijzer/AdventOfCode/blob/main/rust/src/year2023/day01.rs) - [Bash - Part 1](https://github.com/jacobduijzer/AdventOfCode/tree/main/bash/2023/day01/solve_part1.sh) - [C# - Part 1, with visualization](https://github.com/jacobduijzer/AdventOfCode/blob/main/csharp/2023/src/AdventOfCode2023.Core/Day01.cs) |
 | 2   | [Rust](https://github.com/jacobduijzer/AdventOfCode/blob/main/rust/src/year2023/day02.rs) |
 
 # Advent Of Code 2022
