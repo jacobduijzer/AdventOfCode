@@ -1,7 +1,9 @@
 namespace AdventOfCode2023.Core;
 
-public class Day01
+public class Part1
 {
+    
+    
     private List<int> _totals = new();
 
     private string _line = string.Empty;

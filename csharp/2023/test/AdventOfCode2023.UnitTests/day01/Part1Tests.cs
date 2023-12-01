@@ -2,7 +2,7 @@ using AdventOfCode2023.Core;
 
 namespace AdventOfCode2023.UnitTests;
 
-public class Day01Tests
+public class Part1Tests
 {
     [Theory]
     [InlineData("abcde", 1, "[darkgoldenrod]a[/]bcde")]
@@ -13,24 +13,27 @@ public class Day01Tests
     [InlineData("1b2d5", 5, "[underline green]1[/]b[underline green]2[/]d[underline green]5[/]")]
     public void SetLine(string line, int steps, string newLine)
     {
-        Day01 day01 = new();
-        day01.SetLine(line);
+        Part1 part1 = new();
+        part1.SetLine(line);
         
         for(var i = 0; i < steps; i++)
-            day01.RecoverNext();
+            part1.RecoverNext();
         
-        Assert.Equal(newLine, day01.GetNewLine());
+        Assert.Equal(newLine, part1.GetNewLine());
     }
 
-    [Fact]
-    public void CalculateValue()
+    [Theory]
+    [InlineData("833", 83)]
+    [InlineData("nkzjrdqrmpztpqninetwofour1znnkd", 11)]
+    [InlineData("3four4", 34)]
+    public void CalculateValue(string line, int expectedTotal)
     {
-        Day01 day01 = new();
-        day01.SetLine("833");
+        Part1 part1 = new();
+        part1.SetLine(line);
         
-        for(var i = 0; i < 3; i++)
-            day01.RecoverNext();
+        for(var i = 0; i < line.Length; i++)
+            part1.RecoverNext();
         
-        Assert.Equal(83, day01.LineResult());
+        Assert.Equal(expectedTotal, part1.LineResult());
     }
 }

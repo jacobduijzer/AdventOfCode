@@ -6,7 +6,7 @@ const int NumberOfRows = 10;
 const int CharacterDelay = 50;
 const int LineDelay = 50;
 
-var day01 = new Day01();
+var day01 = new Part1();
 
 var directory = AppContext.BaseDirectory;
 var fileName = "day01.txt";
