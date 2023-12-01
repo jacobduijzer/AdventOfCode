@@ -1,3 +1,5 @@
+use regex::{Regex, RegexSet};
+
 const WORDVALUES: [(&str, i32); 9] = [("one", 1), ("two", 2), ("three", 3), ("four", 4), ("five", 5), ("six", 6), ("seven", 7),("eight", 8), ("nine", 9)];
 
 fn first_number(line: &str, part2: bool) -> i32 {
