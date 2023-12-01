@@ -29,6 +29,7 @@ Parameters:
 | Day | Solutions                                                                                                                                                                                                                  | 
 |-----|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | 1   | [Rust](https://github.com/jacobduijzer/AdventOfCode/blob/main/rust/src/year2023/day01.rs) |
+| 2   | [Rust](https://github.com/jacobduijzer/AdventOfCode/blob/main/rust/src/year2023/day02.rs) |
 
 # Advent Of Code 2022
 
