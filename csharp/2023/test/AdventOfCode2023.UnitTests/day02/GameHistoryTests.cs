@@ -14,10 +14,10 @@ Game 4: 1 green, 3 red, 6 blue; 3 green, 6 red; 3 green, 15 blue, 14 red
 Game 5: 6 red, 1 blue, 3 green; 2 blue, 1 red, 2 green";
 
         GameHistory gameHistory = new(gameHistoryInput.Split(Environment.NewLine));
-        
+
         Assert.Equal(5, gameHistory.Games.Count);
     }
-    
+
     [Fact]
     public void SumIdsOfImpossibleGames()
     {
@@ -28,7 +28,7 @@ Game 4: 1 green, 3 red, 6 blue; 3 green, 6 red; 3 green, 15 blue, 14 red
 Game 5: 6 red, 1 blue, 3 green; 2 blue, 1 red, 2 green";
 
         GameHistory gameHistory = new(gameHistoryInput.Split(Environment.NewLine));
-        
+
         Assert.Equal(8, gameHistory.SumOfIdsOfImpossibleGames(12, 13, 14));
     }
 
@@ -40,7 +40,19 @@ Game 5: 6 red, 1 blue, 3 green; 2 blue, 1 red, 2 green";
         var input = File.ReadAllLines(Path.Combine(directory, "input", fileName));
 
         GameHistory gameHistory = new(input);
-        
+
         Assert.Equal(2679, gameHistory.SumOfIdsOfImpossibleGames(12, 13, 14));
+    }
+
+    [Fact]
+    public void RunPart2()
+    {
+        var directory = AppContext.BaseDirectory;
+        var fileName = "day02.txt";
+        var input = File.ReadAllLines(Path.Combine(directory, "input", fileName));
+
+        GameHistory gameHistory = new(input);
+
+        Assert.Equal(77607, gameHistory.SumOfPower());
     }
 }

@@ -23,6 +23,28 @@ public class Game(int id, List<Draw> draws)
 
         return true;
     }
+
+    public int SumOfPower()
+    {
+        var red = 0;
+        var green = 0;
+        var blue = 0;
+
+        foreach (Draw round in Draws)
+        {
+            if (round.Cubes.Any(x => x.Color.Equals("red")) &&
+                round.Cubes.First(x => x.Color.Equals("red")).Amount > red)
+                red = round.Cubes.First(x => x.Color.Equals("red")).Amount;
+            if (round.Cubes.Any(x => x.Color.Equals("green")) &&
+                round.Cubes.First(x => x.Color.Equals("green")).Amount > green)
+                green = round.Cubes.First(x => x.Color.Equals("green")).Amount;
+            if (round.Cubes.Any(x => x.Color.Equals("blue")) &&
+                round.Cubes.First(x => x.Color.Equals("blue")).Amount > blue)
+                blue = round.Cubes.First(x => x.Color.Equals("blue")).Amount;
+        }
+
+        return red * green * blue;
+    }
 }
 
 public record Draw(List<Cube> Cubes);

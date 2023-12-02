@@ -26,4 +26,15 @@ public class GameTests
         
         Assert.Equal(isGamePossible, game.IsGamePossible(red, green, blue));
     }
+    
+    [Theory]
+    [InlineData("Game 1: 3 blue, 4 red; 1 red, 2 green, 6 blue; 2 green", 48)]
+    [InlineData("Game 1: 3 blue, 12 red; 1 red, 2 green, 6 blue; 2 green", 144)]
+    [InlineData("Game 1: 3 blue, 10 red; 1 red, 2 green, 6 blue; 2 green", 120)]
+    public void CalculateSumOfPower(string gameInput, int expected)
+    {
+        Game game = GameBuilder.Build(gameInput);
+        
+        Assert.Equal(expected, game.SumOfPower());
+    }
 }

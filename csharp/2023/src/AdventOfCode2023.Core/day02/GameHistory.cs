@@ -12,5 +12,7 @@ public class GameHistory(string[] gameHistory)
             .Select(y => y.Id)
             .Sum();
     }
-    
+
+    public int SumOfPower() =>
+        Games.Sum(x => x.SumOfPower());
 }
