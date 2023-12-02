@@ -59,6 +59,8 @@ pub fn solve(year: u16, day: u8, part: u8, file: &str) {
         // 2023
         (2023, 1, 1) => println!("Part 1: {}", year2023::day01::solve_part1(&input)),
         (2023, 1, 2) => println!("Part 2: {}", year2023::day01::solve_part2(&input)),
+        (2023, 2, 1) => println!("Part 1: {}", year2023::day02::solve_part1(&input)),
+        (2023, 2, 2) => println!("Part 2: {}", year2023::day02::solve_part2(&input)),
         _ => println!("No match for year: {}, day: {}, part: {}", year, day, part)
     };
 
