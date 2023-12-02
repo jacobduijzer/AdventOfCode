@@ -1,5 +1,3 @@
-using System.Globalization;
-
 namespace AdventOfCode2023.Core.day02;
 
 public class Game(int id, List<Draw> draws)
@@ -30,18 +28,16 @@ public class Game(int id, List<Draw> draws)
         var green = 0;
         var blue = 0;
 
-        foreach (Draw round in Draws)
+        Draws.ForEach(x => x.Cubes.ForEach(y =>
         {
-            if (round.Cubes.Any(x => x.Color.Equals("red")) &&
-                round.Cubes.First(x => x.Color.Equals("red")).Amount > red)
-                red = round.Cubes.First(x => x.Color.Equals("red")).Amount;
-            if (round.Cubes.Any(x => x.Color.Equals("green")) &&
-                round.Cubes.First(x => x.Color.Equals("green")).Amount > green)
-                green = round.Cubes.First(x => x.Color.Equals("green")).Amount;
-            if (round.Cubes.Any(x => x.Color.Equals("blue")) &&
-                round.Cubes.First(x => x.Color.Equals("blue")).Amount > blue)
-                blue = round.Cubes.First(x => x.Color.Equals("blue")).Amount;
-        }
+            _ = y.Color switch
+            {
+                "red" => y.Amount > red ? red = y.Amount : red,
+                "green" => y.Amount > green ? green = y.Amount : green,
+                "blue" => y.Amount > blue ? blue = y.Amount : blue,
+                _ => throw new ArgumentOutOfRangeException($"Color {y.Color} is not implemented")
+            };
+        }));
 
         return red * green * blue;
     }
