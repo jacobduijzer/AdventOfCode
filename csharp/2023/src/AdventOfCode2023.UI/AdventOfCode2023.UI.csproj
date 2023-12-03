@@ -12,6 +12,9 @@
       <None Update="input\day01.txt">
         <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       </None>
+      <None Update="input\day02.txt">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </None>
     </ItemGroup>
 
 
@@ -23,5 +26,7 @@
     <ItemGroup>
       <ProjectReference Include="..\AdventOfCode2023.Core\AdventOfCode2023.Core.csproj" />
     </ItemGroup>
+
+
 
 </Project>
