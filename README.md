@@ -30,7 +30,7 @@ Parameters:
 |-----|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | 1   | [Rust](https://github.com/jacobduijzer/AdventOfCode/blob/main/rust/src/year2023/day01.rs) - [Bash - Part 1](https://github.com/jacobduijzer/AdventOfCode/tree/main/bash/2023/day01/solve_part1.sh) - [C#](https://github.com/jacobduijzer/AdventOfCode/blob/main/csharp/2023/src/AdventOfCode2023.Core/day01/) |
 | 2   | [Rust](https://github.com/jacobduijzer/AdventOfCode/blob/main/rust/src/year2023/day02.rs) - [C#](https://github.com/jacobduijzer/AdventOfCode/blob/main/csharp/2023/src/AdventOfCode2023.Core/day02/)                                                                                                 |
-
+| 3   | [Rust](https://github.com/jacobduijzer/AdventOfCode/blob/main/rust/src/year2023/day03.rs) |
 # Advent Of Code 2022
 
 ## Solutions
