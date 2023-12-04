@@ -16,19 +16,12 @@ fn parse_card(card: &str) -> (Vec<u32>, Vec<u32>){
     (numbers, winning_numbers)
 }
 
-fn find_winning_numbers(numbers: Vec<u32>, winning_numbers: Vec<u32>) -> Vec<u32>
-{
-    let mut intersect_result: Vec<u32> = winning_numbers.clone();
+fn score_card(winning_numbers: u32) -> u32 {
+    if winning_numbers > 0 {
+        return u32::pow(2, (winning_numbers - 1));
+    }
 
-    let unique_a: HashSet<u32> = numbers.into_iter().collect();
-    unique_a
-        .intersection(&intersect_result.into_iter().collect())
-        .map(|i| *i)
-        .collect::<Vec<_>>()
-}
-
-fn score_card(winning_numbers: Vec<u32>) -> usize {
-    u32::pow(2, (winning_numbers.len() - 1).try_into().unwrap()).try_into().unwrap()
+    0
 }
 
 fn get_winners_count(numbers: &Vec<u32>, mut winning_numbers: &Vec<u32>) -> u32 {
@@ -61,18 +54,13 @@ fn calculate_lottery_ticket_amount(cards: Vec<(Vec<u32>, Vec<u32>)>) -> u32 {
     total_amount
 }
 
-pub fn solve_part1(input: &str) -> usize {
+pub fn solve_part1(input: &str) -> u32 {
     input
         .lines()
         .map(|line| {
            let card = parse_card(line);
-            let duplicates = find_winning_numbers(card.0, card.1);
-            if duplicates.len() > 0 {
-                score_card(duplicates)
-            }
-            else {
-                0
-            }
+            let duplicates = get_winners_count(&card.0, &card.1);
+            score_card(duplicates)
         })
         .sum()
 }
@@ -111,20 +99,19 @@ Card 6: 31 18 13 56 72 | 74 77 10 23 35 67 36 11";
     }
 
     #[test]
-    fn get_dumplicates_from_card() {
+    fn get_duplicates_from_card() {
         let scratchcard = parse_card("Card 1: 41 48 83 86 17 | 83 86  6 31 17  9 48 53");
+        let winning_numbers = get_winners_count(&scratchcard.0, &scratchcard.1);
 
-        let duplicates = find_winning_numbers(scratchcard.0, scratchcard.1);
-
-        assert_eq!(4, duplicates.len());
+        assert_eq!(4, winning_numbers);
     }
 
     #[test]
     fn score_single_card() {
         let scratchcard = parse_card("Card 1: 41 48 83 86 17 | 83 86  6 31 17  9 48 53");
-        let duplicates = find_winning_numbers(scratchcard.0, scratchcard.1);
+        let winning_numbers = get_winners_count(&scratchcard.0, &scratchcard.1);
 
-        let score = score_card(duplicates);
+        let score = score_card(winning_numbers);
 
         assert_eq!(8, score);
     }
