@@ -1,14 +1,14 @@
 use hashbrown::HashSet;
 
-fn parse_card(card: &str) -> (Vec<i32>, Vec<i32>){
+fn parse_card(card: &str) -> (Vec<u32>, Vec<u32>){
     let card_info : Vec<_> = card.split(':').collect();
     let all_numbers : Vec<_> = card_info[1].split('|').collect();
-    let numbers : Vec<i32> = all_numbers[0]
+    let numbers : Vec<u32> = all_numbers[0]
         .split_whitespace()
         .map(|s| s.parse().expect("parse error"))
         .collect();
 
-    let winning_numbers : Vec<i32> = all_numbers[1]
+    let winning_numbers : Vec<u32> = all_numbers[1]
         .split_whitespace()
         .map(|s| s.parse().expect("parse error"))
         .collect();
@@ -16,19 +16,49 @@ fn parse_card(card: &str) -> (Vec<i32>, Vec<i32>){
     (numbers, winning_numbers)
 }
 
-fn find_winning_numbers(numbers: Vec<i32>, winning_numbers: Vec<i32>) -> Vec<i32>
+fn find_winning_numbers(numbers: Vec<u32>, winning_numbers: Vec<u32>) -> Vec<u32>
 {
-    let mut intersect_result: Vec<i32> = winning_numbers.clone();
+    let mut intersect_result: Vec<u32> = winning_numbers.clone();
 
-    let unique_a: HashSet<i32> = numbers.into_iter().collect();
+    let unique_a: HashSet<u32> = numbers.into_iter().collect();
     unique_a
         .intersection(&intersect_result.into_iter().collect())
         .map(|i| *i)
         .collect::<Vec<_>>()
 }
 
-fn score_card(winning_numbers: Vec<i32>) -> usize {
+fn score_card(winning_numbers: Vec<u32>) -> usize {
     u32::pow(2, (winning_numbers.len() - 1).try_into().unwrap()).try_into().unwrap()
+}
+
+fn get_winners_count(numbers: &Vec<u32>, mut winning_numbers: &Vec<u32>) -> u32 {
+    let mut winners = 0;
+    for number in numbers.iter() {
+        if winning_numbers.contains(&number) {
+            winners += 1;
+        }
+    }
+    return winners;
+}
+
+fn calculate_lottery_ticket_amount(cards: Vec<(Vec<u32>, Vec<u32>)>) -> u32 {
+    let mut amount: Vec<u32> = vec![1; cards.len()];
+
+    for (index, card) in cards.iter().enumerate() {
+        let current_amount = amount[index];
+        let winning_numbers = get_winners_count(&cards[index].0, &cards[index].1);
+
+        for offset in 1..winning_numbers + 1 {
+            let new_index = index + offset as usize;
+            if new_index >= amount.len() {
+                break;
+            }
+            amount[index + offset as usize] += current_amount;
+        }
+    }
+
+    let total_amount: u32 = amount.iter().sum();
+    total_amount
 }
 
 pub fn solve_part1(input: &str) -> usize {
@@ -45,6 +75,15 @@ pub fn solve_part1(input: &str) -> usize {
             }
         })
         .sum()
+}
+
+pub fn solve_part2(input: &str) -> u32 {
+    let cards: Vec<(Vec<u32>, Vec<u32>)> = input
+        .lines()
+        .map(|line |parse_card(line))
+        .collect();
+
+    calculate_lottery_ticket_amount(cards)
 }
 
 #[cfg(test)]
@@ -95,6 +134,13 @@ Card 6: 31 18 13 56 72 | 74 77 10 23 35 67 36 11";
         let result = solve_part1(test_data);
 
         assert_eq!(13, result);
+    }
+
+    #[test]
+    fn run_part2_with_test_data() {
+        let result = solve_part2(test_data);
+
+        assert_eq!(30, result);
     }
 
 }
