@@ -148,6 +148,13 @@ humidity-to-location map:
         assert_eq!(35, result)
     }
 
+    #[test]
+    fn solve_part2_with_test_data() {
+        let result = solve_part2(test_data);
+
+        assert_eq!(46, result)
+    }
+
     const input: &str = "seeds: 1636419363 608824189 3409451394 227471750 12950548 91466703 1003260108 224873703 440703838 191248477 634347552 275264505 3673953799 67839674 2442763622 237071609 3766524590 426344831 1433781343 153722422
 
 seed-to-soil map:
