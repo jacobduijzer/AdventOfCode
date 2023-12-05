@@ -32,6 +32,7 @@ Parameters:
 | 2   | [Rust](https://github.com/jacobduijzer/AdventOfCode/blob/main/rust/src/year2023/day02.rs) - [C#](https://github.com/jacobduijzer/AdventOfCode/blob/main/csharp/2023/src/AdventOfCode2023.Core/day02/)                                                                                                 |
 | 3   | [Rust](https://github.com/jacobduijzer/AdventOfCode/blob/main/rust/src/year2023/day03.rs) |
 | 4   | [Rust](https://github.com/jacobduijzer/AdventOfCode/blob/main/rust/src/year2023/day04.rs) |
+| 5   | [Rust](https://github.com/jacobduijzer/AdventOfCode/blob/main/rust/src/year2023/day05.rs) |
 
 # Advent Of Code 2022
 
