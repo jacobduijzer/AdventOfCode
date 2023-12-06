@@ -1,10 +1,12 @@
 namespace AdventOfCode2023.Core.day06;
 
-
-
 public class RaceResults(string[] racesInput)
 {
     public List<RaceResult> Races => ParseInput(); 
+    
+    public int TotalScore() => Races
+        .Select(x => x.GetWinningOptions().Count)
+        .Aggregate(1, (acc, val) => acc * val);
 
     private List<RaceResult> ParseInput()
     {
@@ -19,5 +21,4 @@ public class RaceResults(string[] racesInput)
             .Zip(lines.Last().ToArray(), (first, second) => new RaceResult(long.Parse(first), long.Parse(second)))
             .ToList();
     }
-    
 }

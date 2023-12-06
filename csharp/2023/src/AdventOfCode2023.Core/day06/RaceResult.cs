@@ -13,6 +13,7 @@ public record struct RaceResult(long Time, long Distance)
 
     public List<RaceResult> GetWinningOptions()
     {
-        return new List<RaceResult>();
+        var distance = Distance;
+        return GetAllOptions().Where(race => race.Distance > distance).ToList();
     }
 }
