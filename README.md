@@ -33,6 +33,7 @@ Parameters:
 | 3   | [Rust](https://github.com/jacobduijzer/AdventOfCode/blob/main/rust/src/year2023/day03.rs) |
 | 4   | [Rust](https://github.com/jacobduijzer/AdventOfCode/blob/main/rust/src/year2023/day04.rs) |
 | 5   | [Rust](https://github.com/jacobduijzer/AdventOfCode/blob/main/rust/src/year2023/day05.rs) |
+| 6   | [Rust](https://github.com/jacobduijzer/AdventOfCode/blob/main/rust/src/year2023/day06.rs) |
 
 # Advent Of Code 2022
 
