@@ -25,9 +25,28 @@ fn calculate_wins(races: Vec<(u128, u128)>) -> u128 {
     numbers.iter().product()
 }
 
+fn get_race_results_for_part2(input: &str) -> (u128, u128) {
+    let (time, dist) = input.split_once('\n').unwrap();
+    (parse(time), parse(dist))
+}
+
+fn parse(line: & str) -> u128
+{
+    line.split_whitespace()
+        .skip(1)
+        .fold(String::new(), |mut acc, s| { acc.push_str(s); acc })
+        .parse()
+        .expect("bad number")
+}
+
 pub fn solve_part1(input: &str) -> u128 {
     let race_results = get_race_results(input);
     calculate_wins(race_results)
+}
+
+pub fn solve_part2(input: &str) -> u128 {
+    let race_results = get_race_results_for_part2(input);
+    calculate_wins(vec![(race_results.0, race_results.1)])
 }
 
 #[cfg(test)]
@@ -75,21 +94,35 @@ Distance:   283113411341491";
 
     #[test]
     fn get_result_for_part1_with_real_data() {
+        let result = solve_part1(REAL_DATA);
+
+        assert_eq!(219849, result)
+    }
+
+    #[test]
+    fn get_result_for_part2_with_test_data_cheat() {
         let result = solve_part1(TEST_DATA2);
 
         assert_eq!(71503, result)
     }
 
     #[test]
-    fn get_result_for_part2_with_test_data() {
-        let result = solve_part1(TEST_DATA);
+    fn get_result_for_part2_with_real_data_cheat() {
+        let result = solve_part1(REAL_DATA2);
 
-        assert_eq!(288, result)
+        assert_eq!(29432455, result)
+    }
+
+    #[test]
+    fn get_result_for_part2_with_test_data() {
+        let result = solve_part2(TEST_DATA);
+
+        assert_eq!(71503, result)
     }
 
     #[test]
     fn get_result_for_part2_with_real_data() {
-        let result = solve_part1(REAL_DATA2);
+        let result = solve_part2(REAL_DATA);
 
         assert_eq!(29432455, result)
     }
