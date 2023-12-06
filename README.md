@@ -41,6 +41,10 @@ Day 1:
 
 ![day 1](./assets/day01.gif)
 
+Day 2:
+
+![day 2](./assets/day02.gif)
+
 Day 4, part 1:
 
 ![day 4](./assets/day04.gif)
