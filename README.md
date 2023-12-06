@@ -31,9 +31,16 @@ Parameters:
 | 1   | [Rust](https://github.com/jacobduijzer/AdventOfCode/blob/main/rust/src/year2023/day01.rs) - [Bash - Part 1](https://github.com/jacobduijzer/AdventOfCode/tree/main/bash/2023/day01/solve_part1.sh) - [C#](https://github.com/jacobduijzer/AdventOfCode/blob/main/csharp/2023/src/AdventOfCode2023.Core/day01/) |
 | 2   | [Rust](https://github.com/jacobduijzer/AdventOfCode/blob/main/rust/src/year2023/day02.rs) - [C#](https://github.com/jacobduijzer/AdventOfCode/blob/main/csharp/2023/src/AdventOfCode2023.Core/day02/)                                                                                                 |
 | 3   | [Rust](https://github.com/jacobduijzer/AdventOfCode/blob/main/rust/src/year2023/day03.rs) |
-| 4   | [Rust](https://github.com/jacobduijzer/AdventOfCode/blob/main/rust/src/year2023/day04.rs) |
+| 4   | [Rust](https://github.com/jacobduijzer/AdventOfCode/blob/main/rust/src/year2023/day04.rs) - [C# - Part 1](https://github.com/jacobduijzer/AdventOfCode/tree/main/csharp/2023/src/AdventOfCode2023.Core/day04) |
 | 5   | [Rust](https://github.com/jacobduijzer/AdventOfCode/blob/main/rust/src/year2023/day05.rs) |
 | 6   | [Rust](https://github.com/jacobduijzer/AdventOfCode/blob/main/rust/src/year2023/day06.rs) |
+
+## Visualizations
+
+Day 4, part 1:
+
+![day 4](./assets/day04.gif)
+
 
 # Advent Of Code 2022
 
