@@ -36,6 +36,7 @@
       <None Update="input\day04.txt">
         <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       </None>
+
     </ItemGroup>
 
 

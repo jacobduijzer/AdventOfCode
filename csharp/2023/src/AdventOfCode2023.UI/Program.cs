@@ -2,5 +2,7 @@
 
 // await Day00.Run();
 //await Day01.Run();
-await Day02.Run();
+//await Day02.Run();
 //await Day04.Run();
+
+await Day06.Run();
