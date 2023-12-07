@@ -38,6 +38,8 @@ Parameters:
 
 ## Visualizations
 
+All visualizations are done with C# solutions, using [Spectre.Console](https://spectreconsole.net).
+
 Day 1:
 
 ![day 1](./assets/day01.gif)
