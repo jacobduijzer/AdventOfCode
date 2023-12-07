@@ -34,6 +34,7 @@ Parameters:
 | 4   | [Rust](https://github.com/jacobduijzer/AdventOfCode/blob/main/rust/src/year2023/day04.rs) - [C# - Part 1](https://github.com/jacobduijzer/AdventOfCode/tree/main/csharp/2023/src/AdventOfCode2023.Core/day04) |
 | 5   | [Rust](https://github.com/jacobduijzer/AdventOfCode/blob/main/rust/src/year2023/day05.rs) |
 | 6   | [Rust](https://github.com/jacobduijzer/AdventOfCode/blob/main/rust/src/year2023/day06.rs) - [C# - Part 1](https://github.com/jacobduijzer/AdventOfCode/tree/main/csharp/2023/src/AdventOfCode2023.Core/day06) |
+| 7   | [Rust](https://github.com/jacobduijzer/AdventOfCode/blob/main/rust/src/year2023/day07.rs) |
 
 ## Visualizations
 
@@ -49,6 +50,9 @@ Day 4, part 1:
 
 ![day 4](./assets/day04.gif)
 
+Day 6, part 1:
+
+![day 6](./assets/day06.gif)
 
 
 # Advent Of Code 2022
