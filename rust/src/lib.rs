@@ -70,6 +70,10 @@ pub fn solve(year: u16, day: u8, part: u8, file: &str) {
         (2023, 6, 1) => println!("Part 1: {}", year2023::day06::solve_part1(&input)),
         (2023, 7, 1) => println!("Part 1: {}", year2023::day07::solve_part1(&input)),
         (2023, 7, 2) => println!("Part 2: {}", year2023::day07::solve_part2(&input)),
+        (2023, 8, 1) => println!("Part 1: {}", year2023::day08::solve_part1(&input)),
+        (2023, 8, 2) => println!("Part 2: {}", year2023::day08::solve_part2(&input)),
+        (2023, 9, 1) => println!("Part 1: {}", year2023::day09::solve_part1(&input)),
+        (2023, 9, 2) => println!("Part 2: {}", year2023::day09::solve_part2(&input)),
         _ => println!("No match for year: {}, day: {}, part: {}", year, day, part)
     };
 

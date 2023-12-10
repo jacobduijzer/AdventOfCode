@@ -35,6 +35,8 @@ Parameters:
 | 5   | [Rust](https://github.com/jacobduijzer/AdventOfCode/blob/main/rust/src/year2023/day05.rs) |
 | 6   | [Rust](https://github.com/jacobduijzer/AdventOfCode/blob/main/rust/src/year2023/day06.rs) - [C# - Part 1](https://github.com/jacobduijzer/AdventOfCode/tree/main/csharp/2023/src/AdventOfCode2023.Core/day06) |
 | 7   | [Rust](https://github.com/jacobduijzer/AdventOfCode/blob/main/rust/src/year2023/day07.rs) |
+| 8   | [Rust](https://github.com/jacobduijzer/AdventOfCode/blob/main/rust/src/year2023/day08.rs) |
+| 9   | [Rust](https://github.com/jacobduijzer/AdventOfCode/blob/main/rust/src/year2023/day09.rs) |
 
 ## Visualizations
 
