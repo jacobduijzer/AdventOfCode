@@ -20,7 +20,6 @@ fn build_grid(input: &str) -> (HashMap<Position, char>, Position) {
     (grid, start)
 }
 
-
 #[cfg(test)]
 mod tests {
     use itertools::PadUsing;
