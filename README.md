@@ -39,6 +39,7 @@ Parameters:
 | 9   | [Rust](https://github.com/jacobduijzer/AdventOfCode/blob/main/rust/src/year2023/day09.rs) |
 | 10   | |
 | 11   | [Rust](https://github.com/jacobduijzer/AdventOfCode/blob/main/rust/src/year2023/day11.rs) |
+| 12   | [Rust](https://github.com/jacobduijzer/AdventOfCode/blob/main/rust/src/year2023/day12.rs) |
 
 ## Visualizations
 
