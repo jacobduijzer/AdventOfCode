@@ -97,10 +97,9 @@ pub fn solve_part2(input: &str) -> usize {
     lcm.try_into().unwrap()
 }
 
-
-
 #[cfg(test)]
 mod tests {
+    use rstest::rstest;
     use super::*;
 
     const TEST_DATA_1: &str = "RL
@@ -165,13 +164,15 @@ XXX = (XXX, XXX)";
         assert_eq!(307, map.instructions.len());
     }
 
-    #[test]
-    fn get_node_with_single_line() {
-        let (first, second, third) = get_node("AAA = (BBB, CCC)");
+    #[rstest]
+    #[case("AAA = (BBB, CCC)", "AAA", "BBB", "CCC")]
+    #[case("XXX = (YYY, ZZZ)", "XXX", "YYY", "ZZZ")]
+    fn get_node_with_single_line(#[case] input: &str, #[case] first_expected: &str, #[case] second_expected: &str, #[case] third_expected: &str) {
+        let (first, second, third) = get_node(input);
 
-        assert_eq!("AAA", first);
-        assert_eq!("BBB", second);
-        assert_eq!("CCC", third);
+        assert_eq!(first, first_expected);
+        assert_eq!(second, second_expected);
+        assert_eq!(third, third_expected);
     }
 
     #[test]
