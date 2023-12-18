@@ -16,6 +16,7 @@ rayon = "1.8"
 num = "0.4.1"
 matches = "0.1.10"
 bytes = "1.5.0"
+unreachable = { version = "1.0.0", features = [] }
 
 [dev-dependencies]
 rstest = "0.18.2"
