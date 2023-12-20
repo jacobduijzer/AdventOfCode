@@ -11,6 +11,12 @@ public class Day07
         var map = ParseInput(input);
         return map.Keys.Count(key => CanHoldShinyBag(map, key));
     }
+    
+    public int SolvePart2(string input)
+    {
+        var map = ParseInput(input);
+        return CountContainedBags(map, "shiny gold");
+    }
 
     private bool CanHoldShinyBag(IReadOnlyDictionary<string, Dictionary<string, int>> map, string currentColor,
         HashSet<string>? holdMap = null) =>
@@ -42,6 +48,15 @@ public class Day07
     //
     //     return false;
     // }
+    
+    private int CountContainedBags(IReadOnlyDictionary<string, Dictionary<string, int>> map, string color, Dictionary<string, int> found = null) =>
+        (found ??= new()).TryGetValue(color, out var result)
+            ? result
+            : (found[color] = map[color]
+                .Select(bc => bc.Value 
+                              + bc.Value 
+                              * CountContainedBags(map, bc.Key, found))
+                .Sum());
 
     internal Dictionary<string, Dictionary<string, int>> ParseInput(string input)
     {
