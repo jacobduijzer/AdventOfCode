@@ -38,7 +38,6 @@ fn map_instructions_part_2(input: &str) -> Vec<Instruction> {
             let delta = deltas
                 .get(&values.get(2).unwrap().chars().nth(7).unwrap())
                 .unwrap();
-            //let steps = values.get(1).unwrap().parse::<i64>().unwrap();
             let code = values.get(2).unwrap();
             let steps = i64::from_str_radix(code.get(2..code.len() - 2).unwrap(), 16).unwrap();
             Instruction { direction: (delta.0, delta.1), steps }
@@ -50,9 +49,12 @@ fn shoe_lace(poly: Vec<(i64, i64)>) -> i64 {
     let mut ret: i64 = 0;
     for i in 0..poly.len() {
         let current_point = poly.get(i).unwrap();
+        println!("cp ({}, {})", current_point.0, current_point.1);
         let target_point = poly.get(if i == 0 { poly.len() - 1} else { i - 1}).unwrap();
 
+        println!("tp ({}, {})", target_point.0, target_point.1);
         ret += target_point.0 * current_point.1 - target_point.1 * current_point.0;
+        println!("ret: {}", ret);
     }
     ret / 2 as i64
 }
@@ -64,6 +66,8 @@ fn solve(map: Vec<Instruction>) -> i64 {
     for line in map {
         let last_point = poly.last().unwrap();
         point_count += line.steps as i64;
+        println!("pc: {}", point_count);
+        println!("new p: ({}, {})", last_point.0 + line.direction.0 * line.steps, last_point.1 + line.direction.1 * line.steps);
         poly.push((last_point.0 + line.direction.0 * line.steps, last_point.1 + line.direction.1 * line.steps));
     }
 
@@ -98,6 +102,10 @@ R 2 (#7807d2)
 U 3 (#a77fa3)
 L 2 (#015232)
 U 2 (#7a21e3)";
+
+    const TEST_DATA_2: &str = "R 6 (#70c710)
+D 5 (#0dc571)
+L 2 (#5713f0)";
 
     #[test]
     fn map_test_input_for_part_1() {
@@ -134,6 +142,13 @@ U 2 (#7a21e3)";
         let result = solve_part1(TEST_DATA_1);
 
         assert_eq!(62, result);
+    }
+
+    #[test]
+    fn solve_part_1_with_test_data_2() {
+        let result = solve_part1(TEST_DATA_2);
+
+        assert_eq!(20, result);
     }
 
     #[test]

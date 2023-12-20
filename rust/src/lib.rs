@@ -2,6 +2,7 @@ extern crate core;
 
 use stopwatch::{Stopwatch};
 mod common;
+mod year2020;
 mod year2021;
 mod year2022;
 mod year2023;
@@ -15,6 +16,8 @@ pub fn solve(year: u16, day: u8, part: u8, file: &str) {
     let sw = Stopwatch::start_new();
     let input = common::input::read_file_by_name(year, file, "input");
     match (year, day, part) {
+        // 2020
+        (2020, 7, 1) => println!("Part 1: {}", year2020::day07::solve_part1(&input)),
         // 2021
         (2021, 1, 1) => println!("Part 1: {}", year2021::day01::solve_part1(&input)),
         (2021, 1, 2) => println!("Part 2: {}", year2021::day01::solve_part2(&input)),
