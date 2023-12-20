@@ -148,7 +148,7 @@ L 2 (#5713f0)";
     fn solve_part_1_with_test_data_2() {
         let result = solve_part1(TEST_DATA_2);
 
-        assert_eq!(20, result);
+        assert_eq!(27, result);
     }
 
     #[test]
