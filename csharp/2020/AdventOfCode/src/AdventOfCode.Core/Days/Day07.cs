@@ -26,28 +26,28 @@ public class Day07
                 .Where(kvp => !holdMap.Contains(kvp.Key))
                 .Any(kvp => CanHoldShinyBag(map, kvp.Key, holdMap)));
 
-    // private bool CanHoldShinyBag(
-    //     IReadOnlyDictionary<string, Dictionary<string, int>> map, 
-    //     string currentColor,
-    //     ISet<string> holdMap)
-    // {
-    //     if (holdMap.Contains(currentColor))
-    //         return true;
-    //
-    //     if (map.TryGetValue(currentColor, out var next))
-    //     {
-    //         foreach (var item in next)
-    //         {
-    //             if (item.Key.Equals("shiny gold") || CanHoldShinyBag(map, item.Key, holdMap))
-    //             {
-    //                 holdMap.Add("shiny gold");
-    //                 return true;
-    //             }
-    //         }
-    //     }
-    //
-    //     return false;
-    // }
+    private bool CanHoldShinyBag(
+        IReadOnlyDictionary<string, Dictionary<string, int>> map, 
+        string currentColor,
+        ISet<string> holdMap)
+    {
+        if (holdMap.Contains(currentColor))
+            return true;
+    
+        if (map.TryGetValue(currentColor, out var next))
+        {
+            foreach (var item in next)
+            {
+                if (item.Key.Equals("shiny gold") || CanHoldShinyBag(map, item.Key, holdMap))
+                {
+                    holdMap.Add("shiny gold");
+                    return true;
+                }
+            }
+        }
+    
+        return false;
+    }
     
     private int CountContainedBags(IReadOnlyDictionary<string, Dictionary<string, int>> map, string color, Dictionary<string, int> found = null) =>
         (found ??= new()).TryGetValue(color, out var result)
@@ -65,11 +65,11 @@ public class Day07
             .Select(SplitLineOnContains)
             .Select(ColorAndContaining)
             .ToDictionary(
-                c => c.Item1,
-                c => c.Item2.ToDictionary(
+                c => c.color,
+                c => c.contained.ToDictionary(
                     r => r.bag,
                     r => r.count));
-
+        
         // local functions
         string[] SplitLineOnContains(string line) =>
             line[..^1].Split("bags contain", StringSplitOptions.TrimEntries);

@@ -40,13 +40,15 @@ dark violet bags contain no other bags.";
         Assert.Equal(4, result);
     }
 
-    [Fact]
-    public void SolvePart1()
+    [Theory]
+    [InlineData("day7.txt", 316)]
+    [InlineData("day7_jeroen.txt", 300)]
+    public void SolvePart1(string fileName, long expected)
     {
-        var input = Helpers.ReadFileContents("day7.txt");
+        var input = Helpers.ReadFileContents(fileName);
         var result = new Day07().SolvePart1(input);
         
-        Assert.Equal(316, result); 
+        Assert.Equal(expected, result); 
     }
     
     [Fact]
@@ -65,12 +67,14 @@ dark violet bags contain no other bags.";
         Assert.Equal(126, result);
     }
     
-    [Fact]
-    public void SolvePart2()
+    [Theory]
+    [InlineData("day7.txt", 11310)]
+    [InlineData("day7_jeroen.txt", 8030)]
+    public void SolvePart2(string fileName, long expected)
     {
-        var input = Helpers.ReadFileContents("day7.txt");
+        var input = Helpers.ReadFileContents(fileName);
         var result = new Day07().SolvePart2(input);
         
-        Assert.Equal(11310, result); 
+        Assert.Equal(expected, result); 
     }
 }
