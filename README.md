@@ -26,8 +26,9 @@ Parameters:
 
 ## Solutions
 
-| Day | Solutions |
-| 1   | [Typescript](https://github.com/jacobduijzer/AdventOfCode/blob/main/typescript/years/2024/01/index.ts)
+| Day | Solutions                                                                                                |
+|-----|----------------------------------------------------------------------------------------------------------|
+| 1   | [Typescript](https://github.com/jacobduijzer/AdventOfCode/blob/main/typescript/years/2024/01/index.ts)   |
 
 # Advent of Code 2023
 
