@@ -1,0 +1,21 @@
+{
+	"compilerOptions": {
+		"target": "es2022",
+		"module": "commonjs",
+		"lib": ["ESNext"],
+		"noEmit": true,
+		"strict": true,
+		"moduleResolution": "node",
+		"paths": {
+			"js-combinatorics/commonjs/combinatorics": ["./node_modules/js-combinatorics"]
+		},
+		"typeRoots": ["./node_modules/@types", "./util/@types"],
+		"types": ["global", "node"],
+		"esModuleInterop": true,
+		"skipLibCheck": false,
+		"forceConsistentCasingInFileNames": true,
+		"sourceMap": true,
+		"allowJs": true
+	},
+	"include": ["**/*.ts", "**/*.d.ts"]
+}
