@@ -1,10 +1,9 @@
-import _ from "lodash";
 import * as util from "../../../util/util";
 import * as test from "../../../util/test";
-import chalk from "chalk";
-import { log, logSolution, trace } from "../../../util/log";
-import { performance } from "perf_hooks";
 import { normalizeTestCases } from "../../../util/test";
+import chalk from "chalk";
+import { log, logSolution } from "../../../util/log";
+import { performance } from "perf_hooks";
 
 const YEAR = 2024;
 const DAY = 1;
@@ -19,38 +18,24 @@ async function p2024day1_part1(input: string, ...params: any[]) {
 	data[0].sort((a, b) => a - b);
 	data[1].sort((a, b) => a - b);
 
-	let dist = 0;
-	for(let i = 0; i < data[0].length; i++) {
-		dist += Math.abs(data[0][i] - data[1][i]);
-	}
-
-	return dist;
+	return data[0].reduce((acc, value, index) => {
+		return acc + Math.abs(value - data[1][index]);
+	}, 0);
 }
 
 async function p2024day1_part2(input: string, ...params: any[]) {
 	let data = parseRowsToArrays(input);
 
-	let sum = 0;
-	for(let i = 0; i < data[0].length; i++) {
-		const target = data[0][i];
-		const count = data[1].filter(item => item === target).length;
-		sum += target * count;
-	}
-
-	return sum;
+	return data[0].reduce((acc, value) => {
+		const count = data[1].filter(item => item === value).length;
+		return acc + value* count;
+	}, 0);
 }
 
 function parseRowsToArrays(input: string): [number[], number[]] {
-	const rows = input.trim().split('\n').map(row => row.split('  ').map(Number));
-
-	const array1: number[] = [];
-	const array2: number[] = [];
-
-	rows.forEach(row => {
-		array1.push(row[0]); // First number of the pair
-		array2.push(row[1]); // Second number of the pair
-	});
-
+	const rows = input.trim().split('\n').map(row => row.split(/\s+/).map(Number));
+	const array1 = rows.map(row => row[0]);
+	const array2 = rows.map(row => row[1]);
 	return [array1, array2];
 }
 
