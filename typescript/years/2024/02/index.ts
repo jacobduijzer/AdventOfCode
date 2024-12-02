@@ -14,16 +14,79 @@ const DAY = 2;
 // problem url  : https://adventofcode.com/2024/day/2
 
 async function p2024day2_part1(input: string, ...params: any[]) {
-	return "Not implemented";
+	const reports = input
+		.trim()
+		.split('\n')
+		.map(row => row.split(" ").map(Number));	let sum = 0;
+
+	return reports.filter(isSafe).length;
 }
 
 async function p2024day2_part2(input: string, ...params: any[]) {
-	return "Not implemented";
+	const reports = input
+		.trim()
+		.split('\n')
+		.map(row => row.split(" ").map(Number));	let sum = 0;
+
+	let safe = 0;
+	let madeSafe = 0;
+
+	for(const report of reports) {
+
+		if(isSafe(report))
+		{
+			safe++;
+		} else {
+			for(let i = 0; i < report.length; i++) {
+				const removed = [...report.slice(0, i), ...report.slice(i + 1)];
+				if(isSafe(removed))
+				{
+					safe++;
+					break;
+				}
+			}
+		}
+	}
+
+	return safe;
+}
+
+function isSafe(levels: number[]) {
+	const differences: number[] = [];
+
+	for (let i = 1; i < levels.length; i++) {
+		differences.push(levels[i] - levels[i - 1]);
+	}
+
+	const increasing = differences.every((d) => d >= 1 && d <= 3);
+	const decreasing = differences.every((d) => d <= -1 && d >= -3);
+
+	return increasing || decreasing;
 }
 
 async function run() {
-	const part1tests: TestCase[] = [];
-	const part2tests: TestCase[] = [];
+	const part1tests: TestCase[] = [{
+		input: `7 6 4 2 1
+1 2 7 8 9
+9 7 6 2 1
+1 3 2 4 5
+8 6 4 4 1
+1 3 6 7 9`,
+		extraArgs: [],
+		expected: `2`
+	}
+	];
+	const part2tests: TestCase[] = [{
+		input: `7 6 4 2 1
+1 2 7 8 9
+9 7 6 2 1
+1 3 2 4 5
+8 6 4 4 1
+1 3 6 7 9`,
+		extraArgs: [],
+		expected: `4`
+	}
+	];
 
 	const [p1testsNormalized, p2testsNormalized] = normalizeTestCases(part1tests, part2tests);
 
