@@ -29,14 +29,11 @@ async function p2024day2_part2(input: string, ...params: any[]) {
 		.map(row => row.split(" ").map(Number));	let sum = 0;
 
 	let safe = 0;
-	let madeSafe = 0;
 
 	for(const report of reports) {
-
 		if(isSafe(report))
-		{
 			safe++;
-		} else {
+		else {
 			for(let i = 0; i < report.length; i++) {
 				const removed = [...report.slice(0, i), ...report.slice(i + 1)];
 				if(isSafe(removed))
@@ -52,11 +49,17 @@ async function p2024day2_part2(input: string, ...params: any[]) {
 }
 
 function isSafe(levels: number[]) {
+	const allowedDifferences = new Set([-1, -2, -3, 1, 2, 3]);
 	const differences: number[] = [];
 
 	for (let i = 1; i < levels.length; i++) {
 		differences.push(levels[i] - levels[i - 1]);
 	}
+
+	// Low hanging fruit first
+	const containsInvalidDifference = differences.some(d => !allowedDifferences.has(d));
+	if (containsInvalidDifference)
+		return false;
 
 	const increasing = differences.every((d) => d >= 1 && d <= 3);
 	const decreasing = differences.every((d) => d <= -1 && d >= -3);
