@@ -14,16 +14,43 @@ const DAY = 3;
 // problem url  : https://adventofcode.com/2024/day/3
 
 async function p2024day3_part1(input: string, ...params: any[]) {
-	return "Not implemented";
+	const pairs = input.matchAll(/mul\((\d+),(\d+)\)/g);
+	let product = 0;
+	for(const pair of pairs) {
+		product += Number(pair[1]) * Number(pair[2]);
+	}
+	return product;
 }
 
 async function p2024day3_part2(input: string, ...params: any[]) {
-	return "Not implemented";
+	const regex = /(?:don't\(\)|do\(\)|mul\((\d+),(\d+)\))/g;
+	const pairs = input.matchAll(regex);
+	let doing = true;
+	let product = 0;
+	for(const pair of pairs) {
+		if(pair[0] === "do()") {
+			doing = true;
+		} else if(pair[0] === "don't()") {
+			doing = false;
+		} else if(doing) {
+			product += Number(pair[1]) * Number(pair[2]);
+		}
+	}
+
+	return product;
 }
 
 async function run() {
-	const part1tests: TestCase[] = [];
-	const part2tests: TestCase[] = [];
+	const part1tests: TestCase[] = [{
+		input: `xmul(2,4)%&mul[3,7]!@^do_not_mul(5,5)+mul(32,64]then(mul(11,8)mul(8,5))`,
+		extraArgs: [],
+		expected: `161`
+	}];
+	const part2tests: TestCase[] = [{
+		input: `xmul(2,4)&mul[3,7]!^don't()_mul(5,5)+mul(32,64](mul(11,8)undo()?mul(8,5))`,
+		extraArgs: [],
+		expected: `48`
+	}];
 
 	const [p1testsNormalized, p2testsNormalized] = normalizeTestCases(part1tests, part2tests);
 
