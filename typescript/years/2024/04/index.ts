@@ -51,18 +51,13 @@ function findWord(grid: string[], word: string, startRow: number, startCol: numb
 	return true;
 }
 
-function isMASorSAM(diagonal: [number, number][], grid: string[][]): boolean {
+function isMASorSAM(diagonal: [number, number][], grid: string[]): boolean {
 	const [first, second, third] = diagonal.map(([r, c]) => grid[r][c]);
 
-	// Check for "MAS"
 	if (first === 'M' && second === 'A' && third === 'S')
 		return true;
 
-	// Check for "SAM"
-	if (first === 'S' && second === 'A' && third === 'M')
-		return true;
-
-	return false;
+	return first === 'S' && second === 'A' && third === 'M';
 }
 
 async function p2024day4_part1(input: string, ...params: any[]) {
@@ -82,33 +77,27 @@ async function p2024day4_part1(input: string, ...params: any[]) {
 async function p2024day4_part2(input: string, ...params: any[]) {
 	let count = 0;
 	const grid = input.split("\n");
+	const aPositions = findAllStartChars('A', grid);
 
-	for (let r = 0; r < grid.length; r++) {
-		for (let c = 0; c < grid[r].length; c++) {
-			if (grid[r][c] === 'A') {
+	for( const [startRow, startCol] of aPositions) {
+		const firstDiagonal: [number, number][] = [
+			[startRow - 1, startCol - 1], [startRow, startCol], [startRow + 1, startCol + 1]  // Top-left to bottom-right
+		];
+		const secondDiagonal: [number, number][] = [
+			[startRow - 1, startCol + 1], [startRow, startCol], [startRow + 1, startCol - 1]  // Top-right to bottom-left
+		];
 
-				const firstDiagonal: [number, number][] = [
-					[r - 1, c - 1], [r, c], [r + 1, c + 1]  // Top-left to bottom-right
-				];
-				const secondDiagonal: [number, number][] = [
-					[r - 1, c + 1], [r, c], [r + 1, c - 1]  // Top-right to bottom-left
-				];
+		const isFirstDiagonalValid = firstDiagonal.every(([row, col]) =>
+			row >= 0 && row < grid.length && col >= 0 && col < grid[row].length
+		);
 
-				// Ensure both diagonals are within bounds
-				const isFirstDiagonalValid = firstDiagonal.every(([row, col]) =>
-					row >= 0 && row < grid.length && col >= 0 && col < grid[row].length
-				);
+		const isSecondDiagonalValid = secondDiagonal.every(([row, col]) =>
+			row >= 0 && row < grid.length && col >= 0 && col < grid[row].length
+		);
 
-				const isSecondDiagonalValid = secondDiagonal.every(([row, col]) =>
-					row >= 0 && row < grid.length && col >= 0 && col < grid[row].length
-				);
-
-				// If both diagonals are valid, check for "MAS" or "SAM"
-				if (isFirstDiagonalValid && isMASorSAM(firstDiagonal, grid) &&
-					isSecondDiagonalValid && isMASorSAM(secondDiagonal, grid)) {
-					count++;
-				}
-			}
+		if (isFirstDiagonalValid && isMASorSAM(firstDiagonal, grid) &&
+			isSecondDiagonalValid && isMASorSAM(secondDiagonal, grid)) {
+			count++;
 		}
 	}
 
