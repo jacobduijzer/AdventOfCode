@@ -1,4 +1,4 @@
-[![Typescript](https://github.com/jacobduijzer/AdventOfCode/actions/workflows/typescript.yml/badge.svg)](https://github.com/jacobduijzer/AdventOfCode/actions/workflows/typescript.yml)[![Rust](https://github.com/jacobduijzer/AdventOfCode/actions/workflows/rust.yml/badge.svg)](https://github.com/jacobduijzer/AdventOfCode/actions/workflows/rust.yml) [![C#](https://github.com/jacobduijzer/AdventOfCode/actions/workflows/csharp.yml/badge.svg)](https://github.com/jacobduijzer/AdventOfCode/actions/workflows/csharp.yml)
+[![Typescript](https://github.com/jacobduijzer/AdventOfCode/actions/workflows/typescript.yml/badge.svg)](https://github.com/jacobduijzer/AdventOfCode/actions/workflows/typescript.yml) [![Rust](https://github.com/jacobduijzer/AdventOfCode/actions/workflows/rust.yml/badge.svg)](https://github.com/jacobduijzer/AdventOfCode/actions/workflows/rust.yml) [![C#](https://github.com/jacobduijzer/AdventOfCode/actions/workflows/csharp.yml/badge.svg)](https://github.com/jacobduijzer/AdventOfCode/actions/workflows/csharp.yml)
 
 ## Leaderboard script
 
