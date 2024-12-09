@@ -1,10 +1,10 @@
-import _ from "lodash";
 import * as util from "../../../util/util";
 import * as test from "../../../util/test";
 import chalk from "chalk";
 import { log, logSolution, trace } from "../../../util/log";
 import { performance } from "perf_hooks";
 import { normalizeTestCases } from "../../../util/test";
+import { Cell, Grid, GridPos, Dir } from "../../../util/grid";
 
 const YEAR = 2024;
 const DAY = 6;
@@ -13,8 +13,51 @@ const DAY = 6;
 // data path    : C:\Users\jacob\Code\github\AdventOfCode\typescript\years\2024\06\data.txt
 // problem url  : https://adventofcode.com/2024/day/6
 
+function rotateDirectionClockwise(direction: string): string {
+	const directions = ["north", "east", "south", "west"];
+	const index = directions.indexOf(direction);
+	return directions[(index + 1) % 4];
+}
+
+function moveUntil(grid: Grid, start: Cell, direction: string, wall: string): number {
+	let steps = 1;
+	let currDirection = direction;
+	let row = start.position[0];
+	let col = start.position[1];
+	const visited = new Set<string>();
+
+	let movement = Dir['N'];
+	while (true) {
+		const nextPos = grid.getCell([row + movement[0], col + movement[1]]);
+		if(nextPos?.isEdge() && nextPos?.value !== "#" ) {
+			steps++;
+			break;
+		} else if (nextPos!.value === "#") {
+			currDirection = rotateDirectionClockwise(currDirection);
+			movement = Dir[currDirection[0].toUpperCase()];
+		} else {
+			grid.setCell([row, col], 'X');
+			const posKey = `${row},${col}`;
+			if (!visited.has(posKey)) {
+				visited.add(posKey);
+				steps++;
+			}
+			row += movement[0];
+			col += movement[1];
+		}
+	}
+
+	return steps;
+}
+
 async function p2024day6_part1(input: string, ...params: any[]) {
-	return "Not implemented";
+	let steps = 0;
+	const grid = new Grid({ serialized: input });
+	const start = grid.getCell("^");
+	if (start) {
+		steps = moveUntil(grid, start, "north", "#");
+	}
+	return steps;
 }
 
 async function p2024day6_part2(input: string, ...params: any[]) {
@@ -22,7 +65,20 @@ async function p2024day6_part2(input: string, ...params: any[]) {
 }
 
 async function run() {
-	const part1tests: TestCase[] = [];
+	const part1tests: TestCase[] = [{
+		input: `....#.....
+.........#
+..........
+..#.......
+.......#..
+..........
+.#..^.....
+........#.
+#.........
+......#...`,
+		extraArgs: [],
+		expected: `41`
+	}];
 	const part2tests: TestCase[] = [];
 
 	const [p1testsNormalized, p2testsNormalized] = normalizeTestCases(part1tests, part2tests);
