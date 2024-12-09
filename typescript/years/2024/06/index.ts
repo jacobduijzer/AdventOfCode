@@ -50,6 +50,63 @@ function moveUntil(grid: Grid, start: Cell, direction: string, wall: string): nu
 	return steps;
 }
 
+// function detectLoop(grid: Grid, start: Cell, direction: string): boolean {
+// 	let currDirection = direction;
+// 	let row = start.position[0];
+// 	let col = start.position[1];
+// 	const visited = new Set<string>();
+//
+// 	let movement = Dir['N'];
+// 	while (true) {
+// 		const nextPos = grid.getCell([row + movement[0], col + movement[1]]);
+// 		if(nextPos?.isEdge() && nextPos?.value !== "#" ) {
+// 			break;
+// 		} else if (nextPos!.value === "#") {
+// 			currDirection = rotateDirectionClockwise(currDirection);
+// 			movement = Dir[currDirection[0].toUpperCase()];
+// 		} else {
+// 			const posKey = `${row},${col},${currDirection}`;
+// 			if (!visited.has(posKey)) {
+// 				visited.add(posKey);
+// 			} else {
+// 				return true;
+// 			}
+// 			row += movement[0];
+// 			col += movement[1];
+// 		}
+// 	}
+//
+// 	return false;
+// }
+function detectLoop(grid: Grid, start: Cell, direction: string): boolean {
+	let currDirection = direction;
+	let row = start.position[0];
+	let col = start.position[1];
+	const visited: { [key: string]: boolean } = {};
+
+	let movement = Dir['N'];
+	while (true) {
+		const nextPos = grid.getCell([row + movement[0], col + movement[1]]);
+		if (nextPos?.isEdge() && nextPos?.value !== "#") {
+			break;
+		} else if (nextPos!.value === "#") {
+			currDirection = rotateDirectionClockwise(currDirection);
+			movement = Dir[currDirection[0].toUpperCase()];
+		} else {
+			const posKey = `${row},${col},${currDirection}`;
+			if (!visited[posKey]) {
+				visited[posKey] = true;
+			} else {
+				return true;
+			}
+			row += movement[0];
+			col += movement[1];
+		}
+	}
+
+	return false;
+}
+
 async function p2024day6_part1(input: string, ...params: any[]) {
 	let steps = 0;
 	const grid = new Grid({ serialized: input });
@@ -61,7 +118,25 @@ async function p2024day6_part1(input: string, ...params: any[]) {
 }
 
 async function p2024day6_part2(input: string, ...params: any[]) {
-	return "Not implemented";
+	let count = 0;
+	const grid = new Grid({ serialized: input });
+	const start = grid.getCell("^");
+	if (start) {
+		for (let x = 0; x < grid.rowCount; x++) {
+			for (let y = 0; y < grid.colCount; y++) {
+				if (grid.getCell([x, y])?.value === ".") {
+					grid.setCell([x, y], '#');
+					if (detectLoop(grid, start, "north")) {
+						count++;
+					}
+					grid.setCell([x, y], '.');
+
+				}
+			}
+		}
+	}
+
+	return count;
 }
 
 async function run() {
@@ -79,7 +154,21 @@ async function run() {
 		extraArgs: [],
 		expected: `41`
 	}];
-	const part2tests: TestCase[] = [];
+
+	const part2tests: TestCase[] = [{
+		input: `....#.....
+.........#
+..........
+..#.......
+.......#..
+..........
+.#..^.....
+........#.
+#.........
+......#...`,
+		extraArgs: [],
+		expected: `6`
+	}];
 
 	const [p1testsNormalized, p2testsNormalized] = normalizeTestCases(part1tests, part2tests);
 
