@@ -27,7 +27,7 @@ public class Day01(ScenarioContext scenarioContext)
         _day01.AddData((string)scenarioContext[List]);
     }
     
-    [Then(@"there should be to arrays with the values")]
+    [Then(@"there should be to arrays with the sorted values")]
     public void ThenThereShouldBeToArraysWithTheValues(Table table)
     {
         var data = table.CreateInstance<(string leftNumbers, string rightNumbers)>();

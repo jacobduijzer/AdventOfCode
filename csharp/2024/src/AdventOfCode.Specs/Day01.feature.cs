@@ -123,7 +123,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "1, 2, 3, 3, 3, 4",
                             "3, 3, 3, 4, 5, 9"});
 #line 14
-    await testRunner.ThenAsync("there should be to arrays with the values", ((string)(null)), table1, "Then ");
+    await testRunner.ThenAsync("there should be to arrays with the sorted values", ((string)(null)), table1, "Then ");
 #line hidden
             }
             await this.ScenarioCleanupAsync();
