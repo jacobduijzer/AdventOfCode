@@ -49,6 +49,13 @@ public class Day01(ScenarioContext scenarioContext)
         scenarioContext.Add(TotalDistance, totalDistance);
     }
 
+    [When(@"calculate the similarity score")]
+    public void WhenCalculateTheSimilarityScore()
+    {
+        var totalDistance = _day01.SolvePart2();
+        scenarioContext.Add(TotalDistance, totalDistance);
+    }
+
     [Then(@"the total distance should be (.*)")]
     public void ThenTheTotalDistanceShouldBe(int expectedTotalDistance)
     {
@@ -56,5 +63,4 @@ public class Day01(ScenarioContext scenarioContext)
         Assert.Equal(expectedTotalDistance, totalDistance);
     }
 
-   
 }

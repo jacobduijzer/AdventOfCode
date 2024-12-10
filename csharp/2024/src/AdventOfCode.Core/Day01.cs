@@ -29,8 +29,8 @@ public class Day01 : IDay<int>
                 => Math.Abs(t - RightLocations[i]))
             .Sum();
 
-    public int SolvePart2(string input)
-    {
-        throw new NotImplementedException();
-    }
+    public int SolvePart2() =>
+         (from value in LeftLocations 
+             let count = RightLocations.Count(item => item == value) 
+                select value * count).Sum();
 }
