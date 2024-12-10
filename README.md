@@ -34,6 +34,7 @@ Parameters:
 | 4   | [Typescript](https://github.com/jacobduijzer/AdventOfCode/blob/main/typescript/years/2024/04/index.ts)   |
 | 5   | [Typescript](https://github.com/jacobduijzer/AdventOfCode/blob/main/typescript/years/2024/05/index.ts)   |
 | 6   | [Typescript](https://github.com/jacobduijzer/AdventOfCode/blob/main/typescript/years/2024/06/index.ts)   |  
+| 7   | [Typescript](https://github.com/jacobduijzer/AdventOfCode/blob/main/typescript/years/2024/07/index.ts)   |
 | 9   | [Typescript](https://github.com/jacobduijzer/AdventOfCode/blob/main/typescript/years/2024/09/index.ts)   |      
 | 10  | [Typescript](https://github.com/jacobduijzer/AdventOfCode/blob/main/typescript/years/2024/10/index.ts)   |
 
