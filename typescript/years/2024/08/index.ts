@@ -5,6 +5,7 @@ import chalk from "chalk";
 import { log, logSolution, trace } from "../../../util/log";
 import { performance } from "perf_hooks";
 import { normalizeTestCases } from "../../../util/test";
+import { Cell, computeDirection, Grid, GridPos } from "../../../util/grid";
 
 const YEAR = 2024;
 const DAY = 8;
@@ -13,8 +14,47 @@ const DAY = 8;
 // data path    : C:\Users\jacob\Code\github\AdventOfCode\typescript\years\2024\08\data.txt
 // problem url  : https://adventofcode.com/2024/day/8
 
+function addCharactersInLine(grid: Grid, cell1: Cell, cell2: Cell, char1: string): Set<string> {
+	const [row1, col1] = cell1.position;
+	const [row2, col2] = cell2.position;
+
+	const deltaRow = row2 - row1;
+	const deltaCol = col2 - col1;
+
+	const char1Pos: GridPos = [row1 - deltaRow, col1 - deltaCol];
+	const char2Pos: GridPos = [row2 + deltaRow, col2 + deltaCol];
+
+	// bounds?
+
+	const uniquePositions = new Set<string>();
+	uniquePositions.add(`${char1Pos[0]},${char1Pos[1]}`);
+	uniquePositions.add(`${char2Pos[0]},${char2Pos[1]}`);
+
+	return uniquePositions;
+}
+
 async function p2024day8_part1(input: string, ...params: any[]) {
-	return "Not implemented";
+	const grid = new Grid({ serialized: input });
+	const visited = new Set<string>();
+	const working = new Set<Cell>();
+
+	for(let row = 0; row < grid.rowCount; row++) {
+		for(let col = 0; col < grid.colCount; col++) {
+			const cell = grid.getCell([row, col]);
+			if(cell?.value !== '.') {
+				working.add(cell!);
+
+				if(working.size === 2) {
+					const firstCell = Array.from(working)[0];
+					const secondCell = Array.from(working)[1];
+					let positions : Set<string> = addCharactersInLine(grid, firstCell, secondCell, '#');
+					positions.forEach(pos => visited.add(pos));
+					working.clear();
+				}
+			}
+		}
+	}
+	return visited.size;
 }
 
 async function p2024day8_part2(input: string, ...params: any[]) {
@@ -22,7 +62,36 @@ async function p2024day8_part2(input: string, ...params: any[]) {
 }
 
 async function run() {
-	const part1tests: TestCase[] = [];
+	const part1tests: TestCase[] = [{
+		input: `..........
+..........
+..........
+....a.....
+..........
+.....a....
+..........
+..........
+..........
+..........`,
+		extraArgs: [],
+		expected: `2`
+	}, {
+		input: `............
+........0...
+.....0......
+.......0....
+....0.......
+......A.....
+............
+............
+........A...
+.........A..
+............
+............`,
+		extraArgs: [],
+		expected: `14`
+}];
+
 	const part2tests: TestCase[] = [];
 
 	const [p1testsNormalized, p2testsNormalized] = normalizeTestCases(part1tests, part2tests);
