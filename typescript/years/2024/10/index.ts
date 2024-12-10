@@ -56,9 +56,39 @@ function dfs(
 	}
 }
 
+function dfs2(
+	grid: Grid,
+	x: number,
+	y: number,
+	currentValue: number,
+	path: string,
+	paths: Set<string>
+): void {
+	const rows = grid.rowCount;
+	const cols = grid.colCount;
+
+	if (x < 0 || y < 0 || x >= rows || y >= cols)
+		return;
+
+	const currentCellValue = Number(grid.getValue([x, y]));
+	if (currentCellValue !== currentValue)
+		return;
+
+	const newPath = `${path}->(${x},${y})`;
+	if (currentCellValue === 9) {
+		paths.add(newPath);
+		return;
+	}
+
+	for (const [dx, dy] of directions) {
+		const newX = x + dx;
+		const newY = y + dy;
+		dfs2(grid, newX, newY, currentValue + 1, newPath, paths);
+	}
+}
+
 async function p2024day10_part1(input: string, ...params: any[]) {
 	const grid = new Grid({ serialized: input });
-
 	const rows = grid.rowCount;
 	const cols = grid.colCount;
 	let pathCount = 0;
@@ -77,7 +107,22 @@ async function p2024day10_part1(input: string, ...params: any[]) {
 }
 
 async function p2024day10_part2(input: string, ...params: any[]) {
-	return "Not implemented";
+	const grid = new Grid({ serialized: input });
+	const rows = grid.rowCount;
+	const cols = grid.colCount;
+	const ratings: number[] = [];
+
+	for (let i = 0; i < rows; i++) {
+		for (let j = 0; j < cols; j++) {
+			if (Number(grid.getValue([i, j])) === 0) {
+				const paths = new Set<string>();
+				dfs2(grid, i, j, 0, "", paths);
+				ratings.push(paths.size);
+			}
+		}
+	}
+
+	return ratings.reduce((acc, rating) => acc + rating, 0);
 }
 
 async function run() {
@@ -101,7 +146,19 @@ async function run() {
 			extraArgs: [],
 			expected: `36`
 		}];
-	const part2tests: TestCase[] = [];
+
+	const part2tests: TestCase[] = [{
+		input: `89010123
+78121874
+87430965
+96549874
+45678903
+32019012
+01329801
+10456732`,
+		extraArgs: [],
+		expected: `81`
+	}];
 
 	const [p1testsNormalized, p2testsNormalized] = normalizeTestCases(part1tests, part2tests);
 
