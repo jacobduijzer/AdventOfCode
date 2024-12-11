@@ -17,12 +17,11 @@ public class Day01(ScenarioContext scenarioContext)
     [Given(@"the list the Historians have, called '(.*)'")]
     public void GivenTheListTheHistoriansHaveCalled(string filename)
     {
-        var path = Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location)!;
-        var fullPath = Path.Combine(path, filename);
-        if(!File.Exists(fullPath))
-            throw new FileNotFoundException($"File not found: {fullPath}");
+        var filePath = Path.Combine(Directory.GetCurrentDirectory(), filename);
+        if(!File.Exists(filePath))
+            throw new FileNotFoundException($"File not found: {filePath}");
         
-        var multilineText = File.ReadAllText(fullPath);
+        var multilineText = File.ReadAllText(filePath);
         scenarioContext[List] = multilineText;
     }
 
