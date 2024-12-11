@@ -82,14 +82,14 @@ function transformStonesEfficient(initialStones: number[], blinks: number): { [s
 }
 
 async function p2024day11_part1(input: string, ...params: any[]) {
-	const numberOfBlinks = !isNaN(Number(params[0])) ? Number(params[0]) : 25;
+	const numberOfBlinks = Number(params[0]);
 	const stones = input.split(" ").map(Number);
 	const result = transformStonesEfficient(stones, numberOfBlinks);
 	return Object.values(result).reduce((a, b) => a + b, 0);
 }
 
 async function p2024day11_part2(input: string, ...params: any[]) {
-	const numberOfBlinks = !isNaN(Number(params[0])) ? Number(params[0]) : 75;
+	const numberOfBlinks = Number(params[0]);
 	const stones = input.split(" ").map(Number);
 	const result = transformStonesEfficient(stones, numberOfBlinks);
 	return Object.values(result).reduce((a, b) => a + b, 0);
@@ -131,11 +131,11 @@ async function run() {
 	const input = await util.getInput(DAY, YEAR);
 
 	const part1Before = performance.now();
-	const part1Solution = String(await p2024day11_part1(input));
+	const part1Solution = String(await p2024day11_part1(input, 25));
 	const part1After = performance.now();
 
 	const part2Before = performance.now();
-	const part2Solution = String(await p2024day11_part2(input));
+	const part2Solution = String(await p2024day11_part2(input, 75));
 	const part2After = performance.now();
 
 	logSolution(11, 2024, part1Solution, part2Solution);

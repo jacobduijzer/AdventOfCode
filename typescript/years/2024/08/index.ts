@@ -39,18 +39,21 @@ function findAntinode(antenna1: GridPos, antenna2: GridPos): GridPos{
 	return [antenna1[0] - dy, antenna1[1] - dx];
 }
 
+function areCollinear(point: GridPos, antenna1: GridPos, antenna2: GridPos): boolean {
+	return (point[1] - antenna1[1]) * (antenna2[0] - antenna1[0]) ===
+		(point[0] - antenna1[0]) * (antenna2[1] - antenna1[1]);
+}
+
 async function p2024day8_part1(input: string, ...params: any[]) {
 	const antinodePositions = new Set<string>();
 	const grid = new Grid({ serialized: input });
-	const antennas = findAntennas(grid);
-	for(const [_, value] of antennas) {
-		for (const antenna1 of value) {
-			for (const antenna2 of value) {
+	for(const [_, antennas] of findAntennas(grid)) {
+		for (const antenna1 of antennas) {
+			for (const antenna2 of antennas) {
 				if (antenna1 === antenna2)
 					continue;
 
 				const antinode = findAntinode(antenna1, antenna2);
-
 				if(grid.isValidPos(antinode))
 					antinodePositions.add(`${antinode[0]}, ${antinode[1]}`);
 			}
@@ -61,7 +64,37 @@ async function p2024day8_part1(input: string, ...params: any[]) {
 }
 
 async function p2024day8_part2(input: string, ...params: any[]) {
-	return "Not implemented";
+	const antinodePositions = new Set<string>();
+	const grid = new Grid({ serialized: input });
+	for(const [_, antennas] of findAntennas(grid)) {
+		if(antennas.length < 2)
+			continue;
+
+		for (let row = 0; row < grid.rowCount; row++) {
+			for (let col = 0; col < grid.colCount; col++) {
+
+				// For each pair of antennas
+				for (let i = 0; i < antennas.length; i++) {
+					let foundCollinear = false;
+
+					for (let j = i + 1; j < antennas.length; j++) {
+						const antenna1 = antennas[i];
+						const antenna2 = antennas[j];
+
+						if (areCollinear([row, col], antenna1, antenna2)) {
+							antinodePositions.add(`${row}, ${col}`);
+							foundCollinear = true;
+							break;
+						}
+					}
+
+					if (foundCollinear) break;
+				}
+			}
+		}
+	}
+
+	return antinodePositions.size;
 }
 
 async function run() {
@@ -95,7 +128,35 @@ async function run() {
 		expected: `14`
 }];
 
-	const part2tests: TestCase[] = [];
+	const part2tests: TestCase[] = [{
+		input: `T.........
+...T......
+.T........
+..........
+..........
+..........
+..........
+..........
+..........
+..........`,
+		extraArgs: [],
+		expected: `9`
+	}, {
+		input: `............
+........0...
+.....0......
+.......0....
+....0.......
+......A.....
+............
+............
+........A...
+.........A..
+............
+............`,
+		extraArgs: [],
+		expected: `34`
+	}];
 
 	const [p1testsNormalized, p2testsNormalized] = normalizeTestCases(part1tests, part2tests);
 
