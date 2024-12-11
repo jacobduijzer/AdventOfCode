@@ -5,7 +5,7 @@ on:
   push:
     branches: [ "main" ] 
     paths:
-	- "csharp/2024/**"
+    	- "csharp/2024/**"
   pull_request:
     branches: [ "main" ]
 
