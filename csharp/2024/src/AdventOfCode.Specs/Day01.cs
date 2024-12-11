@@ -17,7 +17,7 @@ public class Day01(ScenarioContext scenarioContext)
     [Given(@"the list the Historians have, called '(.*)'")]
     public void GivenTheListTheHistoriansHaveCalled(string filename)
     {
-        var filePath = Path.Combine(Directory.GetCurrentDirectory(), filename);
+        var filePath = Path.Combine(AppContext.BaseDirectory, filename);
         if(!File.Exists(filePath))
             throw new FileNotFoundException($"File not found: {filePath}");
         
