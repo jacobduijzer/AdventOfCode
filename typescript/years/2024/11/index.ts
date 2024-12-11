@@ -40,7 +40,7 @@ function transformStones(initialStones: number[], blinks: number): number[] {
 		const newStones: number[] = [];
 		for (const stone of currentStones)
 			newStones.push(...transformStone(stone));
-		
+
 		currentStones = newStones;
 	}
 
@@ -70,7 +70,6 @@ function transformStonesEfficient(initialStones: number[], blinks: number): { [s
 	for (const stone of initialStones)
 		stoneCounts[stone] = (stoneCounts[stone] || 0) + 1;
 
-
 	for (let i = 0; i < blinks; i++) {
 		const newCounts: { [stone: number]: number } = {};
 		for (const [stone, count] of Object.entries(stoneCounts))
@@ -81,7 +80,6 @@ function transformStonesEfficient(initialStones: number[], blinks: number): { [s
 
 	return stoneCounts;
 }
-
 
 async function p2024day11_part1(input: string, ...params: any[]) {
 	const numberOfBlinks = !isNaN(Number(params[0])) ? Number(params[0]) : 25;
