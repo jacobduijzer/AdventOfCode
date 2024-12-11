@@ -4,11 +4,11 @@ public class Day01 : IDay<int>
 {
     public int[] LeftLocations { get; set; }
     public int[] RightLocations { get; set; }
-    
+
     public void AddData(string input)
     {
         var lines = input.Split(Environment.NewLine, StringSplitOptions.RemoveEmptyEntries);
-        
+
         LeftLocations = new int[lines.Length];
         RightLocations = new int[lines.Length];
 
@@ -18,19 +18,17 @@ public class Day01 : IDay<int>
             LeftLocations[i] = int.Parse(parts[0]);
             RightLocations[i] = int.Parse(parts[1]);
         }
-        
+
         Array.Sort(LeftLocations);
-        Array.Sort(RightLocations); 
+        Array.Sort(RightLocations);
     }
 
-    public int SolvePart1() 
+    public int SolvePart1()
         => LeftLocations
-            .Select((t, i) 
+            .Select((t, i)
                 => Math.Abs(t - RightLocations[i]))
             .Sum();
 
-    public int SolvePart2() =>
-         (from value in LeftLocations 
-             let count = RightLocations.Count(item => item == value) 
-                select value * count).Sum();
+    public int SolvePart2() => LeftLocations.Sum(value => value * RightLocations.Count(item => item == value));
+
 }

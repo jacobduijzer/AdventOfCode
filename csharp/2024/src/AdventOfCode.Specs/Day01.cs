@@ -17,7 +17,8 @@ public class Day01(ScenarioContext scenarioContext)
     [Given(@"the list the Historians have, called '(.*)'")]
     public void GivenTheListTheHistoriansHaveCalled(string filename)
     {
-        var multilineText = System.IO.File.ReadAllText(filename);
+        var path = Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location)!;
+        var multilineText = File.ReadAllText(Path.Combine(path, filename));
         scenarioContext[List] = multilineText;
     }
 
