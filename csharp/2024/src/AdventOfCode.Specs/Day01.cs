@@ -8,7 +8,7 @@ public class Day01(ScenarioContext scenarioContext)
     private const string List = "LIST";
     private const string TotalDistance = "TOTAL_DISTANCE";
 
-    private AdventOfCode.Core.Day01 _day01 = new AdventOfCode.Core.Day01();
+    private AdventOfCode.Core.Day01? _day01; 
     
     [Given(@"the list the Historians have")]
     public void GivenTheListTheHistoriansHave(string multilineText) =>
@@ -25,14 +25,14 @@ public class Day01(ScenarioContext scenarioContext)
         scenarioContext[List] = multilineText;
     }
 
-    [When(@"you fix the list")]
-    public void WhenYouFixTheList()
+    [When(@"you load and fix the list")]
+    public void WhenYouLoadAndFixTheList()
     {
-        _day01.AddData((string)scenarioContext[List]);
+        _day01 = new AdventOfCode.Core.Day01((string)scenarioContext[List]);
     }
     
-    [Then(@"there should be to arrays with the sorted values")]
-    public void ThenThereShouldBeToArraysWithTheValues(Table table)
+    [Then(@"there should be two arrays with the sorted values")]
+    public void ThenThereShouldBeTwoArraysWithTheValues(Table table)
     {
         var data = table.CreateInstance<(string leftNumbers, string rightNumbers)>();
         foreach (var (number, index) in data.leftNumbers.Split(',').Select((value, i) => (int.Parse(value), i)))
@@ -46,15 +46,15 @@ public class Day01(ScenarioContext scenarioContext)
         }
     }
 
-    [When(@"calculate the total distances")]
-    public void WhenCalculateTheTotalDistances()
+    [When(@"you calculate the total distances")]
+    public void WhenYouCalculateTheTotalDistances()
     {
         var totalDistance = _day01.SolvePart1();
         scenarioContext.Add(TotalDistance, totalDistance);
     }
 
-    [When(@"calculate the similarity score")]
-    public void WhenCalculateTheSimilarityScore()
+    [When(@"you calculate the similarity score")]
+    public void WhenYouCalculateTheSimilarityScore()
     {
         var totalDistance = _day01.SolvePart2();
         scenarioContext.Add(TotalDistance, totalDistance);

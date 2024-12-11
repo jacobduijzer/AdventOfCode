@@ -5,7 +5,7 @@ public class Day01 : IDay<int>
     public int[] LeftLocations { get; set; }
     public int[] RightLocations { get; set; }
 
-    public void AddData(string input)
+    public Day01(string input)
     {
         var lines = input.Split(Environment.NewLine, StringSplitOptions.RemoveEmptyEntries);
 

@@ -114,7 +114,7 @@ this.ScenarioInitialize(scenarioInfo);
     await testRunner.GivenAsync("the list the Historians have", "3   4\n4   3\n2   5\n1   3\n3   9\n3   3", ((global::Reqnroll.Table)(null)), "Given ");
 #line hidden
 #line 13
-    await testRunner.WhenAsync("you fix the list", ((string)(null)), ((global::Reqnroll.Table)(null)), "When ");
+    await testRunner.WhenAsync("you load and fix the list", ((string)(null)), ((global::Reqnroll.Table)(null)), "When ");
 #line hidden
                 global::Reqnroll.Table table1 = new global::Reqnroll.Table(new string[] {
                             "LeftArray",
@@ -123,7 +123,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "1, 2, 3, 3, 3, 4",
                             "3, 3, 3, 4, 5, 9"});
 #line 14
-    await testRunner.ThenAsync("there should be to arrays with the sorted values", ((string)(null)), table1, "Then ");
+    await testRunner.ThenAsync("there should be two arrays with the sorted values", ((string)(null)), table1, "Then ");
 #line hidden
             }
             await this.ScenarioCleanupAsync();
@@ -151,10 +151,10 @@ this.ScenarioInitialize(scenarioInfo);
     await testRunner.GivenAsync("the list the Historians have", "3   4\n4   3\n2   5\n1   3\n3   9\n3   3", ((global::Reqnroll.Table)(null)), "Given ");
 #line hidden
 #line 28
-    await testRunner.WhenAsync("you fix the list", ((string)(null)), ((global::Reqnroll.Table)(null)), "When ");
+    await testRunner.WhenAsync("you load and fix the list", ((string)(null)), ((global::Reqnroll.Table)(null)), "When ");
 #line hidden
 #line 29
-    await testRunner.AndAsync("calculate the total distances", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
+    await testRunner.AndAsync("you calculate the total distances", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
 #line hidden
 #line 30
     await testRunner.ThenAsync("the total distance should be 11", ((string)(null)), ((global::Reqnroll.Table)(null)), "Then ");
@@ -182,13 +182,13 @@ this.ScenarioInitialize(scenarioInfo);
             {
                 await this.ScenarioStartAsync();
 #line 33
-    await testRunner.GivenAsync("the list the Historians have, called \'day01.txt\'", ((string)(null)), ((global::Reqnroll.Table)(null)), "Given ");
+    await testRunner.GivenAsync("the list the Historians have, called \'Day01.txt\'", ((string)(null)), ((global::Reqnroll.Table)(null)), "Given ");
 #line hidden
 #line 34
-    await testRunner.WhenAsync("you fix the list", ((string)(null)), ((global::Reqnroll.Table)(null)), "When ");
+    await testRunner.WhenAsync("you load and fix the list", ((string)(null)), ((global::Reqnroll.Table)(null)), "When ");
 #line hidden
 #line 35
-    await testRunner.AndAsync("calculate the total distances", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
+    await testRunner.AndAsync("you calculate the total distances", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
 #line hidden
 #line 36
     await testRunner.ThenAsync("the total distance should be 2430334", ((string)(null)), ((global::Reqnroll.Table)(null)), "Then ");
@@ -219,10 +219,10 @@ this.ScenarioInitialize(scenarioInfo);
     await testRunner.GivenAsync("the list the Historians have", "3   4\n4   3\n2   5\n1   3\n3   9\n3   3", ((global::Reqnroll.Table)(null)), "Given ");
 #line hidden
 #line 48
-    await testRunner.WhenAsync("you fix the list", ((string)(null)), ((global::Reqnroll.Table)(null)), "When ");
+    await testRunner.WhenAsync("you load and fix the list", ((string)(null)), ((global::Reqnroll.Table)(null)), "When ");
 #line hidden
 #line 49
-    await testRunner.AndAsync("calculate the similarity score", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
+    await testRunner.AndAsync("you calculate the similarity score", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
 #line hidden
 #line 50
     await testRunner.ThenAsync("the total distance should be 31", ((string)(null)), ((global::Reqnroll.Table)(null)), "Then ");
@@ -250,13 +250,13 @@ this.ScenarioInitialize(scenarioInfo);
             {
                 await this.ScenarioStartAsync();
 #line 53
-    await testRunner.GivenAsync("the list the Historians have, called \'day01.txt\'", ((string)(null)), ((global::Reqnroll.Table)(null)), "Given ");
+    await testRunner.GivenAsync("the list the Historians have, called \'Day01.txt\'", ((string)(null)), ((global::Reqnroll.Table)(null)), "Given ");
 #line hidden
 #line 54
-    await testRunner.WhenAsync("you fix the list", ((string)(null)), ((global::Reqnroll.Table)(null)), "When ");
+    await testRunner.WhenAsync("you load and fix the list", ((string)(null)), ((global::Reqnroll.Table)(null)), "When ");
 #line hidden
 #line 55
-    await testRunner.AndAsync("calculate the similarity score", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
+    await testRunner.AndAsync("you calculate the similarity score", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
 #line hidden
 #line 56
     await testRunner.ThenAsync("the total distance should be 28786472", ((string)(null)), ((global::Reqnroll.Table)(null)), "Then ");
