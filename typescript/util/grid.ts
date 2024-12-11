@@ -944,6 +944,11 @@ export class Grid {
 			},
 		};
 	}
+
+	public isValidPos(pos: GridPos): boolean {
+		const [row, col] = pos;
+		return row >= 0 && row < this.rowCount && col >= 0 && col < this.colCount;
+	}
 }
 
 /**

@@ -1,11 +1,10 @@
-import _ from "lodash";
 import * as util from "../../../util/util";
 import * as test from "../../../util/test";
 import chalk from "chalk";
 import { log, logSolution, trace } from "../../../util/log";
 import { performance } from "perf_hooks";
 import { normalizeTestCases } from "../../../util/test";
-import { Cell, computeDirection, Grid, GridPos } from "../../../util/grid";
+import { Grid, GridPos } from "../../../util/grid";
 
 const YEAR = 2024;
 const DAY = 8;
@@ -14,47 +13,51 @@ const DAY = 8;
 // data path    : C:\Users\jacob\Code\github\AdventOfCode\typescript\years\2024\08\data.txt
 // problem url  : https://adventofcode.com/2024/day/8
 
-function addCharactersInLine(grid: Grid, cell1: Cell, cell2: Cell, char1: string): Set<string> {
-	const [row1, col1] = cell1.position;
-	const [row2, col2] = cell2.position;
+function findAntennas(grid: Grid): Map<string, GridPos[]> {
+	const rows = grid.rowCount;
+	const cols = grid.colCount;
+	const antennas: Map<string, GridPos[]> = new Map();
 
-	const deltaRow = row2 - row1;
-	const deltaCol = col2 - col1;
+	for (let r = 0; r < rows; r++) {
+		for (let c = 0; c < cols; c++) {
+			const cell = grid.getCell([r, c])!;
+			if (cell.value !== '.') {
+				if (!antennas.has(cell.value))
+					antennas.set(cell.value, []);
 
-	const char1Pos: GridPos = [row1 - deltaRow, col1 - deltaCol];
-	const char2Pos: GridPos = [row2 + deltaRow, col2 + deltaCol];
-
-	// bounds?
-
-	const uniquePositions = new Set<string>();
-	uniquePositions.add(`${char1Pos[0]},${char1Pos[1]}`);
-	uniquePositions.add(`${char2Pos[0]},${char2Pos[1]}`);
-
-	return uniquePositions;
-}
-
-async function p2024day8_part1(input: string, ...params: any[]) {
-	const grid = new Grid({ serialized: input });
-	const visited = new Set<string>();
-	const working = new Set<Cell>();
-
-	for(let row = 0; row < grid.rowCount; row++) {
-		for(let col = 0; col < grid.colCount; col++) {
-			const cell = grid.getCell([row, col]);
-			if(cell?.value !== '.') {
-				working.add(cell!);
-
-				if(working.size === 2) {
-					const firstCell = Array.from(working)[0];
-					const secondCell = Array.from(working)[1];
-					let positions : Set<string> = addCharactersInLine(grid, firstCell, secondCell, '#');
-					positions.forEach(pos => visited.add(pos));
-					working.clear();
-				}
+				antennas.get(cell.value)!.push(cell.position);
 			}
 		}
 	}
-	return visited.size;
+	return antennas;
+}
+
+function findAntinode(antenna1: GridPos, antenna2: GridPos): GridPos{
+	const dy = antenna2[0] - antenna1[0];
+	const dx = antenna2[1] - antenna1[1];
+
+	return [antenna1[0] - dy, antenna1[1] - dx];
+}
+
+async function p2024day8_part1(input: string, ...params: any[]) {
+	const antinodePositions = new Set<string>();
+	const grid = new Grid({ serialized: input });
+	const antennas = findAntennas(grid);
+	for(const [_, value] of antennas) {
+		for (const antenna1 of value) {
+			for (const antenna2 of value) {
+				if (antenna1 === antenna2)
+					continue;
+
+				const antinode = findAntinode(antenna1, antenna2);
+
+				if(grid.isValidPos(antinode))
+					antinodePositions.add(`${antinode[0]}, ${antinode[1]}`);
+			}
+		}
+	}
+
+	return antinodePositions.size;
 }
 
 async function p2024day8_part2(input: string, ...params: any[]) {
