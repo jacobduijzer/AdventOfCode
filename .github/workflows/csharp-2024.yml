@@ -3,12 +3,9 @@ name: C# - 2024
 
 on:
   push:
-    branches: [ "main" ] 
     paths:
     	- "csharp/2024/**"
-  pull_request:
-    branches: [ "main" ]
-
+     
 env:
   CARGO_TERM_COLOR: always
 
