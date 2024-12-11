@@ -24,9 +24,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <None Update="Day01.txt">
-        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      </None>
+        <None Include="Day01.txt" CopyToOutputDirectory="PreserveNewest" />
     </ItemGroup>
 
 </Project>
