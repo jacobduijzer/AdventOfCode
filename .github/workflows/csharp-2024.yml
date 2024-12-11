@@ -4,7 +4,7 @@ name: C# - 2024
 on:
   push:
     paths:
-    	- "csharp/2024/**"
+    - "csharp/2024/**"
      
 env:
   CARGO_TERM_COLOR: always
