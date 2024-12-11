@@ -59,23 +59,52 @@ function partitionDiskMap(disk: Disk): Disk {
 	return disk;
 }
 
+function compactDisk(blocks: (number | null)[]): (number | null)[] {
+	// Step 1: Extract unique file IDs and sort them in descending order
+	const fileIds =
+		Array.from(new Set(blocks.filter(block => block !== null) as number[]))
+			.sort((a, b) => b - a);
+
+	for (const fileId of fileIds) {
+		// Step 2: Find all indices occupied by the current file
+		const fileIndices = blocks.reduce<number[]>((acc, block, idx) => {
+			if (block === fileId) acc.push(idx);
+			return acc;
+		}, []);
+		const fileSize = fileIndices.length;
+
+		// Step 3: Find the leftmost span of nulls to the left of the file
+		let targetStart = -1;
+		for (let i = 0; i < fileIndices[0]; i++) {
+			// Check if the span of `null` blocks is large enough
+			const span = blocks.slice(i, i + fileSize);
+			if (span.every(block => block === null)) {
+				targetStart = i;
+				break;
+			}
+		}
+
+		// Step 4: If a valid span is found, move the file
+		if (targetStart !== -1) {
+			// Clear original file blocks
+			for (const idx of fileIndices) {
+				blocks[idx] = null;
+			}
+			// Place the file in the target span
+			for (let i = 0; i < fileSize; i++) {
+				blocks[targetStart + i] = fileId;
+			}
+		}
+	}
+
+	return blocks;
+}
+
 function calculateChecksum(disk: Disk) {
 	return disk.reduce((acc, val, currentIndex) => {
 		if(val === null) return acc;
 		return acc! + val * currentIndex
 	}, 0);
-}
-
-// part 2
-function getCurrentBlockSize(disk: Disk, r: number) {
-	let size = 0;
-	const currId = disk[r];
-	while (disk[r] === currId) {
-		size++;
-		r--;
-	}
-
-	return size;
 }
 
 async function p2024day9_part1(input: string, ...params: any[]) {
@@ -86,7 +115,8 @@ async function p2024day9_part1(input: string, ...params: any[]) {
 
 async function p2024day9_part2(input: string, ...params: any[]) {
 	const disk = createDiskMap(input);
-	return "Not implemented";
+	const rearrangedDisk = compactDisk(disk);
+	return calculateChecksum(rearrangedDisk);
 }
 
 async function run() {
