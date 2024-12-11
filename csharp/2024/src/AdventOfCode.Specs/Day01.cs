@@ -18,7 +18,11 @@ public class Day01(ScenarioContext scenarioContext)
     public void GivenTheListTheHistoriansHaveCalled(string filename)
     {
         var path = Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location)!;
-        var multilineText = File.ReadAllText(Path.Combine(path, filename));
+        var fullPath = Path.Combine(path, filename);
+        if(!File.Exists(fullPath))
+            throw new FileNotFoundException($"File not found: {fullPath}");
+        
+        var multilineText = File.ReadAllText(fullPath);
         scenarioContext[List] = multilineText;
     }
 
