@@ -19,21 +19,21 @@ namespace AdventOfCode.Specs
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Reqnroll", "2.0.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public partial class HistorianHysteriaFeature : object, Xunit.IClassFixture<HistorianHysteriaFeature.FixtureData>, Xunit.IAsyncLifetime
+    public partial class Day01HistorianHysteriaFeature : object, Xunit.IClassFixture<Day01HistorianHysteriaFeature.FixtureData>, Xunit.IAsyncLifetime
     {
         
         private global::Reqnroll.ITestRunner testRunner;
         
         private static string[] featureTags = ((string[])(null));
         
-        private static global::Reqnroll.FeatureInfo featureInfo = new global::Reqnroll.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "", "Historian Hysteria", null, global::Reqnroll.ProgrammingLanguage.CSharp, featureTags);
+        private static global::Reqnroll.FeatureInfo featureInfo = new global::Reqnroll.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "", "Day 01: Historian Hysteria", null, global::Reqnroll.ProgrammingLanguage.CSharp, featureTags);
         
         private Xunit.Abstractions.ITestOutputHelper _testOutputHelper;
         
 #line 1 "Day01.feature"
 #line hidden
         
-        public HistorianHysteriaFeature(HistorianHysteriaFeature.FixtureData fixtureData, Xunit.Abstractions.ITestOutputHelper testOutputHelper)
+        public Day01HistorianHysteriaFeature(Day01HistorianHysteriaFeature.FixtureData fixtureData, Xunit.Abstractions.ITestOutputHelper testOutputHelper)
         {
             this._testOutputHelper = testOutputHelper;
         }
@@ -93,7 +93,7 @@ namespace AdventOfCode.Specs
         }
         
         [Xunit.SkippableFactAttribute(DisplayName="Part 1, parsing the test data")]
-        [Xunit.TraitAttribute("FeatureTitle", "Historian Hysteria")]
+        [Xunit.TraitAttribute("FeatureTitle", "Day 01: Historian Hysteria")]
         [Xunit.TraitAttribute("Description", "Part 1, parsing the test data")]
         public async System.Threading.Tasks.Task Part1ParsingTheTestData()
         {
@@ -130,7 +130,7 @@ this.ScenarioInitialize(scenarioInfo);
         }
         
         [Xunit.SkippableFactAttribute(DisplayName="Part 1, calculating the distance")]
-        [Xunit.TraitAttribute("FeatureTitle", "Historian Hysteria")]
+        [Xunit.TraitAttribute("FeatureTitle", "Day 01: Historian Hysteria")]
         [Xunit.TraitAttribute("Description", "Part 1, calculating the distance")]
         public async System.Threading.Tasks.Task Part1CalculatingTheDistance()
         {
@@ -164,7 +164,7 @@ this.ScenarioInitialize(scenarioInfo);
         }
         
         [Xunit.SkippableFactAttribute(DisplayName="Part 1, with real input from file")]
-        [Xunit.TraitAttribute("FeatureTitle", "Historian Hysteria")]
+        [Xunit.TraitAttribute("FeatureTitle", "Day 01: Historian Hysteria")]
         [Xunit.TraitAttribute("Description", "Part 1, with real input from file")]
         public async System.Threading.Tasks.Task Part1WithRealInputFromFile()
         {
@@ -198,7 +198,7 @@ this.ScenarioInitialize(scenarioInfo);
         }
         
         [Xunit.SkippableFactAttribute(DisplayName="Part 2, calculating the distance")]
-        [Xunit.TraitAttribute("FeatureTitle", "Historian Hysteria")]
+        [Xunit.TraitAttribute("FeatureTitle", "Day 01: Historian Hysteria")]
         [Xunit.TraitAttribute("Description", "Part 2, calculating the distance")]
         public async System.Threading.Tasks.Task Part2CalculatingTheDistance()
         {
@@ -232,7 +232,7 @@ this.ScenarioInitialize(scenarioInfo);
         }
         
         [Xunit.SkippableFactAttribute(DisplayName="Part 2, with real input from file")]
-        [Xunit.TraitAttribute("FeatureTitle", "Historian Hysteria")]
+        [Xunit.TraitAttribute("FeatureTitle", "Day 01: Historian Hysteria")]
         [Xunit.TraitAttribute("Description", "Part 2, with real input from file")]
         public async System.Threading.Tasks.Task Part2WithRealInputFromFile()
         {
@@ -272,12 +272,12 @@ this.ScenarioInitialize(scenarioInfo);
             
             async System.Threading.Tasks.Task Xunit.IAsyncLifetime.InitializeAsync()
             {
-                await HistorianHysteriaFeature.FeatureSetupAsync();
+                await Day01HistorianHysteriaFeature.FeatureSetupAsync();
             }
             
             async System.Threading.Tasks.Task Xunit.IAsyncLifetime.DisposeAsync()
             {
-                await HistorianHysteriaFeature.FeatureTearDownAsync();
+                await Day01HistorianHysteriaFeature.FeatureTearDownAsync();
             }
         }
     }

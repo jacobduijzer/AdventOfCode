@@ -1,4 +1,4 @@
-Feature: Historian Hysteria
+Feature: Day 01: Historian Hysteria
 
 Scenario: Part 1, parsing the test data
     Given the list the Historians have
