@@ -30,7 +30,7 @@ Scenario: Part 1, calculating the distance
     Then the total distance should be 11 
 
 Scenario: Part 1, with real input from file
-    Given the list the Historians have, called 'day01.txt'
+    Given the list the Historians have, called 'Day01.txt'
     When you fix the list
     And calculate the total distances
     Then the total distance should be 2430334 
@@ -50,7 +50,7 @@ Scenario: Part 2, calculating the distance
     Then the total distance should be 31
 
 Scenario: Part 2, with real input from file
-    Given the list the Historians have, called 'day01.txt'
+    Given the list the Historians have, called 'Day01.txt'
     When you fix the list
     And calculate the similarity score
     Then the total distance should be 28786472 
