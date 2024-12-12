@@ -26,4 +26,4 @@ jobs:
       run: dotnet build
     - name: Run tests
       working-directory: ./csharp/2024
-      run: dotnet test --no-build
+      run: dotnet test --verbosity detailed --logger "console;verbosity=detailed" --no-build
