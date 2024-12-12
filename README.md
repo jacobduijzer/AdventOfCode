@@ -33,7 +33,7 @@ Parameters:
 | 3   | [Typescript](https://github.com/jacobduijzer/AdventOfCode/blob/main/typescript/years/2024/03/index.ts)   |
 | 4   | [Typescript](https://github.com/jacobduijzer/AdventOfCode/blob/main/typescript/years/2024/04/index.ts)   |
 | 5   | [Typescript](https://github.com/jacobduijzer/AdventOfCode/blob/main/typescript/years/2024/05/index.ts)   |
-| 6   | [Typescript](https://github.com/jacobduijzer/AdventOfCode/blob/main/typescript/years/2024/06/index.ts) - - [C#](https://github.com/jacobduijzer/AdventOfCode/blob/main/csharp/2024/src/AdventOfCode.Specs/Day06.feature) |  
+| 6   | [Typescript](https://github.com/jacobduijzer/AdventOfCode/blob/main/typescript/years/2024/06/index.ts) - [C#](https://github.com/jacobduijzer/AdventOfCode/blob/main/csharp/2024/src/AdventOfCode.Specs/Day06.feature) |  
 | 7   | [Typescript](https://github.com/jacobduijzer/AdventOfCode/blob/main/typescript/years/2024/07/index.ts)   |
 | 8   | [Typescript](https://github.com/jacobduijzer/AdventOfCode/blob/main/typescript/years/2024/08/index.ts)   |
 | 9   | [Typescript](https://github.com/jacobduijzer/AdventOfCode/blob/main/typescript/years/2024/09/index.ts)   |      
