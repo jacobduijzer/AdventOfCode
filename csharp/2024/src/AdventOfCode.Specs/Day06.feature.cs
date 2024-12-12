@@ -92,14 +92,14 @@ namespace AdventOfCode.Specs
             await this.TestTearDownAsync();
         }
         
-        [Xunit.SkippableFactAttribute(DisplayName="Part 1, loading the map and finding the guard")]
+        [Xunit.SkippableFactAttribute(DisplayName="Part 1, loading the map and finding the guard with the test data")]
         [Xunit.TraitAttribute("FeatureTitle", "Day 06: Guard Gallivant")]
-        [Xunit.TraitAttribute("Description", "Part 1, loading the map and finding the guard")]
-        public async System.Threading.Tasks.Task Part1LoadingTheMapAndFindingTheGuard()
+        [Xunit.TraitAttribute("Description", "Part 1, loading the map and finding the guard with the test data")]
+        public async System.Threading.Tasks.Task Part1LoadingTheMapAndFindingTheGuardWithTheTestData()
         {
             string[] tagsOfScenario = ((string[])(null));
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            global::Reqnroll.ScenarioInfo scenarioInfo = new global::Reqnroll.ScenarioInfo("Part 1, loading the map and finding the guard", null, tagsOfScenario, argumentsOfScenario, featureTags);
+            global::Reqnroll.ScenarioInfo scenarioInfo = new global::Reqnroll.ScenarioInfo("Part 1, loading the map and finding the guard with the test data", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 3
     this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -111,8 +111,8 @@ namespace AdventOfCode.Specs
             {
                 await this.ScenarioStartAsync();
 #line 4
-        await testRunner.GivenAsync("a map of the guard situation", ("....#.....\n.........#\n..........\n..#.......\n.......#..\n..........\n.#..^.....\n...." +
-                        "....#.\n#.........\n......#..."), ((global::Reqnroll.Table)(null)), "Given ");
+        await testRunner.GivenAsync("a map of the guard situation", ("....#.....\r\n.........#\r\n..........\r\n..#.......\r\n.......#..\r\n..........\r\n.#..^...." +
+                        ".\r\n........#.\r\n#.........\r\n......#..."), ((global::Reqnroll.Table)(null)), "Given ");
 #line hidden
 #line 17
         await testRunner.WhenAsync("you load the grid", ((string)(null)), ((global::Reqnroll.Table)(null)), "When ");
@@ -124,14 +124,14 @@ namespace AdventOfCode.Specs
             await this.ScenarioCleanupAsync();
         }
         
-        [Xunit.SkippableFactAttribute(DisplayName="Part 1, walking around")]
+        [Xunit.SkippableFactAttribute(DisplayName="Part 1, counting the distinc positions the guard visits with the test data")]
         [Xunit.TraitAttribute("FeatureTitle", "Day 06: Guard Gallivant")]
-        [Xunit.TraitAttribute("Description", "Part 1, walking around")]
-        public async System.Threading.Tasks.Task Part1WalkingAround()
+        [Xunit.TraitAttribute("Description", "Part 1, counting the distinc positions the guard visits with the test data")]
+        public async System.Threading.Tasks.Task Part1CountingTheDistincPositionsTheGuardVisitsWithTheTestData()
         {
             string[] tagsOfScenario = ((string[])(null));
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            global::Reqnroll.ScenarioInfo scenarioInfo = new global::Reqnroll.ScenarioInfo("Part 1, walking around", null, tagsOfScenario, argumentsOfScenario, featureTags);
+            global::Reqnroll.ScenarioInfo scenarioInfo = new global::Reqnroll.ScenarioInfo("Part 1, counting the distinc positions the guard visits with the test data", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 20
     this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -143,14 +143,82 @@ namespace AdventOfCode.Specs
             {
                 await this.ScenarioStartAsync();
 #line 21
-        await testRunner.GivenAsync("a map of the guard situation", ("....#.....\n.........#\n..........\n..#.......\n.......#..\n..........\n.#..^.....\n...." +
-                        "....#.\n#.........\n......#..."), ((global::Reqnroll.Table)(null)), "Given ");
+        await testRunner.GivenAsync("a map of the guard situation", ("....#.....\r\n.........#\r\n..........\r\n..#.......\r\n.......#..\r\n..........\r\n.#..^...." +
+                        ".\r\n........#.\r\n#.........\r\n......#..."), ((global::Reqnroll.Table)(null)), "Given ");
 #line hidden
 #line 34
         await testRunner.WhenAsync("you load the grid", ((string)(null)), ((global::Reqnroll.Table)(null)), "When ");
 #line hidden
 #line 35
-        await testRunner.ThenAsync("the number of steps should be 123", ((string)(null)), ((global::Reqnroll.Table)(null)), "Then ");
+        await testRunner.AndAsync("you count the number of distinct positions the guard visits", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
+#line hidden
+#line 36
+        await testRunner.ThenAsync("the number of distinct locations the guard visits should be 41", ((string)(null)), ((global::Reqnroll.Table)(null)), "Then ");
+#line hidden
+            }
+            await this.ScenarioCleanupAsync();
+        }
+        
+        [Xunit.SkippableFactAttribute(DisplayName="Part 1, loading the map and finding the guard")]
+        [Xunit.TraitAttribute("FeatureTitle", "Day 06: Guard Gallivant")]
+        [Xunit.TraitAttribute("Description", "Part 1, loading the map and finding the guard")]
+        public async System.Threading.Tasks.Task Part1LoadingTheMapAndFindingTheGuard()
+        {
+            string[] tagsOfScenario = ((string[])(null));
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            global::Reqnroll.ScenarioInfo scenarioInfo = new global::Reqnroll.ScenarioInfo("Part 1, loading the map and finding the guard", null, tagsOfScenario, argumentsOfScenario, featureTags);
+#line 38
+    this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            if ((global::Reqnroll.TagHelper.ContainsIgnoreTag(scenarioInfo.CombinedTags) || global::Reqnroll.TagHelper.ContainsIgnoreTag(featureTags)))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                await this.ScenarioStartAsync();
+#line 39
+        await testRunner.GivenAsync("the map of the guard situation called \'Day06.txt\'", ((string)(null)), ((global::Reqnroll.Table)(null)), "Given ");
+#line hidden
+#line 40
+        await testRunner.WhenAsync("you load the grid", ((string)(null)), ((global::Reqnroll.Table)(null)), "When ");
+#line hidden
+#line 41
+        await testRunner.ThenAsync("the location of the guard should be 60,70", ((string)(null)), ((global::Reqnroll.Table)(null)), "Then ");
+#line hidden
+            }
+            await this.ScenarioCleanupAsync();
+        }
+        
+        [Xunit.SkippableFactAttribute(DisplayName="Part 1, counting the distinc positions the guard visits")]
+        [Xunit.TraitAttribute("FeatureTitle", "Day 06: Guard Gallivant")]
+        [Xunit.TraitAttribute("Description", "Part 1, counting the distinc positions the guard visits")]
+        public async System.Threading.Tasks.Task Part1CountingTheDistincPositionsTheGuardVisits()
+        {
+            string[] tagsOfScenario = ((string[])(null));
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            global::Reqnroll.ScenarioInfo scenarioInfo = new global::Reqnroll.ScenarioInfo("Part 1, counting the distinc positions the guard visits", null, tagsOfScenario, argumentsOfScenario, featureTags);
+#line 43
+    this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            if ((global::Reqnroll.TagHelper.ContainsIgnoreTag(scenarioInfo.CombinedTags) || global::Reqnroll.TagHelper.ContainsIgnoreTag(featureTags)))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                await this.ScenarioStartAsync();
+#line 44
+        await testRunner.GivenAsync("the map of the guard situation called \'Day06.txt\'", ((string)(null)), ((global::Reqnroll.Table)(null)), "Given ");
+#line hidden
+#line 45
+        await testRunner.WhenAsync("you load the grid", ((string)(null)), ((global::Reqnroll.Table)(null)), "When ");
+#line hidden
+#line 46
+        await testRunner.AndAsync("you count the number of distinct positions the guard visits", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
+#line hidden
+#line 47
+        await testRunner.ThenAsync("the number of distinct locations the guard visits should be 4967", ((string)(null)), ((global::Reqnroll.Table)(null)), "Then ");
 #line hidden
             }
             await this.ScenarioCleanupAsync();

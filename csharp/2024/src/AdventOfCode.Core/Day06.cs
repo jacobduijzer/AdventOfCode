@@ -4,45 +4,45 @@ namespace AdventOfCode.Core;
 
 public class Day06 : IDay<int>
 {
-    public Grid<char> Grid { get; init; }
-    
-    public (int x, int y) GuardStart { get; init; }
+    public (int col, int row) GuardPosition { get; init; }
+
+    private Grid<char> _grid;
     
     public Day06(string input)
     {
-        Grid = Input.ParseCharGrid(input.Split(Environment.NewLine));
-        GuardStart = Grid.FindAll('^').FirstOrDefault();
+        _grid = Input.ParseCharGrid(input.Split(Environment.NewLine));
+        GuardPosition = _grid.FindAll('^').FirstOrDefault();
     }
 
-    public int MoveUntil(Grid<char> grid, (int x, int y) start, (int x, int y) direction, string wall)
+    private int MoveUntil(Grid<char> grid, (int col, int row) start, (int col, int row) direction, string wall)
     {
         var steps = 1;
         var currDirection = direction;
-        var row = start.x;
-        var col = start.y;
-        var visited = new HashSet<(int x, int y)>();
+        var row = start.row;
+        var col = start.col;
+        var visited = new HashSet<(int col, int row)>();
 
         while (true)
         {
-            var nextPos = grid[row + currDirection.x, col + currDirection.y];
-            if (grid.IsOnEdge(row + currDirection.x, col + currDirection.y) &&
-                grid[row + currDirection.x, col + currDirection.y].ToString() != wall)
+            
+            if (grid.IsOnEdge( col + currDirection.col, row + currDirection.row) &&
+                grid[col + currDirection.col, row + currDirection.row].ToString() != wall)
             {
                 steps++;
                 break;
-            } else if (grid[row + currDirection.x, col + currDirection.y].ToString() == wall)
+            } 
+            
+            if (grid[col + currDirection.col, row + currDirection.row].ToString() == wall)
             {
                 currDirection = new DirectionRotator().RotateClockwise(currDirection);
-            } else {
-                //grid[row, col] = 'X';
-                var posKey = $"{row},{col}";
-                if (!visited.Contains((row, col)))
-                {
-                    visited.Add((row, col));
+            } 
+            else 
+            {
+                if (visited.Add((row, col)))
                     steps++;
-                }
-                row += currDirection.x;
-                col += currDirection.y;
+                
+                row += currDirection.row;
+                col += currDirection.col;
             }
         }
 
@@ -51,7 +51,7 @@ public class Day06 : IDay<int>
 
     public int SolvePart1()
     {
-        return MoveUntil(Grid, GuardStart, Grid.GetNorth(GuardStart), "#");
+        return MoveUntil(_grid, GuardPosition, DirectionRotator.GetDirection(DirectionRotator.Directions.North), "#");
     }
 
     public int SolvePart2()

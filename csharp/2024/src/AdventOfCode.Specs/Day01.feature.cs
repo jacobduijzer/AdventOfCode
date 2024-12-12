@@ -111,7 +111,7 @@ this.ScenarioInitialize(scenarioInfo);
             {
                 await this.ScenarioStartAsync();
 #line 4
-    await testRunner.GivenAsync("the list the Historians have", "3   4\n4   3\n2   5\n1   3\n3   9\n3   3", ((global::Reqnroll.Table)(null)), "Given ");
+    await testRunner.GivenAsync("the list the Historians have", "3   4\r\n4   3\r\n2   5\r\n1   3\r\n3   9\r\n3   3", ((global::Reqnroll.Table)(null)), "Given ");
 #line hidden
 #line 13
     await testRunner.WhenAsync("you load and fix the list", ((string)(null)), ((global::Reqnroll.Table)(null)), "When ");
@@ -148,7 +148,7 @@ this.ScenarioInitialize(scenarioInfo);
             {
                 await this.ScenarioStartAsync();
 #line 19
-    await testRunner.GivenAsync("the list the Historians have", "3   4\n4   3\n2   5\n1   3\n3   9\n3   3", ((global::Reqnroll.Table)(null)), "Given ");
+    await testRunner.GivenAsync("the list the Historians have", "3   4\r\n4   3\r\n2   5\r\n1   3\r\n3   9\r\n3   3", ((global::Reqnroll.Table)(null)), "Given ");
 #line hidden
 #line 28
     await testRunner.WhenAsync("you load and fix the list", ((string)(null)), ((global::Reqnroll.Table)(null)), "When ");
@@ -216,7 +216,7 @@ this.ScenarioInitialize(scenarioInfo);
             {
                 await this.ScenarioStartAsync();
 #line 39
-    await testRunner.GivenAsync("the list the Historians have", "3   4\n4   3\n2   5\n1   3\n3   9\n3   3", ((global::Reqnroll.Table)(null)), "Given ");
+    await testRunner.GivenAsync("the list the Historians have", "3   4\r\n4   3\r\n2   5\r\n1   3\r\n3   9\r\n3   3", ((global::Reqnroll.Table)(null)), "Given ");
 #line hidden
 #line 48
     await testRunner.WhenAsync("you load and fix the list", ((string)(null)), ((global::Reqnroll.Table)(null)), "When ");
