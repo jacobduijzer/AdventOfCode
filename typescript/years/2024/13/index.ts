@@ -34,7 +34,7 @@ function calculateTokens(input: string, d: number): number {
 	return parseMachines(input)
 		.map(([aX, aY, bX, bY, pX, pY]) => calculateCoefficients(aX, aY, bX, bY, pX, pY, d))
 		.filter(([a, b]) => !(a % 1 || b % 1))
-		.map(([a, b]) => 3 * a + b)
+		.map(([a, b]) => PRICE_A * a + PRICE_B * b)
 		.reduce((acc, t) => acc + t, 0);
 }
 
