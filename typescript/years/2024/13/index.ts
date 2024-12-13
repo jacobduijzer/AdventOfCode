@@ -13,67 +13,37 @@ const DAY = 13;
 // data path    : C:\Users\jacob\Code\github\AdventOfCode\typescript\years\2024\13\data.txt
 // problem url  : https://adventofcode.com/2024/day/13
 
-type Vector = [number, number];
-type Machine = {
-	A: Vector;
-	B: Vector;
-	PrizeLocation: Vector;
-};
-
 const PRICE_A = 3;
 const PRICE_B = 1;
 
-function parseMachine(input: string): Machine {
-	const lines = input.split('\n');
-
-	// Regular expressions to extract values
-	const buttonRegex = /X\+(-?\d+), Y\+(-?\d+)/;
-	const prizeRegex = /X=(-?\d+), Y=(-?\d+)/;
-
-	// Extract Button A
-	const aMatch = lines[0].match(buttonRegex);
-	const A: Vector = [parseInt(aMatch![1], 10), parseInt(aMatch![2], 10)];
-
-	// Extract Button B
-	const bMatch = lines[1].match(buttonRegex);
-	const B: Vector = [parseInt(bMatch![1], 10), parseInt(bMatch![2], 10)];
-
-	// Extract Prize
-	const prizeMatch = lines[2].match(prizeRegex);
-	const PrizeLocation: Vector = [parseInt(prizeMatch![1], 10), parseInt(prizeMatch![2], 10)];
-
-	return { A, B, PrizeLocation };
+function parseMachines(input: string): number[][] {
+	return input
+		.trim()
+		.split(/\n\n/)
+		.map(claw => claw.match(/\d+/g)!.map(Number));
 }
 
-function calculateTokens(machine: Machine): number | null {
-	const [ax, ay] = machine.A;
-	const [bx, by] = machine.B;
-	const [px, py] = machine.PrizeLocation;
+function calculateCoefficients(aX: number, aY: number, bX: number, bY: number, pX: number, pY: number, d: number): [number, number] {
+	return [
+		((pX + d) * bY - bX * (pY + d)) / (aX * bY - bX * aY),
+		((pX + d) * aY - aX * (pY + d)) / (bX * aY - aX * bY),
+	];
+}
 
-	let minTokens = Infinity;
-
-	for (let a = 0; a <= 100; a++) {
-		for (let b = 0; b <= 100; b++) {
-			if (a * ax + b * bx === px && a * ay + b * by === py) {
-				const tokens = a * PRICE_A + b * PRICE_B;
-				if (tokens < minTokens) {
-					minTokens = tokens;
-				}
-			}
-		}
-	}
-
-	return minTokens === Infinity ? null : minTokens;
+function calculateTokens(input: string, d: number): number {
+	return parseMachines(input)
+		.map(([aX, aY, bX, bY, pX, pY]) => calculateCoefficients(aX, aY, bX, bY, pX, pY, d))
+		.filter(([a, b]) => !(a % 1 || b % 1))
+		.map(([a, b]) => 3 * a + b)
+		.reduce((acc, t) => acc + t, 0);
 }
 
 async function p2024day13_part1(input: string, ...params: any[]) {
-	const games = input.split('\n\n').map(parseMachine);
-	const result = games.map(game => calculateTokens(game)).filter(x => x !== null) as number[];
-	return result.reduce((acc, val) => acc + val, 0);
+	return calculateTokens(input, 0);
 }
 
 async function p2024day13_part2(input: string, ...params: any[]) {
-	return "Not implemented";
+	return calculateTokens(input, 10000000000000);
 }
 
 async function run() {
@@ -96,6 +66,7 @@ Prize: X=18641, Y=10279`,
 		extraArgs: [],
 		expected: `480`
 	}];
+
 	const part2tests: TestCase[] = [];
 
 	const [p1testsNormalized, p2testsNormalized] = normalizeTestCases(part1tests, part2tests);
