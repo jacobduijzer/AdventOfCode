@@ -10,7 +10,7 @@ public class DirectionRotator
        West
     } 
     
-    public (int x, int y) RotateClockwise((int x, int y) direction)
+    public (int col, int row) RotateClockwise((int col, int row) direction)
     {
         return direction switch
         {
@@ -22,8 +22,7 @@ public class DirectionRotator
         };
     }
 
-    // Optional: Map input to a direction string for debugging.
-    public Directions GetDirectionName((int x, int y) direction) =>
+    public static Directions GetDirectionName((int col, int row) direction) =>
         direction switch
         {
             (0, -1) => Directions.North,
@@ -33,7 +32,7 @@ public class DirectionRotator
             _ => throw new ArgumentException("Invalid direction input")
         };
     
-    public static (int x, int y) GetDirection(Directions direction) => direction switch
+    public static (int col, int row) GetDirection(Directions direction) => direction switch
     {
         Directions.North => (0, -1),
         Directions.East => (1, 0),

@@ -124,14 +124,14 @@ namespace AdventOfCode.Specs
             await this.ScenarioCleanupAsync();
         }
         
-        [Xunit.SkippableFactAttribute(DisplayName="Part 1, counting the distinc positions the guard visits with the test data")]
+        [Xunit.SkippableFactAttribute(DisplayName="Part 1, counting the distinct positions the guard visits with the test data")]
         [Xunit.TraitAttribute("FeatureTitle", "Day 06: Guard Gallivant")]
-        [Xunit.TraitAttribute("Description", "Part 1, counting the distinc positions the guard visits with the test data")]
-        public async System.Threading.Tasks.Task Part1CountingTheDistincPositionsTheGuardVisitsWithTheTestData()
+        [Xunit.TraitAttribute("Description", "Part 1, counting the distinct positions the guard visits with the test data")]
+        public async System.Threading.Tasks.Task Part1CountingTheDistinctPositionsTheGuardVisitsWithTheTestData()
         {
             string[] tagsOfScenario = ((string[])(null));
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            global::Reqnroll.ScenarioInfo scenarioInfo = new global::Reqnroll.ScenarioInfo("Part 1, counting the distinc positions the guard visits with the test data", null, tagsOfScenario, argumentsOfScenario, featureTags);
+            global::Reqnroll.ScenarioInfo scenarioInfo = new global::Reqnroll.ScenarioInfo("Part 1, counting the distinct positions the guard visits with the test data", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 20
     this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -190,14 +190,14 @@ namespace AdventOfCode.Specs
             await this.ScenarioCleanupAsync();
         }
         
-        [Xunit.SkippableFactAttribute(DisplayName="Part 1, counting the distinc positions the guard visits")]
+        [Xunit.SkippableFactAttribute(DisplayName="Part 1, counting the distinct positions the guard visits")]
         [Xunit.TraitAttribute("FeatureTitle", "Day 06: Guard Gallivant")]
-        [Xunit.TraitAttribute("Description", "Part 1, counting the distinc positions the guard visits")]
-        public async System.Threading.Tasks.Task Part1CountingTheDistincPositionsTheGuardVisits()
+        [Xunit.TraitAttribute("Description", "Part 1, counting the distinct positions the guard visits")]
+        public async System.Threading.Tasks.Task Part1CountingTheDistinctPositionsTheGuardVisits()
         {
             string[] tagsOfScenario = ((string[])(null));
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            global::Reqnroll.ScenarioInfo scenarioInfo = new global::Reqnroll.ScenarioInfo("Part 1, counting the distinc positions the guard visits", null, tagsOfScenario, argumentsOfScenario, featureTags);
+            global::Reqnroll.ScenarioInfo scenarioInfo = new global::Reqnroll.ScenarioInfo("Part 1, counting the distinct positions the guard visits", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 43
     this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -219,6 +219,79 @@ namespace AdventOfCode.Specs
 #line hidden
 #line 47
         await testRunner.ThenAsync("the number of distinct locations the guard visits should be 4967", ((string)(null)), ((global::Reqnroll.Table)(null)), "Then ");
+#line hidden
+            }
+            await this.ScenarioCleanupAsync();
+        }
+        
+        [Xunit.SkippableFactAttribute(DisplayName="Part 1, taking single steps")]
+        [Xunit.TraitAttribute("FeatureTitle", "Day 06: Guard Gallivant")]
+        [Xunit.TraitAttribute("Description", "Part 1, taking single steps")]
+        public async System.Threading.Tasks.Task Part1TakingSingleSteps()
+        {
+            string[] tagsOfScenario = ((string[])(null));
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            global::Reqnroll.ScenarioInfo scenarioInfo = new global::Reqnroll.ScenarioInfo("Part 1, taking single steps", null, tagsOfScenario, argumentsOfScenario, featureTags);
+#line 49
+    this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            if ((global::Reqnroll.TagHelper.ContainsIgnoreTag(scenarioInfo.CombinedTags) || global::Reqnroll.TagHelper.ContainsIgnoreTag(featureTags)))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                await this.ScenarioStartAsync();
+#line 50
+        await testRunner.GivenAsync("a map of the guard situation", ("....#.....\r\n.........#\r\n..........\r\n..#.......\r\n.......#..\r\n..........\r\n.#..^...." +
+                        ".\r\n........#.\r\n#.........\r\n......#..."), ((global::Reqnroll.Table)(null)), "Given ");
+#line hidden
+#line 63
+        await testRunner.WhenAsync("you load the grid", ((string)(null)), ((global::Reqnroll.Table)(null)), "When ");
+#line hidden
+#line 64
+        await testRunner.AndAsync("the guard takes 7 step", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
+#line hidden
+#line 65
+        await testRunner.ThenAsync("the next location of the guard should be 5,1", ((string)(null)), ((global::Reqnroll.Table)(null)), "Then ");
+#line hidden
+            }
+            await this.ScenarioCleanupAsync();
+        }
+        
+        [Xunit.SkippableFactAttribute(DisplayName="Part 1, taking multiple steps")]
+        [Xunit.TraitAttribute("FeatureTitle", "Day 06: Guard Gallivant")]
+        [Xunit.TraitAttribute("Description", "Part 1, taking multiple steps")]
+        public async System.Threading.Tasks.Task Part1TakingMultipleSteps()
+        {
+            string[] tagsOfScenario = ((string[])(null));
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            global::Reqnroll.ScenarioInfo scenarioInfo = new global::Reqnroll.ScenarioInfo("Part 1, taking multiple steps", null, tagsOfScenario, argumentsOfScenario, featureTags);
+#line 67
+    this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            if ((global::Reqnroll.TagHelper.ContainsIgnoreTag(scenarioInfo.CombinedTags) || global::Reqnroll.TagHelper.ContainsIgnoreTag(featureTags)))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                await this.ScenarioStartAsync();
+#line 68
+        await testRunner.GivenAsync("a map of the guard situation", ("....#.....\r\n.........#\r\n..........\r\n..#.......\r\n.......#..\r\n..........\r\n.#..^...." +
+                        ".\r\n........#.\r\n#.........\r\n......#..."), ((global::Reqnroll.Table)(null)), "Given ");
+#line hidden
+#line 81
+        await testRunner.WhenAsync("you load the grid", ((string)(null)), ((global::Reqnroll.Table)(null)), "When ");
+#line hidden
+                global::Reqnroll.Table table2 = new global::Reqnroll.Table(new string[] {
+                            "Steps",
+                            "Location"});
+                table2.AddRow(new string[] {
+                            "1",
+                            "4,5"});
+#line 82
+        await testRunner.ThenAsync("the path the guard walks looks like this", ((string)(null)), table2, "Then ");
 #line hidden
             }
             await this.ScenarioCleanupAsync();
