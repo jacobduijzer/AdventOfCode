@@ -41,6 +41,10 @@ Parameters:
 | 11  | [Typescript](https://github.com/jacobduijzer/AdventOfCode/blob/main/typescript/years/2024/11/index.ts)   |
 | 12  | |
 | 13  | [Typescript](https://github.com/jacobduijzer/AdventOfCode/blob/main/typescript/years/2024/13/index.ts)   |
+| 14  | |
+| 15  | |
+| 16  | [Typescript](https://github.com/jacobduijzer/AdventOfCode/blob/main/typescript/years/2024/16/index.ts)   |
+
 
 # Advent of Code 2023
 
