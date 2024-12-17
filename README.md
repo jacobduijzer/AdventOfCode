@@ -150,3 +150,4 @@ Day 6, part 1:
 | Day | Solutions                                                                                                |
 |-----|----------------------------------------------------------------------------------------------------------|
 | 1   | [Typescript](https://github.com/jacobduijzer/AdventOfCode/blob/main/typescript/years/2015/01/index.ts)   |
+| 2   | [Typescript](https://github.com/jacobduijzer/AdventOfCode/blob/main/typescript/years/2015/02/index.ts)   | 
