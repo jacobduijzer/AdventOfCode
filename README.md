@@ -143,3 +143,10 @@ Day 6, part 1:
 | 22  | [C#](https://github.com/jacobduijzer/AdventOfCode/blob/main/csharp/AdventOfCode.Core/Puzzles/Day22/Solution.cs)                                                                                                        |
 | 23  | [C#](https://github.com/jacobduijzer/AdventOfCode/blob/main/csharp/AdventOfCode.Core/Puzzles/Day23/Solution.cs)                                                                                                        |
 
+# Advent of Code 2015
+
+## Solutions
+
+| Day | Solutions                                                                                                |
+|-----|----------------------------------------------------------------------------------------------------------|
+| 1   | [Typescript](https://github.com/jacobduijzer/AdventOfCode/blob/main/typescript/years/2015/01/index.ts)   |
