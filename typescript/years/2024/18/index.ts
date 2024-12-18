@@ -58,28 +58,36 @@ async function p2024day18_part1(input: string, ...params: any[]) {
 	let grid = new Grid({rowCount: gridSize, colCount: gridSize});
 
 	// fill grid
-	for(let i = 0; i < gridSize; i++) {
-		for(let j = 0; j < gridSize; j++) {
-			grid.setCell([i, j], ".");
-		}
-	}
 	for(let i = 0; i <= numberOfBytes - 1; i++) {
 		const coord = coordinates[i];
 		grid.setCell([coord[1], coord[0]], "#");
 	}
-
-	console.log(grid.toString());
 
 	// find shortest path
 	return bfsShortestPath(grid, [0, 0], [gridSize - 1, gridSize - 1])!;
 }
 
 async function p2024day18_part2(input: string, ...params: any[]) {
-	return "Not implemented";
+	const coordinates = input.split("\n").map(line => line.split(",").map(Number));
+	const gridSize = Number(params[0]) + 1;
+	let grid = new Grid({rowCount: gridSize, colCount: gridSize});
+
+	// fill grid
+	for(let i = 0; i <= coordinates.length - 1; i++) {
+		const coord = coordinates[i];
+		grid.setCell([coord[1], coord[0]], "#");
+
+		const result = bfsShortestPath(grid, [0, 0], [gridSize - 1, gridSize - 1])!;
+		if(result === null)
+			return `${coord[0]},${coord[1]}`;
+	}
+
+	// find shortest path
+	return -1;
 }
 
 async function run() {
-const part1tests: TestCase[] = [{
+	const part1tests: TestCase[] = [{
 		input: `5,4
 4,2
 4,5
@@ -109,8 +117,35 @@ const part1tests: TestCase[] = [{
 		expected: `22`
 	}];
 
-	const part2tests: TestCase[] = [];
-
+	const part2tests: TestCase[] = [{
+		input: `5,4
+4,2
+4,5
+3,0
+2,1
+6,3
+2,4
+1,5
+0,6
+3,3
+2,6
+5,1
+1,2
+5,5
+2,5
+6,5
+1,4
+0,4
+6,4
+1,1
+6,1
+1,0
+0,5
+1,6
+2,0`,
+		extraArgs: [6],
+		expected: `6,1`
+	}];
 	const [p1testsNormalized, p2testsNormalized] = normalizeTestCases(part1tests, part2tests);
 
 	// Run tests
@@ -135,7 +170,7 @@ const part1tests: TestCase[] = [{
 	const part1After = performance.now();
 
 	const part2Before = performance.now()
-	const part2Solution = String(await p2024day18_part2(input));
+	const part2Solution = String(await p2024day18_part2(input, 70));
 	const part2After = performance.now();
 
 	logSolution(18, 2024, part1Solution, part2Solution);
