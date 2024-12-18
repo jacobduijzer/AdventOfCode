@@ -5,6 +5,8 @@ import chalk from "chalk";
 import { log, logSolution, trace } from "../../../util/log";
 import { performance } from "perf_hooks";
 import { normalizeTestCases } from "../../../util/test";
+import { Grid } from "../../../util/grid";
+import { Dir } from "node:fs";
 
 const YEAR = 2024;
 const DAY = 18;
@@ -13,8 +15,63 @@ const DAY = 18;
 // data path    : C:\Users\jacob\Code\github\AdventOfCode\typescript\years\2024\18\data.txt
 // problem url  : https://adventofcode.com/2024/day/18
 
+const directions = [
+	[0, 1],
+	[1, 0],
+	[0, -1],
+	[-1, 0],
+];
+
+function bfsShortestPath(grid: Grid, start: [number, number], end: [number, number]): number | null {
+	const queue: [[number, number], number][] = [[start, 0]];
+	const visited = new Set<string>();
+
+	while (queue.length > 0) {
+		const [[row, col], distance] = queue.shift()!;
+		const posKey = `${row},${col}`;
+
+		if (row === end[0] && col === end[1])
+			return distance;
+
+		if (visited.has(posKey))
+			continue;
+
+		visited.add(posKey);
+
+		for (const [dRow, dCol] of directions) {
+			const newRow = row + dRow;
+			const newCol = col + dCol;
+			const nextCell = grid.getCell([newRow, newCol]);
+
+			if (nextCell && nextCell.value !== "#" && !visited.has(`${newRow},${newCol}`))
+				queue.push([[newRow, newCol], distance + 1]);
+		}
+	}
+
+	return null;
+}
+
 async function p2024day18_part1(input: string, ...params: any[]) {
-	return "Not implemented";
+	const coordinates = input.split("\n").map(line => line.split(",").map(Number));
+	const gridSize = Number(params[0]) + 1;
+	const numberOfBytes = Number(params[1]);
+	let grid = new Grid({rowCount: gridSize, colCount: gridSize});
+
+	// fill grid
+	for(let i = 0; i < gridSize; i++) {
+		for(let j = 0; j < gridSize; j++) {
+			grid.setCell([i, j], ".");
+		}
+	}
+	for(let i = 0; i <= numberOfBytes - 1; i++) {
+		const coord = coordinates[i];
+		grid.setCell([coord[1], coord[0]], "#");
+	}
+
+	console.log(grid.toString());
+
+	// find shortest path
+	return bfsShortestPath(grid, [0, 0], [gridSize - 1, gridSize - 1])!;
 }
 
 async function p2024day18_part2(input: string, ...params: any[]) {
@@ -22,7 +79,36 @@ async function p2024day18_part2(input: string, ...params: any[]) {
 }
 
 async function run() {
-	const part1tests: TestCase[] = [];
+const part1tests: TestCase[] = [{
+		input: `5,4
+4,2
+4,5
+3,0
+2,1
+6,3
+2,4
+1,5
+0,6
+3,3
+2,6
+5,1
+1,2
+5,5
+2,5
+6,5
+1,4
+0,4
+6,4
+1,1
+6,1
+1,0
+0,5
+1,6
+2,0`,
+		extraArgs: [6, 12],
+		expected: `22`
+	}];
+
 	const part2tests: TestCase[] = [];
 
 	const [p1testsNormalized, p2testsNormalized] = normalizeTestCases(part1tests, part2tests);
@@ -45,7 +131,7 @@ async function run() {
 	const input = await util.getInput(DAY, YEAR);
 
 	const part1Before = performance.now();
-	const part1Solution = String(await p2024day18_part1(input));
+	const part1Solution = String(await p2024day18_part1(input, 70, 1024));
 	const part1After = performance.now();
 
 	const part2Before = performance.now()
