@@ -152,31 +152,32 @@ async function p2024day17_part2(input: string, ...params: any[]) {
 	// 	}
 	// 	candidates = newCandidates;
 	// }
-	let candidates = [0];
-	for (let i = fullProgram.Program.length - 1; i >= 0; i--) {
-		const newCandidates = [];
-		console.log(`Instruction: ${fullProgram.Program[i]}, candidates: ${candidates}`);
-		for (const c of candidates) {
-			for (let j = 0; j < 8; j++) {
-				const num = (c << 3) + j;
-				const out = outFromA(num);
-				console.log(`Num: ${num}, Out: ${out}, Instruction: ${fullProgram.Program[i]}`);
-				fullProgram.A = num;
-				const output = runProgram(fullProgram);
-				if(output.join(',') === fullProgram.Program.join(',')) {
-					console.log("bingo");
-				}
-				if (out === fullProgram.Program[i]) {
-					newCandidates.push(num);
-				}
-			}
-		}
-		candidates = newCandidates;
-	}
-
-	// console.log(candidates);
-	return Math.min(...candidates);
+	// let candidates = [0];
+	// for (let i = fullProgram.Program.length - 1; i >= 0; i--) {
+	// 	const newCandidates = [];
+	// 	console.log(`Instruction: ${fullProgram.Program[i]}, candidates: ${candidates}`);
+	// 	for (const c of candidates) {
+	// 		for (let j = 0; j < 8; j++) {
+	// 			const num = (c << 3) + j;
+	// 			const out = outFromA(num);
+	// 			console.log(`Num: ${num}, Out: ${out}, Instruction: ${fullProgram.Program[i]}`);
+	// 			fullProgram.A = num;
+	// 			const output = runProgram(fullProgram);
+	// 			if(output.join(',') === fullProgram.Program.join(',')) {
+	// 				console.log("bingo");
+	// 			}
+	// 			if (out === fullProgram.Program[i]) {
+	// 				newCandidates.push(num);
+	// 			}
+	// 		}
+	// 	}
+	// 	candidates = newCandidates;
+	// }
+	//
+	// // console.log(candidates);
+	// return Math.min(...candidates);
 	//return findInitialA(0, fullProgram, fullProgram.Program.length - 1);
+	return "Not implemented";
 }
 
 async function run() {
