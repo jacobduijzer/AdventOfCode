@@ -5,6 +5,7 @@ import chalk from "chalk";
 import { log, logSolution, trace } from "../../../util/log";
 import { performance } from "perf_hooks";
 import { normalizeTestCases } from "../../../util/test";
+import { Grid, GridPos } from "../../../util/grid";
 
 const YEAR = 2024;
 const DAY = 15;
@@ -12,18 +13,115 @@ const DAY = 15;
 // solution path: C:\Users\jacob\Code\github\AdventOfCode\typescript\years\2024\15\index.ts
 // data path    : C:\Users\jacob\Code\github\AdventOfCode\typescript\years\2024\15\data.txt
 // problem url  : https://adventofcode.com/2024/day/15
-
 async function p2024day15_part1(input: string, ...params: any[]) {
 	return "Not implemented";
+
+	const [gridInput, movesInput] = input.split("\n\n");
+	const grid = new Grid({ serialized: gridInput });
+	const moves = movesInput.replace(/\n/g, "").split("");
+
+	const directions: { [key: string]: [number, number] } = {
+		"^": [-1, 0],
+		"v": [1, 0],
+		"<": [0, -1],
+		">": [0, 1],
+	};
+
+	let robotPosition = grid.getCell("@")!;
+	let moveCount = 0;
+
+	for (const move of moves) {
+		const [dRow, dCol] = directions[move];
+		const newRobotPosition: GridPos = [
+			robotPosition.position[0] + dRow,
+			robotPosition.position[1] + dCol,
+		];
+		const newRobotCell = grid.getCell(newRobotPosition)!;
+
+		if (newRobotCell.value === "#") // Wall, next step
+			continue;
+
+		if (newRobotCell.value === ".") { // Move to the next position
+			grid.setCell(robotPosition.position, '.');
+			grid.setCell(newRobotCell.position, '@');
+			robotPosition = newRobotCell;
+			moveCount++;
+			continue;
+		}
+
+		if (newRobotCell.value === "O") { // Box, check if it can be pushed
+			let canMove = true;
+			let currentBoxPosition = newRobotPosition;
+			const boxesToMove: GridPos[] = [];
+
+			while (canMove) {
+				const nextBoxPosition: GridPos = [
+					currentBoxPosition[0] + dRow,
+					currentBoxPosition[1] + dCol,
+				];
+				const nextBoxCell = grid.getCell(nextBoxPosition);
+
+				if (nextBoxCell && (nextBoxCell.value === "." || nextBoxCell.value === "O")) {
+					boxesToMove.push(currentBoxPosition);
+					currentBoxPosition = nextBoxPosition;
+				} else {
+					canMove = false;
+				}
+			}
+
+			// Move the boxes if possible
+			if (boxesToMove.length > 0 && grid.getCell(currentBoxPosition)!.value === ".") {
+				for (let i = boxesToMove.length - 1; i >= 0; i--) {
+					const boxPos = boxesToMove[i];
+					const newBoxPos: GridPos = [
+						boxPos[0] + dRow,
+						boxPos[1] + dCol,
+					];
+					grid.getCell(newBoxPos)!.setValue("O");
+					grid.getCell(boxPos)!.setValue(".");
+				}
+
+				// Move the robot
+				grid.setCell(robotPosition.position, '.');
+				grid.setCell(newRobotCell.position, '@');
+				robotPosition = newRobotCell;
+				moveCount++;
+			}
+		}
+	}
+
+	console.log(grid.toString());
+	return moveCount;
 }
+
 
 async function p2024day15_part2(input: string, ...params: any[]) {
 	return "Not implemented";
 }
 
 async function run() {
-	const part1tests: TestCase[] = [];
-	const part2tests: TestCase[] = [];
+	const part1tests: TestCase[] = [{
+		input: `#.@O.O.#
+
+>>`,
+		extraArgs: [],
+		expected: `2`},
+		{
+		input: `########
+#..O.O.#
+##@.O..#
+#...O..#
+#.#.O..#
+#...O..#
+#......#
+########
+
+<^^>>>vv<v>>v<<`,
+		extraArgs: [],
+		expected: `104`}
+	];
+
+		const part2tests: TestCase[] = [];
 
 	const [p1testsNormalized, p2testsNormalized] = normalizeTestCases(part1tests, part2tests);
 
