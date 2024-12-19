@@ -13,17 +13,70 @@ const DAY = 19;
 // data path    : C:\Users\jacob\Code\github\AdventOfCode\typescript\years\2024\19\data.txt
 // problem url  : https://adventofcode.com/2024/day/19
 
+function splitInput(input: string): [string[], string[]] {
+	const [towelsInput, patternsInput] = input.trim().split('\n\n');
+	const towels = towelsInput.split(',').map(towel => towel.trim());
+	const designs= patternsInput.split('\n').map(pattern=> pattern.trim());
+	return [towels, designs];
+}
+
+const canMakeDesign = (towels: string[], design: string): number => {
+	const dp: number[] = new Array(design.length + 1).fill(0);
+	dp[0] = 1;
+	for (let i = 0; i <= design.length; i++) {
+		if (dp[i]) {
+			for (const towel of towels) {
+				const len = towel.length;
+				const substr = design.slice(i, i + len);
+				if (i + len <= design.length && substr === towel)
+					dp[i + len] += dp[i];
+			}
+		}
+	}
+
+	return dp[design.length];
+};
+
 async function p2024day19_part1(input: string, ...params: any[]) {
-	return "Not implemented";
+	const [towels, designs] = splitInput(input);
+	return designs.map(design => canMakeDesign(towels, design) > 0 ? 1 : 0)
+		.reduce((acc: number, val: number) => acc + val, 0);
 }
 
 async function p2024day19_part2(input: string, ...params: any[]) {
-	return "Not implemented";
+	const [towels, designs] = splitInput(input);
+	return designs.map(design => canMakeDesign(towels, design))
+		.reduce((acc, val) => acc + val, 0);
 }
 
 async function run() {
-	const part1tests: TestCase[] = [];
-	const part2tests: TestCase[] = [];
+	const part1tests: TestCase[] = [{
+		input: `r, wr, b, g, bwu, rb, gb, br
+
+brwrr
+bggr
+gbbr
+rrbgbr
+ubwu
+bwurrg
+brgr
+bbrgwb`,
+		extraArgs: [],
+		expected: `6`}];
+
+	const part2tests: TestCase[] = [{
+		input: `r, wr, b, g, bwu, rb, gb, br
+
+brwrr
+bggr
+gbbr
+rrbgbr
+ubwu
+bwurrg
+brgr
+bbrgwb`,
+		extraArgs: [],
+		expected: `16`}];
 
 	const [p1testsNormalized, p2testsNormalized] = normalizeTestCases(part1tests, part2tests);
 
