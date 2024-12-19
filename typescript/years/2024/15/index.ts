@@ -17,28 +17,28 @@ const DAY = 15;
 type Point = {x: number, y: number};
 type Robot = Point;
 type Dir = '<' | '>' | '^' | 'v';
-// type MapCell = '.' | '#' | 'O';
-// type Map = MapCell[][];
+type MapCell = '.' | '#' | 'O';
+type Map = MapCell[][];
 
-// function parseInput(input: string) {
-// 	const robot: Robot = {x:0 , y:0};
-// 	const [mapInput, directionsInput] = input.split('\n\n');
-// 	const map = mapInput.split('\n').map((line, row) => line.split('').map((cell, col) => {
-// 		if (cell === '@') {
-// 			robot.x = col;
-// 			robot.y = row;
-// 			return '.';
-// 		}
-// 		return cell;
-// 	})) as Map;
-// 	const directions = directionsInput.replaceAll("\n", "").split('') as Dir[];
-//
-// 	return {robot, map, directions};
-// }
+function parseInput(input: string) {
+	const robot: Robot = {x:0 , y:0};
+	const [mapInput, directionsInput] = input.split('\n\n');
+	const map = mapInput.split('\n').map((line, row) => line.split('').map((cell, col) => {
+		if (cell === '@') {
+			robot.x = col;
+			robot.y = row;
+			return '.';
+		}
+		return cell;
+	})) as Map;
+	const directions = directionsInput.replaceAll("\n", "").split('') as Dir[];
 
-function move(robot: Robot, map: Grid, dir: Dir) {
+	return {robot, map, directions};
+}
+
+function move(robot: Robot, map: Map, dir: Dir) {
 	const {x, y} = getNewPosition(robot, dir);
-	const desiredCellValue = map.getValue([y, x]);
+	const desiredCellValue = map[y][x];
 
 	// nothing in the way, just move
 	if (desiredCellValue === '.') {
@@ -72,7 +72,7 @@ function getNewPosition({x, y}: Point, dir: Dir) {
 	return {x, y};
 }
 
-function moveBoxes(robot: Robot, boxPosition: Point, map: Grid, dir: Dir) {
+function moveBoxes(robot: Robot, boxPosition: Point, map: Map, dir: Dir) {
 	const stack = [boxPosition];
 
 	let canMove = false;
@@ -80,7 +80,7 @@ function moveBoxes(robot: Robot, boxPosition: Point, map: Grid, dir: Dir) {
 
 	while (true) {
 		const {x, y} = getNewPosition(current, dir);
-		const nextCellValue = map.getValue([y, x]);
+		const nextCellValue = map[y][x];
 
 		switch (nextCellValue) {
 			// can't move the boxes
@@ -105,19 +105,18 @@ function moveBoxes(robot: Robot, boxPosition: Point, map: Grid, dir: Dir) {
 	if (canMove) {
 		while (stack.length) {
 			const {x, y} = stack.pop()!;
-			map.setCell([y, x], stack.length > 0 ? 'O' : '.');
+			map[y][x] = stack.length > 0 ? 'O' : '.';
 		}
 		robot.x = boxPosition.x;
 		robot.y = boxPosition.y;
 	}
 }
 
-
-function calculateGPS(map: Grid) {
+function calculateGPS(map: Map) {
 	let sum = 0;
-	for (let y = 1; y < map.rowCount-1; y++) {
-		for (let x = 1; x < map.colCount-1; x++) {
-			if (map.getValue([y, x]) === 'O') {
+	for (let y = 1; y < map.length-1; y++) {
+		for (let x = 1; x < map[0].length-1; x++) {
+			if (map[y][x] === 'O') {
 				sum += (100 * y) + x;
 			}
 		}
@@ -127,12 +126,7 @@ function calculateGPS(map: Grid) {
 }
 
 async function p2024day15_part1(input: string, ...params: any[]) {const performanceStart = performance.now();
-
-	const [mapInput, directionsInput] = input.split("\n\n");
-	const map = new Grid({ serialized: mapInput });
-	const directions = directionsInput.replace(/\n/g, "").split("") as Dir[];
-	const robotPos = map.getCell("@")!.position;
-	const robot = {x: robotPos[1], y: robotPos[0]};
+	const {robot, map, directions} = parseInput(input);
 
 	for (const dir of directions)
 		move(robot, map, dir);
