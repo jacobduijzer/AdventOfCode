@@ -13,87 +13,132 @@ const DAY = 15;
 // solution path: C:\Users\jacob\Code\github\AdventOfCode\typescript\years\2024\15\index.ts
 // data path    : C:\Users\jacob\Code\github\AdventOfCode\typescript\years\2024\15\data.txt
 // problem url  : https://adventofcode.com/2024/day/15
-async function p2024day15_part1(input: string, ...params: any[]) {
-	return "Not implemented";
 
-	const [gridInput, movesInput] = input.split("\n\n");
-	const grid = new Grid({ serialized: gridInput });
-	const moves = movesInput.replace(/\n/g, "").split("");
+type Point = {x: number, y: number};
+type Robot = Point;
+type Dir = '<' | '>' | '^' | 'v';
+// type MapCell = '.' | '#' | 'O';
+// type Map = MapCell[][];
 
-	const directions: { [key: string]: [number, number] } = {
-		"^": [-1, 0],
-		"v": [1, 0],
-		"<": [0, -1],
-		">": [0, 1],
-	};
+// function parseInput(input: string) {
+// 	const robot: Robot = {x:0 , y:0};
+// 	const [mapInput, directionsInput] = input.split('\n\n');
+// 	const map = mapInput.split('\n').map((line, row) => line.split('').map((cell, col) => {
+// 		if (cell === '@') {
+// 			robot.x = col;
+// 			robot.y = row;
+// 			return '.';
+// 		}
+// 		return cell;
+// 	})) as Map;
+// 	const directions = directionsInput.replaceAll("\n", "").split('') as Dir[];
+//
+// 	return {robot, map, directions};
+// }
 
-	let robotPosition = grid.getCell("@")!;
-	let moveCount = 0;
+function move(robot: Robot, map: Grid, dir: Dir) {
+	const {x, y} = getNewPosition(robot, dir);
+	const desiredCellValue = map.getValue([y, x]);
 
-	for (const move of moves) {
-		const [dRow, dCol] = directions[move];
-		const newRobotPosition: GridPos = [
-			robotPosition.position[0] + dRow,
-			robotPosition.position[1] + dCol,
-		];
-		const newRobotCell = grid.getCell(newRobotPosition)!;
+	// nothing in the way, just move
+	if (desiredCellValue === '.') {
+		robot.x = x;
+		robot.y = y;
+		// it's a wall, don't move
+	} else if (desiredCellValue === '#') {
+		return;
+		// it's a box, see if it's moveable
+	} else if (desiredCellValue === 'O') {
+		moveBoxes(robot, {x, y}, map, dir);
+	}
+}
 
-		if (newRobotCell.value === "#") // Wall, next step
-			continue;
+function getNewPosition({x, y}: Point, dir: Dir) {
+	switch (dir) {
+		case '<':
+			x--;
+			break;
+		case '>':
+			x++;
+			break;
+		case '^':
+			y--;
+			break;
+		case 'v':
+			y++;
+			break;
+	}
 
-		if (newRobotCell.value === ".") { // Move to the next position
-			grid.setCell(robotPosition.position, '.');
-			grid.setCell(newRobotCell.position, '@');
-			robotPosition = newRobotCell;
-			moveCount++;
-			continue;
+	return {x, y};
+}
+
+function moveBoxes(robot: Robot, boxPosition: Point, map: Grid, dir: Dir) {
+	const stack = [boxPosition];
+
+	let canMove = false;
+	let current = {x: boxPosition.x, y: boxPosition.y};
+
+	while (true) {
+		const {x, y} = getNewPosition(current, dir);
+		const nextCellValue = map.getValue([y, x]);
+
+		switch (nextCellValue) {
+			// can't move the boxes
+			case '#':
+				return;
+			case '.':
+				canMove = true;
+				stack.push({x, y});
+				break;
+			case 'O':
+				stack.push({x, y});
+				break;
 		}
 
-		if (newRobotCell.value === "O") { // Box, check if it can be pushed
-			let canMove = true;
-			let currentBoxPosition = newRobotPosition;
-			const boxesToMove: GridPos[] = [];
+		current = {x, y};
 
-			while (canMove) {
-				const nextBoxPosition: GridPos = [
-					currentBoxPosition[0] + dRow,
-					currentBoxPosition[1] + dCol,
-				];
-				const nextBoxCell = grid.getCell(nextBoxPosition);
+		if (canMove) {
+			break;
+		}
+	}
 
-				if (nextBoxCell && (nextBoxCell.value === "." || nextBoxCell.value === "O")) {
-					boxesToMove.push(currentBoxPosition);
-					currentBoxPosition = nextBoxPosition;
-				} else {
-					canMove = false;
-				}
-			}
+	if (canMove) {
+		while (stack.length) {
+			const {x, y} = stack.pop()!;
+			map.setCell([y, x], stack.length > 0 ? 'O' : '.');
+		}
+		robot.x = boxPosition.x;
+		robot.y = boxPosition.y;
+	}
+}
 
-			// Move the boxes if possible
-			if (boxesToMove.length > 0 && grid.getCell(currentBoxPosition)!.value === ".") {
-				for (let i = boxesToMove.length - 1; i >= 0; i--) {
-					const boxPos = boxesToMove[i];
-					const newBoxPos: GridPos = [
-						boxPos[0] + dRow,
-						boxPos[1] + dCol,
-					];
-					grid.getCell(newBoxPos)!.setValue("O");
-					grid.getCell(boxPos)!.setValue(".");
-				}
 
-				// Move the robot
-				grid.setCell(robotPosition.position, '.');
-				grid.setCell(newRobotCell.position, '@');
-				robotPosition = newRobotCell;
-				moveCount++;
+function calculateGPS(map: Grid) {
+	let sum = 0;
+	for (let y = 1; y < map.rowCount-1; y++) {
+		for (let x = 1; x < map.colCount-1; x++) {
+			if (map.getValue([y, x]) === 'O') {
+				sum += (100 * y) + x;
 			}
 		}
 	}
 
-	console.log(grid.toString());
-	return moveCount;
+	return sum;
 }
 
+async function p2024day15_part1(input: string, ...params: any[]) {const performanceStart = performance.now();
+
+	const [mapInput, directionsInput] = input.split("\n\n");
+	const map = new Grid({ serialized: mapInput });
+	const directions = directionsInput.replace(/\n/g, "").split("") as Dir[];
+	const robotPos = map.getCell("@")!.position;
+	const robot = {x: robotPos[1], y: robotPos[0]};
+
+	for (const dir of directions)
+		move(robot, map, dir);
+
+	return calculateGPS(map);
+}
 
 async function p2024day15_part2(input: string, ...params: any[]) {
 	return "Not implemented";
@@ -101,12 +146,6 @@ async function p2024day15_part2(input: string, ...params: any[]) {
 
 async function run() {
 	const part1tests: TestCase[] = [{
-		input: `#.@O.O.#
-
->>`,
-		extraArgs: [],
-		expected: `2`},
-		{
 		input: `########
 #..O.O.#
 ##@.O..#
@@ -118,7 +157,7 @@ async function run() {
 
 <^^>>>vv<v>>v<<`,
 		extraArgs: [],
-		expected: `104`}
+		expected: `2028`}
 	];
 
 		const part2tests: TestCase[] = [];
