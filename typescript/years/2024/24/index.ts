@@ -80,9 +80,9 @@ async function run() {
 	const part1tests: TestCase[] = [{
 		input: `x00: 1
 x01: 1
-x02: 1
 y00: 0
 y01: 1
+x02: 1
 y02: 0
 
 x00 AND y00 -> z00

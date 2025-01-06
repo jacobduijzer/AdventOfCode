@@ -1,4 +1,3 @@
-import _ from "lodash";
 import * as util from "../../../util/util";
 import * as test from "../../../util/test";
 import chalk from "chalk";
@@ -13,17 +12,111 @@ const DAY = 22;
 // data path    : C:\Users\jacob\Code\github\AdventOfCode\typescript\years\2024\22\data.txt
 // problem url  : https://adventofcode.com/2024/day/22
 
+function calculateSecret(secret: number): number {
+	// Step 1: Multiply by 64, mix, and prune
+	secret ^= (secret * 64) % 16777216;
+	secret %= 16777216;
+
+	// Step 2: Divide by 32, round down, mix, and prune
+	secret ^= Math.floor(secret / 32) % 16777216;
+	secret %= 16777216;
+
+	// Step 3: Multiply by 2048, mix, and prune
+	secret ^= (secret * 2048) % 16777216;
+	secret %= 16777216;
+
+	return secret;
+}
+
+function get2000thSecretNumber(initialSecret: number): number {
+	let secret = initialSecret;
+	for (let i = 0; i < 2000; i++)
+		secret = calculateSecret(secret);
+	return secret;
+}
+
+function generatePrices(initialSecret: number): number[] {
+	let secret = initialSecret;
+	const prices = [];
+	for (let i = 0; i < 2000; i++) {
+		prices.push(secret % 10); // Take the ones digit as the price
+		secret = calculateSecret(secret);
+	}
+	return prices;
+}
+
+function calculateBestSequence(initialSecrets: number[]): { bestSequence: number[]; totalBananas: number } {
+	const allChanges = initialSecrets.map(secret => {
+		const prices = generatePrices(secret);
+		return prices.map((price, i, arr) => (i > 0 ? price - arr[i - 1] : 0)).slice(1);
+	});
+
+	const sequenceCount = new Map<string, { bananas: number; buyers: number[] }>();
+
+	allChanges.forEach((changes, buyerIndex) => {
+		const prices = generatePrices(initialSecrets[buyerIndex]);
+		for (let i = 0; i <= changes.length - 4; i++) {
+			const sequence = changes.slice(i, i + 4).join(",");
+
+			if (!sequenceCount.has(sequence))
+				sequenceCount.set(sequence, { bananas: 0, buyers: [] });
+
+			if (!sequenceCount.get(sequence)?.buyers.includes(buyerIndex)) {
+				sequenceCount.get(sequence)!.bananas += prices[i + 4];
+				sequenceCount.get(sequence)!.buyers.push(buyerIndex);
+			}
+		}
+	});
+
+	// Find the best sequence
+	let bestSequence = "";
+	let maxBananas = 0;
+
+	sequenceCount.forEach((value, sequence) => {
+		if (value.bananas > maxBananas) {
+			bestSequence = sequence;
+			maxBananas = value.bananas;
+		}
+	});
+
+	return { bestSequence: bestSequence.split(",").map(Number), totalBananas: maxBananas };
+}
+
 async function p2024day22_part1(input: string, ...params: any[]) {
-	return "Not implemented";
+	return input
+		.split('\n')
+		.map(Number)
+		.map(get2000thSecretNumber)
+		.reduce((sum, secret) => sum + secret, 0);
 }
 
 async function p2024day22_part2(input: string, ...params: any[]) {
-	return "Not implemented";
+	const numbers = input.split('\n').map(Number);
+	return calculateBestSequence(numbers).totalBananas
 }
 
 async function run() {
-	const part1tests: TestCase[] = [];
-	const part2tests: TestCase[] = [];
+	const part1tests: TestCase[] = [{
+		input: `1`,
+		extraArgs: [],
+		expected: `8685429`
+	},{
+		input: `1
+10
+100
+2024`,
+		extraArgs: [],
+		expected: `37327623`
+	}];
+
+	const part2tests: TestCase[] = [{
+		input: `1
+2
+3
+2024`,
+		extraArgs: [],
+		expected: `23`
+	}];
 
 	const [p1testsNormalized, p2testsNormalized] = normalizeTestCases(part1tests, part2tests);
 
