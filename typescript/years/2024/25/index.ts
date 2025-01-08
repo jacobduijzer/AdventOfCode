@@ -13,8 +13,59 @@ const DAY = 25;
 // data path    : C:\Users\jacob\Code\github\AdventOfCode\typescript\years\2024\25\data.txt
 // problem url  : https://adventofcode.com/2024/day/25
 
+
+// FIRST SOLUTION (my own)
+function parseBlocks(input: string): { keys: number[][]; locks: number[][] } {
+	const blocks = input.trim().split("\n\n");
+	const keys: number[][] = [];
+	const locks: number[][] = [];
+
+	blocks.forEach((block) => {
+		const lines = block.split("\n");
+		let relevantLines: string[];
+
+		if (block.startsWith("#####"))
+			relevantLines = lines.slice(1);
+		else if (block.startsWith("....."))
+			relevantLines = lines.slice(0, -1);
+		else return;
+
+		const columnCounts = Array(relevantLines[0].length).fill(0);
+
+		relevantLines.forEach((line) => {
+			line.split("").forEach((char, index) => {
+				if (char === "#")
+					columnCounts[index]++;
+			});
+		});
+
+		if (block.startsWith("#####"))
+			locks.push(columnCounts);
+		else if (block.startsWith("....."))
+			keys.push(columnCounts);
+	});
+
+	return { keys, locks };
+}
+
+// BETTER SOLUTION
+const mapKeyOrLock = (desc: string) =>
+	desc
+		.split('\n')
+		.map(row => row.split('').map((char): number => (char === '#' ? 1 : 0)))
+		.reduce((total, row) => total.map((x, i) => x + row[i]));
+
 async function p2024day25_part1(input: string, ...params: any[]) {
-	return "Not implemented";
+	// my own parsing solution
+	// const { locks, keys } = parseBlocks(input);
+	const keysAndLocks = input.trim().split('\n\n');
+	const keys = keysAndLocks.filter(s => s.startsWith('.')).map(mapKeyOrLock);
+	const locks = keysAndLocks.filter(s => s.startsWith('#')).map(mapKeyOrLock);
+	// const length = 5; // i am excluding the first row of each block
+	const length = 7; // better solution is using all rows
+	return keys
+		.map(key => locks.filter(lock => !lock.some((x, i) => x + key[i] > length)).length)
+		.reduce((sum, val) => sum + val, 0);
 }
 
 async function p2024day25_part2(input: string, ...params: any[]) {
@@ -22,7 +73,50 @@ async function p2024day25_part2(input: string, ...params: any[]) {
 }
 
 async function run() {
-	const part1tests: TestCase[] = [];
+	const part1tests: TestCase[] = [{
+		input: `#####
+.####
+.####
+.####
+.#.#.
+.#...
+.....
+
+#####
+##.##
+.#.##
+...##
+...#.
+...#.
+.....
+
+.....
+#....
+#....
+#...#
+#.#.#
+#.###
+#####
+
+.....
+.....
+#.#..
+###..
+###.#
+###.#
+#####
+
+.....
+.....
+.....
+#....
+#.#..
+#.#.#
+#####`,
+		extraArgs: [],
+		expected: `3`,
+	}];
+
 	const part2tests: TestCase[] = [];
 
 	const [p1testsNormalized, p2testsNormalized] = normalizeTestCases(part1tests, part2tests);
@@ -48,7 +142,7 @@ async function run() {
 	const part1Solution = String(await p2024day25_part1(input));
 	const part1After = performance.now();
 
-	const part2Before = performance.now()
+	const part2Before = performance.now();
 	const part2Solution = String(await p2024day25_part2(input));
 	const part2After = performance.now();
 
