@@ -30,7 +30,7 @@ Parameters:
 |-----|----------------------------------------------------------------------------------------------------------|
 | 1   | [Typescript](https://github.com/jacobduijzer/AdventOfCode/blob/main/typescript/years/2024/01/index.ts) - [C#](https://github.com/jacobduijzer/AdventOfCode/blob/main/csharp/2024/src/AdventOfCode.Specs/Day01.feature) - [elixir](https://github.com/jacobduijzer/adventofcode/blob/main/elixir/adventofcode/lib/advendofcode/solutions/y24/day01.ex) |
 | 2   | [Typescript](https://github.com/jacobduijzer/AdventOfCode/blob/main/typescript/years/2024/02/index.ts) - [elixir](https://github.com/jacobduijzer/adventofcode/blob/main/elixir/adventofcode/lib/advendofcode/solutions/y24/day02.ex) |
-| 3   | [Typescript](https://github.com/jacobduijzer/AdventOfCode/blob/main/typescript/years/2024/03/index.ts)   |
+| 3   | [Typescript](https://github.com/jacobduijzer/AdventOfCode/blob/main/typescript/years/2024/03/index.ts)  - [elixir](https://github.com/jacobduijzer/adventofcode/blob/main/elixir/adventofcode/lib/advendofcode/solutions/y24/day03.ex) |
 | 4   | [Typescript](https://github.com/jacobduijzer/AdventOfCode/blob/main/typescript/years/2024/04/index.ts)   |
 | 5   | [Typescript](https://github.com/jacobduijzer/AdventOfCode/blob/main/typescript/years/2024/05/index.ts)   |
 | 6   | [Typescript](https://github.com/jacobduijzer/AdventOfCode/blob/main/typescript/years/2024/06/index.ts) - [C#](https://github.com/jacobduijzer/AdventOfCode/blob/main/csharp/2024/src/AdventOfCode.Specs/Day06.feature) |  
