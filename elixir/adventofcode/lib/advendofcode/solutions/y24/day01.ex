@@ -34,5 +34,4 @@ defmodule Advendofcode.Solutions.Y24.Day01 do
       acc + l * Map.get(freqs, l, 0)
     end)
   end
-
 end
