@@ -33,6 +33,5 @@ defmodule Advendofcode.Solutions.Y24.Day03 do
         acc
     end)
     |> Map.get(:sum)
-
   end
 end
