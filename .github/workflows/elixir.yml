@@ -32,6 +32,41 @@ jobs:
         otp-version: ${{matrix.otp}}
         elixir-version: ${{matrix.elixir}}
 
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Clean to rule out incremental build as a source of flakiness
+      working-directory: elixir/adventofcode
+      if: github.run_attempt != '1'
+      run: |
+        mix deps.clean --all
+        mix clean
+      shell: sh
+
+    # Step: Download project dependencies. If unchanged, uses
+    # the cached version.
+    - name: Install dependencies
+      working-directory: elixir/adventofcode
+      run: mix deps.get
+
+    # Step: Compile the project treating any warnings as errors.
+    # Customize this step if a different behavior is desired.
+    - name: Compiles without warnings
+      working-directory: elixir/adventofcode
+      run: mix compile --warnings-as-errors
+
+    # Step: Check that the checked in code has already been formatted.
+    # This step fails if something was found unformatted.
+    # Customize this step as desired.
+    - name: Check Formatting
+      working-directory: elixir/adventofcode
+      run: mix format --check-formatted
+
+    # Step: Execute the tests.
+    - name: Run tests
+      working-directory: elixir/adventofcode
+      run: mix test
+
     # steps:
     # - uses: actions/checkout@v4
     # - name: Set up Elixir
