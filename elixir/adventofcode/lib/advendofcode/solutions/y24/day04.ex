@@ -27,9 +27,7 @@ defmodule Advendofcode.Solutions.Y24.Day04 do
   end
 
   defp directions do
-    [{-1, -1}, {-1, 0}, {-1, 1},
-     {0, -1}, {0, 1},
-     {1, -1}, {1, 0}, {1, 1}]
+    [{-1, -1}, {-1, 0}, {-1, 1}, {0, -1}, {0, 1}, {1, -1}, {1, 0}, {1, 1}]
   end
 
   defp find_xmas_words(grid, start) do
@@ -43,13 +41,8 @@ defmodule Advendofcode.Solutions.Y24.Day04 do
 
   defp mas_patterns do
     [
-      [
-        [{1, -1}, {1, 1}],
-        [{-1, 1}, {-1, -1}]
-      ], [
-        [{-1, -1}, {1, -1}],
-        [{-1, 1}, {1, 1}]
-      ]
+      [[{1, -1}, {1, 1}], [{-1, 1}, {-1, -1}]],
+      [[{-1, -1}, {1, -1}], [{-1, 1}, {1, 1}]]
     ]
   end
 
@@ -66,7 +59,4 @@ defmodule Advendofcode.Solutions.Y24.Day04 do
   def matches?({row1, col1}, {row2, col2}, offset, letter, grid) do
     Map.get(grid, {row1 + offset * row2, col1 + offset * col2}) == letter
   end
-
-
-
 end
