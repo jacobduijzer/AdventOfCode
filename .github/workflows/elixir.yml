@@ -16,7 +16,7 @@ permissions:
 
 jobs:
   build:
-
+    runs-on: ubuntu-latest
     name: Build and test
     strategy:
       # Specify the OTP and Elixir versions to use when building
