@@ -16,8 +16,6 @@ defmodule Advendofcode.Solutions.Y24.Day01 do
   end
 
   def part_one({lefts, rights}) do
-    # {lefts, rights} = problem
-
     lefts
     |> Enum.sort()
     |> Enum.zip(Enum.sort(rights))
@@ -26,8 +24,6 @@ defmodule Advendofcode.Solutions.Y24.Day01 do
   end
 
   def part_two({lefts, rights}) do
-    # {lefts, rights} = problem
-
     freqs = Enum.frequencies(rights)
 
     Enum.reduce(lefts, 0, fn l, acc ->
