@@ -28,7 +28,7 @@ Parameters:
 
 | Day | Solutions                                                                                                |
 |-----|----------------------------------------------------------------------------------------------------------|
-| 1   | |
+| 1   | [elixir](https://github.com/jacobduijzer/adventofcode/blob/main/elixir/adventofcode/lib/advendofcode/solutions/y25/day01.ex) |
 
 # Advent of Code 2024
 
