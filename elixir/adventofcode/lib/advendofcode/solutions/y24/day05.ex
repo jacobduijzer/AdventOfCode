@@ -2,11 +2,10 @@ defmodule Advendofcode.Solutions.Y24.Day05 do
   alias AoC.Input
   require Logger
 
-
   def parse(input, _part) do
     [rules_part, pages_part] =
-    Input.read!(input)
-    |> String.split("\n\n", trim: true)
+      Input.read!(input)
+      |> String.split("\n\n", trim: true)
 
     rules =
       for rule <- String.split(rules_part, "\n"), reduce: MapSet.new() do
@@ -15,13 +14,14 @@ defmodule Advendofcode.Solutions.Y24.Day05 do
           MapSet.put(acc, {String.to_integer(p1), String.to_integer(p2)})
       end
 
-    pages = pages_part
-    |> String.split("\n", trim: true)
-    |> Enum.map(fn line ->
-      line
-      |> String.split(",", trim: true)
-      |> Enum.map(&String.to_integer/1)
-    end)
+    pages =
+      pages_part
+      |> String.split("\n", trim: true)
+      |> Enum.map(fn line ->
+        line
+        |> String.split(",", trim: true)
+        |> Enum.map(&String.to_integer/1)
+      end)
 
     {rules, pages}
   end

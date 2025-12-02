@@ -17,24 +17,25 @@ defmodule Advendofcode.Solutions.Y25.Day01 do
 
   def part_one(problem) do
     {_final_pos, zero_hits} =
-    problem
-    |> Enum.map(fn
-      {"R", n} -> n
-      {"L", n} -> -n
-    end)
-    |> Enum.reduce({@start, 0}, fn step, {pos, hits} ->
-      new_pos = rem(pos + step, @dial_size)
-      new_pos = if new_pos < 0, do: new_pos + @dial_size, else: new_pos
+      problem
+      |> Enum.map(fn
+        {"R", n} -> n
+        {"L", n} -> -n
+      end)
+      |> Enum.reduce({@start, 0}, fn step, {pos, hits} ->
+        new_pos = rem(pos + step, @dial_size)
+        new_pos = if new_pos < 0, do: new_pos + @dial_size, else: new_pos
 
-      hits = if new_pos == 0, do: hits + 1, else: hits
-      if @use_vis do
-        for step <- pos..rem(pos + step, @dial_size) do
-          loop(step, hits)
+        hits = if new_pos == 0, do: hits + 1, else: hits
+
+        if @use_vis do
+          for step <- pos..rem(pos + step, @dial_size) do
+            loop(step, hits)
+          end
         end
-      end
 
-      {new_pos, hits}
-    end)
+        {new_pos, hits}
+      end)
 
     zero_hits
   end
@@ -50,22 +51,22 @@ defmodule Advendofcode.Solutions.Y25.Day01 do
 
   def part_two(problem) do
     {_final_pos, zero_hits} =
-    Enum.map(problem, fn
-      {"R", n} -> n
-      {"L", n} -> -n
-    end)
-    |> Enum.reduce({@start, 0}, fn step, {pos, hits} ->
-      raw_from = pos
-      raw_to = pos + step
+      Enum.map(problem, fn
+        {"R", n} -> n
+        {"L", n} -> -n
+      end)
+      |> Enum.reduce({@start, 0}, fn step, {pos, hits} ->
+        raw_from = pos
+        raw_to = pos + step
 
-      new_hits =
-        abs(:math.floor(raw_to / @dial_size) - :math.floor(raw_from / @dial_size))
+        new_hits =
+          abs(:math.floor(raw_to / @dial_size) - :math.floor(raw_from / @dial_size))
 
-      new_pos = rem(raw_to, @dial_size)
-      new_pos = if new_pos < 0, do: new_pos + @dial_size, else: new_pos
+        new_pos = rem(raw_to, @dial_size)
+        new_pos = if new_pos < 0, do: new_pos + @dial_size, else: new_pos
 
-      {new_pos, hits + new_hits}
-    end)
+        {new_pos, hits + new_hits}
+      end)
 
     zero_hits
   end
