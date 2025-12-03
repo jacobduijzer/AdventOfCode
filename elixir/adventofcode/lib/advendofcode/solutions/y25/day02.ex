@@ -10,12 +10,13 @@ defmodule Advendofcode.Solutions.Y25.Day02 do
         range
         |> String.split("-", trim: true)
         |> Enum.map(&String.to_integer/1)
+
       {from_str, to_str}
     end)
   end
 
   def invalid?(n) do
-    s   = Integer.to_string(n)
+    s = Integer.to_string(n)
     len = String.length(s)
 
     if rem(len, 2) == 1 do
@@ -27,7 +28,7 @@ defmodule Advendofcode.Solutions.Y25.Day02 do
   end
 
   def invalid_part2?(n) do
-    s   = Integer.to_string(n)
+    s = Integer.to_string(n)
     len = String.length(s)
 
     if len < 2 do

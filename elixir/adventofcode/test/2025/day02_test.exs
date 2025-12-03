@@ -36,7 +36,7 @@ defmodule Advendofcode.Solutions.Y25.Day02Test do
     824824821-824824827,2121212118-2121212124
     """
 
-    assert 1227775554 == solve(input, :part_one)
+    assert 1_227_775_554 == solve(input, :part_one)
   end
 
   # Once your part one was successfully sumbitted, you may uncomment this test
@@ -55,7 +55,7 @@ defmodule Advendofcode.Solutions.Y25.Day02Test do
     824824821-824824827,2121212118-2121212124
     """
 
-    assert 4174379265 == solve(input, :part_two)
+    assert 4_174_379_265 == solve(input, :part_two)
   end
 
   # You may also implement a test to validate the part two to ensure that you
