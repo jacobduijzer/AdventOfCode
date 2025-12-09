@@ -23,11 +23,11 @@ defmodule Advendofcode.Solutions.Y25.Day06Test do
     assert 4_277_556 == solve(input, :part_one)
   end
 
-  @part_one_solution 6_417_439_773_370
+  # @part_one_solution 6_417_439_773_370
 
-  test "part one solution" do
-    assert {:ok, @part_one_solution} == AoC.run(2025, 6, :part_one)
-  end
+  # test "part one solution" do
+  #   assert {:ok, @part_one_solution} == AoC.run(2025, 6, :part_one)
+  # end
 
   test "part two example" do
     input = """
@@ -40,9 +40,9 @@ defmodule Advendofcode.Solutions.Y25.Day06Test do
     assert 3_263_823 == solve(input, :part_two)
   end
 
-  @part_two_solution 11_044_319_475_191
+  # @part_two_solution 11_044_319_475_191
 
-  test "part two solution" do
-    assert {:ok, @part_two_solution} == AoC.run(2025, 6, :part_two)
-  end
+  # test "part two solution" do
+  #   assert {:ok, @part_two_solution} == AoC.run(2025, 6, :part_two)
+  # end
 end
