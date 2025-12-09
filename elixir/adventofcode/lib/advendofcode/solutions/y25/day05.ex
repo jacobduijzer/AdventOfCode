@@ -20,7 +20,7 @@ defmodule Advendofcode.Solutions.Y25.Day05 do
         String.to_integer(line)
       end)
 
-      {ranges, ingredients}
+    {ranges, ingredients}
   end
 
   def part_one({ranges, ingredients}) do
@@ -29,7 +29,7 @@ defmodule Advendofcode.Solutions.Y25.Day05 do
         Enum.any?(ranges, fn {from, to} ->
           n >= from and n <= to
         end)
-    end)
+      end)
 
     inside |> Enum.count()
   end
@@ -49,12 +49,13 @@ defmodule Advendofcode.Solutions.Y25.Day05 do
               [{cur_from, max(cur_to, to)} | rest]
             else
               [{from, to} | acc]
-          end
+            end
         end
       end)
       |> Enum.reverse()
 
-    compress_ranges |> Enum.reduce(0, fn {from, to}, acc ->
+    compress_ranges
+    |> Enum.reduce(0, fn {from, to}, acc ->
       acc + (to - from + 1)
     end)
   end

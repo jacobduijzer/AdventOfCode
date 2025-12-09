@@ -54,7 +54,7 @@ defmodule Advendofcode.Solutions.Y25.Day05Test do
     assert 14 == solve(input, :part_two)
   end
 
-  @part_two_solution 338189277144473
+  @part_two_solution 338_189_277_144_473
 
   test "part two solution" do
     assert {:ok, @part_two_solution} == AoC.run(2025, 5, :part_two)
