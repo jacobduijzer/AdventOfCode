@@ -14,6 +14,7 @@ defmodule Advendofcode.Solutions.Y25.Day03 do
       |> Enum.map(&String.to_integer/1)
 
     [first | rest] = digits
+
     {best, _max_prefix} =
       Enum.reduce(rest, {nil, first}, fn d, {best, max_prefix} ->
         candidate = max_prefix * 10 + d
@@ -49,7 +50,7 @@ defmodule Advendofcode.Solutions.Y25.Day03 do
     |> Integer.undigits()
   end
 
-  defp pop_smaller([last | rest] = stack, d, to_remove) when to_remove > 0 and last < d do
+  defp pop_smaller([last | rest] = _, d, to_remove) when to_remove > 0 and last < d do
     pop_smaller(rest, d, to_remove - 1)
   end
 

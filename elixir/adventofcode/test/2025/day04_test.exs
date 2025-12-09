@@ -1,22 +1,22 @@
-defmodule Advendofcode.Solutions.Y25.Day03Test do
+defmodule Advendofcode.Solutions.Y25.Day04Test do
   alias AoC.Input, warn: false
-  alias Advendofcode.Solutions.Y25.Day03, as: Solution, warn: false
+  alias Advendofcode.Solutions.Y25.Day04, as: Solution, warn: false
   use ExUnit.Case, async: true
 
   # To run the test, run one of the following commands:
   #
-  #     mix AoC.test --year 2025 --day 3
+  #     mix AoC.test --year 2025 --day 4
   #
-  #     mix test test/2025/day03_test.exs
+  #     mix test test/2025/day04_test.exs
   #
   # To run the solution
   #
-  #     mix AoC.run --year 2025 --day 3 --part 1
+  #     mix AoC.run --year 2025 --day 4 --part 1
   #
   # Use sample input file:
   #
-  #     # returns {:ok, "priv/input/2025/day-03-mysuffix.inp"}
-  #     {:ok, path} = Input.resolve(2025, 3, "mysuffix")
+  #     # returns {:ok, "priv/input/2025/day-04-mysuffix.inp"}
+  #     {:ok, path} = Input.resolve(2025, 4, "mysuffix")
   #
   # Good luck!
 
@@ -31,13 +31,19 @@ defmodule Advendofcode.Solutions.Y25.Day03Test do
 
   test "part one example" do
     input = ~S"""
-    987654321111111
-    811111111111119
-    234234234234278
-    818181911112111
+    ..@@.@@@@.
+    @@@.@.@.@@
+    @@@@@.@.@@
+    @.@@@@..@.
+    @@.@@@@.@@
+    .@@@@@@@.@
+    .@.@.@.@@@
+    @.@@@.@@@@
+    .@@@@@@@@.
+    @.@.@@@.@.
     """
 
-    assert 357 == solve(input, :part_one)
+    assert 13 == solve(input, :part_one)
   end
 
   # Once your part one was successfully sumbitted, you may uncomment this test
@@ -46,18 +52,24 @@ defmodule Advendofcode.Solutions.Y25.Day03Test do
   # @part_one_solution CHANGE_ME
   #
   # test "part one solution" do
-  #   assert {:ok, @part_one_solution} == AoC.run(2025, 3, :part_one)
+  #   assert {:ok, @part_one_solution} == AoC.run(2025, 4, :part_one)
   # end
 
   test "part two example" do
     input = ~S"""
-    987654321111111
-    811111111111119
-    234234234234278
-    818181911112111
+    ..@@.@@@@.
+    @@@.@.@.@@
+    @@@@@.@.@@
+    @.@@@@..@.
+    @@.@@@@.@@
+    .@@@@@@@.@
+    .@.@.@.@@@
+    @.@@@.@@@@
+    .@@@@@@@@.
+    @.@.@@@.@.
     """
 
-    assert 3_121_910_778_619 == solve(input, :part_two)
+    assert 43 == solve(input, :part_two)
   end
 
   # You may also implement a test to validate the part two to ensure that you
@@ -66,6 +78,6 @@ defmodule Advendofcode.Solutions.Y25.Day03Test do
   # @part_two_solution CHANGE_ME
   #
   # test "part two solution" do
-  #   assert {:ok, @part_two_solution} == AoC.run(2025, 3, :part_two)
+  #   assert {:ok, @part_two_solution} == AoC.run(2025, 4, :part_two)
   # end
 end

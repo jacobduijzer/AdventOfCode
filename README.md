@@ -31,6 +31,12 @@ Parameters:
 | 1   | [elixir](https://github.com/jacobduijzer/adventofcode/blob/main/elixir/adventofcode/lib/advendofcode/solutions/y25/day01.ex) |
 | 2   | [elixir](https://github.com/jacobduijzer/adventofcode/blob/main/elixir/adventofcode/lib/advendofcode/solutions/y25/day02.ex) |
 | 3   | [elixir](https://github.com/jacobduijzer/adventofcode/blob/main/elixir/adventofcode/lib/advendofcode/solutions/y25/day03.ex) |
+| 4   | [elixir](https://github.com/jacobduijzer/adventofcode/blob/main/elixir/adventofcode/lib/advendofcode/solutions/y25/day04.ex) |
+| 5   | [elixir](https://github.com/jacobduijzer/adventofcode/blob/main/elixir/adventofcode/lib/advendofcode/solutions/y25/day05.ex) |
+| 6   | [elixir](https://github.com/jacobduijzer/adventofcode/blob/main/elixir/adventofcode/lib/advendofcode/solutions/y25/day06.ex) |
+|     | |
+| 8   | [elixir](https://github.com/jacobduijzer/adventofcode/blob/main/elixir/adventofcode/lib/advendofcode/solutions/y25/day08.ex) |
+| 9   | [elixir](https://github.com/jacobduijzer/adventofcode/blob/main/elixir/adventofcode/lib/advendofcode/solutions/y25/day09.ex) |
 
 # Advent of Code 2024
 
